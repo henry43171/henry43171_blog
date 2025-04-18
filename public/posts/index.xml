@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Henry 的筆記本</title>
+    <link>https://henry43171.github.io/posts/</link>
+    <description>Recent content in Posts on Henry 的筆記本</description>
+    <generator>Hugo</generator>
+    <language>zh-tw</language>
+    <lastBuildDate>Fri, 18 Apr 2025 15:46:27 +0800</lastBuildDate>
+    <atom:link href="https://henry43171.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hello World</title>
+      <link>https://henry43171.github.io/posts/hello-world/</link>
+      <pubDate>Fri, 18 Apr 2025 15:46:27 +0800</pubDate>
+      <guid>https://henry43171.github.io/posts/hello-world/</guid>
+      <description>&lt;h1 id=&#34;第一篇文章&#34;&gt;第一篇文章&lt;/h1&gt;&#xA;&lt;p&gt;大家好，這是我的第一篇文章，希望可以幫助到大家&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
