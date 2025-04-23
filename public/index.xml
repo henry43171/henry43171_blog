@@ -6,14 +6,14 @@
     <description>Recent content on Henry 的筆記本</description>
     <generator>Hugo</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Fri, 18 Apr 2025 15:46:27 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 23 Apr 2025 14:46:27 +0800</lastBuildDate>
     <atom:link href="https://henry43171.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Hello World</title>
-      <link>https://henry43171.github.io/posts/hello-world/</link>
-      <pubDate>Fri, 18 Apr 2025 15:46:27 +0800</pubDate>
-      <guid>https://henry43171.github.io/posts/hello-world/</guid>
-      <description>&lt;h1 id=&#34;第一篇文章&#34;&gt;第一篇文章&lt;/h1&gt;&#xA;&lt;p&gt;大家好，這是我的第一篇文章，希望可以幫助到大家&lt;/p&gt;</description>
+      <title>Numpy 練習紀錄</title>
+      <link>https://henry43171.github.io/posts/numpy_practice/</link>
+      <pubDate>Wed, 23 Apr 2025 14:46:27 +0800</pubDate>
+      <guid>https://henry43171.github.io/posts/numpy_practice/</guid>
+      <description>&lt;h2 id=&#34;numpy-練習紀錄&#34;&gt;Numpy 練習紀錄&lt;/h2&gt;&#xA;&lt;h3 id=&#34;基本運算&#34;&gt;基本運算&lt;/h3&gt;&#xA;&lt;p&gt;可以用 numpy 來進行一些基本運算，NumPy 的陣列運算是「元素對元素」的操作（element-wise），包含加減乘除、根號、次方等等。&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;import numpy as np&#xD;&#xA;&#xD;&#xA;# 基本運算&#xD;&#xA;import numpy as np&#xD;&#xA;&#xD;&#xA;a = np.array([1, 4, 9])&#xD;&#xA;b = np.array([4, 5, 6])&#xD;&#xA;&#xD;&#xA;print(&amp;#34;\n numpy array a=&amp;#34;, a)&#xD;&#xA;print(&amp;#34;\n numpy array b=&amp;#34;, b)&#xD;&#xA;&#xD;&#xA;print(&amp;#34;\n加法\na+b=&amp;#34;, a+b)&#xD;&#xA;print(&amp;#34;\n減法\na-b=&amp;#34;, a-b)&#xD;&#xA;print(&amp;#34;\n乘法\na*b=&amp;#34;, a*b)&#xD;&#xA;print(&amp;#34;\n除法\na/b=&amp;#34;, a/b)&#xD;&#xA;print(&amp;#34;\n根號\na=&amp;#34;, np.sqrt(a))&#xD;&#xA;print(&amp;#34;\n倍數\nb*2=&amp;#34;, b*2)&#xD;&#xA;print(&amp;#34;\n次方\nb**2=&amp;#34;, b**2)&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;numpy array 和 list 的差別，numpy如果乘2，會把各個元素逐一乘2；list如果乘2，會將整個list複製一份。&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;import numpy as np&#xD;&#xA;&#xD;&#xA;# 和 list 比較&#xD;&#xA;print(&amp;#34;\n&amp;#34;+&amp;#34;---&amp;#34;*30)&#xD;&#xA;lista = [1, 2, 3]&#xD;&#xA;print(&amp;#34;lista = &amp;#34;, lista) # lista =  [1, 2, 3]&#xD;&#xA;print(&amp;#34;lista*2 = &amp;#34;, lista*2) # lista*2 =  [1, 2, 3, 1, 2, 3]&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;廣播broadcasting&#34;&gt;廣播(Broadcasting)&lt;/h3&gt;&#xA;&lt;p&gt;在 NumPy 中，大多數的運算都是「逐元素運算」（element-wise operation）。&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
