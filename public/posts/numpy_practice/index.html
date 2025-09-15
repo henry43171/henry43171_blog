@@ -1,393 +1,0 @@
-<!doctype html>
-
-
-
-
-
-
-
-<html
-  class="not-ready lg:text-base"
-  style="--bg:#faf8f1"
-  lang="zh-tw"
-  dir="ltr"
-><head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1, shrink-to-fit=no"
-  />
-
-  
-  <title>Numpy 練習紀錄 - Henry 的筆記本</title>
-
-  
-  <meta name="theme-color" />
-
-  <meta name="description" content="Numpy 練習紀錄
-基本運算
-可以用 numpy 來進行一些基本運算，NumPy 的陣列運算是「元素對元素」的操作（element-wise），包含加減乘除、根號、次方等等。
-import numpy as np
-
-# 基本運算
-import numpy as np
-
-a = np.array([1, 4, 9])
-b = np.array([4, 5, 6])
-
-print(&#34;\n numpy array a=&#34;, a)
-print(&#34;\n numpy array b=&#34;, b)
-
-print(&#34;\n加法\na&#43;b=&#34;, a&#43;b)
-print(&#34;\n減法\na-b=&#34;, a-b)
-print(&#34;\n乘法\na*b=&#34;, a*b)
-print(&#34;\n除法\na/b=&#34;, a/b)
-print(&#34;\n根號\na=&#34;, np.sqrt(a))
-print(&#34;\n倍數\nb*2=&#34;, b*2)
-print(&#34;\n次方\nb**2=&#34;, b**2)
-numpy array 和 list 的差別，numpy如果乘2，會把各個元素逐一乘2；list如果乘2，會將整個list複製一份。
-import numpy as np
-
-# 和 list 比較
-print(&#34;\n&#34;&#43;&#34;---&#34;*30)
-lista = [1, 2, 3]
-print(&#34;lista = &#34;, lista) # lista =  [1, 2, 3]
-print(&#34;lista*2 = &#34;, lista*2) # lista*2 =  [1, 2, 3, 1, 2, 3]
-廣播(Broadcasting)
-在 NumPy 中，大多數的運算都是「逐元素運算」（element-wise operation）。" />
-  <meta name="author" content="Henry 的筆記本" /><link rel="preload stylesheet" as="style" href="https://henry43171.github.io/main.min.css" />
-
-  
-  <link rel="preload" as="image" href="https://henry43171.github.io/theme.png" />
-
-  
-
-  
-
-  <script
-    defer
-    src="https://henry43171.github.io/highlight.min.js"
-    onload="hljs.initHighlightingOnLoad();"
-  ></script>
-
-  
-  <link
-    rel="icon"
-    href="https://henry43171.github.io/favicon.ico"
-  />
-  <link
-    rel="apple-touch-icon"
-    href="https://henry43171.github.io/apple-touch-icon.png"
-  />
-
-  <meta name="generator" content="Hugo 0.146.5">
-  <meta itemprop="name" content="Numpy 練習紀錄">
-  <meta itemprop="description" content="Numpy 練習紀錄 基本運算 可以用 numpy 來進行一些基本運算，NumPy 的陣列運算是「元素對元素」的操作（element-wise），包含加減乘除、根號、次方等等。
-import numpy as np# 基本運算import numpy as npa = np.array([1, 4, 9])b = np.array([4, 5, 6])print(&#34;\n numpy array a=&#34;, a)print(&#34;\n numpy array b=&#34;, b)print(&#34;\n加法\na&#43;b=&#34;, a&#43;b)print(&#34;\n減法\na-b=&#34;, a-b)print(&#34;\n乘法\na*b=&#34;, a*b)print(&#34;\n除法\na/b=&#34;, a/b)print(&#34;\n根號\na=&#34;, np.sqrt(a))print(&#34;\n倍數\nb*2=&#34;, b*2)print(&#34;\n次方\nb**2=&#34;, b**2) numpy array 和 list 的差別，numpy如果乘2，會把各個元素逐一乘2；list如果乘2，會將整個list複製一份。
-import numpy as np# 和 list 比較print(&#34;\n&#34;&#43;&#34;---&#34;*30)lista = [1, 2, 3]print(&#34;lista = &#34;, lista) # lista = [1, 2, 3]print(&#34;lista*2 = &#34;, lista*2) # lista*2 = [1, 2, 3, 1, 2, 3] 廣播(Broadcasting) 在 NumPy 中，大多數的運算都是「逐元素運算」（element-wise operation）。">
-  <meta itemprop="datePublished" content="2025-04-23T14:46:27+08:00">
-  <meta itemprop="dateModified" content="2025-04-23T14:46:27+08:00">
-  <meta itemprop="wordCount" content="494"><meta property="og:url" content="https://henry43171.github.io/posts/numpy_practice/">
-  <meta property="og:site_name" content="Henry 的筆記本">
-  <meta property="og:title" content="Numpy 練習紀錄">
-  <meta property="og:description" content="Numpy 練習紀錄 基本運算 可以用 numpy 來進行一些基本運算，NumPy 的陣列運算是「元素對元素」的操作（element-wise），包含加減乘除、根號、次方等等。
-import numpy as np# 基本運算import numpy as npa = np.array([1, 4, 9])b = np.array([4, 5, 6])print(&#34;\n numpy array a=&#34;, a)print(&#34;\n numpy array b=&#34;, b)print(&#34;\n加法\na&#43;b=&#34;, a&#43;b)print(&#34;\n減法\na-b=&#34;, a-b)print(&#34;\n乘法\na*b=&#34;, a*b)print(&#34;\n除法\na/b=&#34;, a/b)print(&#34;\n根號\na=&#34;, np.sqrt(a))print(&#34;\n倍數\nb*2=&#34;, b*2)print(&#34;\n次方\nb**2=&#34;, b**2) numpy array 和 list 的差別，numpy如果乘2，會把各個元素逐一乘2；list如果乘2，會將整個list複製一份。
-import numpy as np# 和 list 比較print(&#34;\n&#34;&#43;&#34;---&#34;*30)lista = [1, 2, 3]print(&#34;lista = &#34;, lista) # lista = [1, 2, 3]print(&#34;lista*2 = &#34;, lista*2) # lista*2 = [1, 2, 3, 1, 2, 3] 廣播(Broadcasting) 在 NumPy 中，大多數的運算都是「逐元素運算」（element-wise operation）。">
-  <meta property="og:locale" content="zh_tw">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2025-04-23T14:46:27+08:00">
-    <meta property="article:modified_time" content="2025-04-23T14:46:27+08:00">
-
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Numpy 練習紀錄">
-  <meta name="twitter:description" content="Numpy 練習紀錄 基本運算 可以用 numpy 來進行一些基本運算，NumPy 的陣列運算是「元素對元素」的操作（element-wise），包含加減乘除、根號、次方等等。
-import numpy as np# 基本運算import numpy as npa = np.array([1, 4, 9])b = np.array([4, 5, 6])print(&#34;\n numpy array a=&#34;, a)print(&#34;\n numpy array b=&#34;, b)print(&#34;\n加法\na&#43;b=&#34;, a&#43;b)print(&#34;\n減法\na-b=&#34;, a-b)print(&#34;\n乘法\na*b=&#34;, a*b)print(&#34;\n除法\na/b=&#34;, a/b)print(&#34;\n根號\na=&#34;, np.sqrt(a))print(&#34;\n倍數\nb*2=&#34;, b*2)print(&#34;\n次方\nb**2=&#34;, b**2) numpy array 和 list 的差別，numpy如果乘2，會把各個元素逐一乘2；list如果乘2，會將整個list複製一份。
-import numpy as np# 和 list 比較print(&#34;\n&#34;&#43;&#34;---&#34;*30)lista = [1, 2, 3]print(&#34;lista = &#34;, lista) # lista = [1, 2, 3]print(&#34;lista*2 = &#34;, lista*2) # lista*2 = [1, 2, 3, 1, 2, 3] 廣播(Broadcasting) 在 NumPy 中，大多數的運算都是「逐元素運算」（element-wise operation）。">
-
-  <link rel="canonical" href="https://henry43171.github.io/posts/numpy_practice/" />
-</head>
-<body
-    class="bg-(--bg) text-black antialiased duration-200 ease-out [-webkit-tap-highlight-color:transparent] dark:text-white"
-  ><header
-  class="mx-auto flex h-[4.5rem] max-w-(--w) px-8 whitespace-nowrap lg:justify-center"
->
-  <div class="relative z-50 flex items-center ltr:mr-auto rtl:ml-auto">
-    <a
-      class="-translate-y-[1px] text-2xl font-medium"
-      href="https://henry43171.github.io/"
-      >Henry 的筆記本</a
-    >
-    <div
-      class="btn-dark text-[0px] ltr:ml-4 rtl:mr-4 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.png)_left_center/_auto_theme('spacing.6')_no-repeat] [transition:_background-position_0.4s_steps(5)] dark:[background-position:right]"
-      role="button"
-      aria-label="Dark"
-    ></div>
-  </div>
-
-  <div
-    class="btn-menu relative z-50 flex h-[4.5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden ltr:-mr-8 rtl:-ml-8"
-    role="button"
-    aria-label="Menu"
-  ></div>
-
-  <script>
-    
-    const htmlClass = document.documentElement.classList;
-    setTimeout(() => {
-      htmlClass.remove('not-ready');
-    }, 10);
-
-    
-    const btnMenu = document.querySelector('.btn-menu');
-    btnMenu.addEventListener('click', () => {
-      htmlClass.toggle('open');
-    });
-
-    
-    const metaTheme = document.querySelector('meta[name="theme-color"]');
-    const lightBg = '#faf8f1'.replace(/"/g, '');
-    const setDark = (isDark) => {
-      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
-      htmlClass[isDark ? 'add' : 'remove']('dark');
-      localStorage.setItem('dark', isDark);
-    };
-
-    
-    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-    if (htmlClass.contains('dark')) {
-      setDark(true);
-    } else {
-      const darkVal = localStorage.getItem('dark');
-      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
-    }
-
-    
-    darkScheme.addEventListener('change', (event) => {
-      setDark(event.matches);
-    });
-
-    
-    const btnDark = document.querySelector('.btn-dark');
-    btnDark.addEventListener('click', () => {
-      setDark(localStorage.getItem('dark') !== 'true');
-    });
-  </script>
-
-  <div
-    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full flex-col justify-center bg-(--bg) pb-16 duration-200 select-none lg:static lg:h-auto lg:flex-row lg:bg-transparent! lg:pb-0 lg:transition-none"
-  >
-  </div>
-</header>
-<main
-      class="prose prose-neutral dark:prose-invert relative mx-auto min-h-[calc(100vh-9rem)] max-w-(--w) px-8 pt-14 pb-16"
-    ><article>
-  <header class="mb-14">
-    <h1 class="my-0! pb-2.5">Numpy 練習紀錄</h1><div class="text-xs antialiased opacity-60"><time>Apr 23, 2025</time></div></header>
-
-  <section><h2 id="numpy-練習紀錄">Numpy 練習紀錄</h2>
-<h3 id="基本運算">基本運算</h3>
-<p>可以用 numpy 來進行一些基本運算，NumPy 的陣列運算是「元素對元素」的操作（element-wise），包含加減乘除、根號、次方等等。</p>
-<pre tabindex="0"><code>import numpy as np
-
-# 基本運算
-import numpy as np
-
-a = np.array([1, 4, 9])
-b = np.array([4, 5, 6])
-
-print(&#34;\n numpy array a=&#34;, a)
-print(&#34;\n numpy array b=&#34;, b)
-
-print(&#34;\n加法\na+b=&#34;, a+b)
-print(&#34;\n減法\na-b=&#34;, a-b)
-print(&#34;\n乘法\na*b=&#34;, a*b)
-print(&#34;\n除法\na/b=&#34;, a/b)
-print(&#34;\n根號\na=&#34;, np.sqrt(a))
-print(&#34;\n倍數\nb*2=&#34;, b*2)
-print(&#34;\n次方\nb**2=&#34;, b**2)
-</code></pre><p>numpy array 和 list 的差別，numpy如果乘2，會把各個元素逐一乘2；list如果乘2，會將整個list複製一份。</p>
-<pre tabindex="0"><code>import numpy as np
-
-# 和 list 比較
-print(&#34;\n&#34;+&#34;---&#34;*30)
-lista = [1, 2, 3]
-print(&#34;lista = &#34;, lista) # lista =  [1, 2, 3]
-print(&#34;lista*2 = &#34;, lista*2) # lista*2 =  [1, 2, 3, 1, 2, 3]
-</code></pre><h3 id="廣播broadcasting">廣播(Broadcasting)</h3>
-<p>在 NumPy 中，大多數的運算都是「逐元素運算」（element-wise operation）。</p>
-<p>如果想將一個較小的陣列與較大的陣列一起運算，就可以用到 Broadcasting（廣播機制）。<br>
-像是 <code>+10</code> 這樣的加法，會直接將每個元素都加上 10；而如果是乘上一個陣列的話，就要注意兩個陣列的形狀是否相容，才能正確進行廣播運算。</p>
-<pre tabindex="0"><code>import numpy as np
-
-broadcast_arr = np.arange(1,7).reshape(2,3)
-print(broadcast_arr)
-
-print(&#34;\n加一個數字 10&#34;)
-print(broadcast_arr+10)
-
-print(&#34;\n乘一個陣列(new_arr) [1, 2, 3]&#34;)
-new_arr = np.array([1, 2, 3])
-print(&#34;# broadcast_arr.shape = &#34;, broadcast_arr.shape)
-print(&#34;# new_arr.shape = &#34;, new_arr.shape)
-print(broadcast_arr*new_arr)
-</code></pre><h3 id="dot-與-matmul-基礎">dot 與 matmul 基礎</h3>
-<p>在 NumPy 中，如果要進行矩陣乘法（也就是線性代數裡的「內積」），有幾種方式可以使用：<code>np.dot()</code>、<code>np.matmul()</code>，還有比較 Python 的 <code>@</code> 運算子。</p>
-<p>這三種方式在處理 2 維陣列時基本上是等效的：</p>
-<pre tabindex="0"><code>import numpy as np
-
-a = np.array([[1, 2]
-            ,[3, 4]])
-
-b = np.array([[4, 3]
-            ,[2, 1]])
-
-print(&#34;\n np.dot(a, b): \n&#34;, np.dot(a, b))
-print(&#34;\n np.matmul(a, b): \n&#34;, np.matmul(a, b))
-print(&#34;\n @ 運算子 \n&#34;, a@b)
-</code></pre><p>在這裡：</p>
-<ul>
-<li>np.dot() 是早期常見的用法，不只可以用在矩陣乘法，也可以做向量內積。</li>
-<li>np.matmul() 是為了明確表示「矩陣乘法」而設計的方法。</li>
-<li>@ 是 Python 3.5 之後新增的運算子，寫起來最簡潔，也最符合數學上的寫法。</li>
-</ul>
-<p>備註：這裡只針對 2D 陣列的情境做說明，更高維度的運算結果可能會有所不同。</p>
-<h3 id="總和平均標準差">總和、平均、標準差</h3>
-<h4 id="基礎操作">基礎操作</h4>
-<p>在 NumPy 中，可以很方便地對陣列進行統計運算，例如總和（sum）、平均（mean）和標準差（std）。這些方法都可以搭配 <code>axis</code> 參數來指定要在「哪個維度」進行運算。</p>
-<pre tabindex="0"><code>import numpy as np
-
-# 建立一個 2D 陣列
-arr = np.array([[1, 2, 3],
-                [4, 5, 6],
-                [7, 8, 9]])
-
-print(&#34;原始資料：&#34;)
-print(arr)
-
-# 計算總和
-print(&#34;\n總和 (sum)：&#34;)
-print(np.sum(arr))  # 所有元素的總和
-print(np.sum(arr, axis=0))  # 每列的總和
-print(np.sum(arr, axis=1))  # 每欄的總和
-
-# 計算平均數
-print(&#34;\n平均數 (mean)：&#34;)
-print(np.mean(arr))  # 所有元素的平均
-print(np.mean(arr, axis=0))  # 每列的平均
-print(np.mean(arr, axis=1))  # 每欄的平均
-
-# 計算標準差
-print(&#34;\n標準差 (std)：&#34;)
-print(np.std(arr))  # 所有元素的標準差
-print(np.std(arr, axis=0))  # 每列的標準差
-print(np.std(arr, axis=1))  # 每欄的標準差
-</code></pre><h4 id="實戰統計分析練習">實戰統計分析練習</h4>
-<p>模擬一筆資料並進行統計分析(mean, std, var, max, argmax)。</p>
-<p>其中 <code>argmax</code> 是一個很實用的函式，它會回傳最大值「第一次出現」的索引位置。</p>
-<pre tabindex="0"><code># 模擬一筆資料（可以是某種測量數據、分數等等）
-data = np.array([5, 12, 7, 9, 15, 3, 8])
-
-# 基本統計指標
-print(&#34;Data:&#34;, data)
-print(&#34;Mean (平均):&#34;, np.mean(data))
-print(&#34;Standard Deviation (標準差):&#34;, np.std(data))
-print(&#34;Variance (變異數):&#34;, np.var(data))
-print(&#34;Max (最大值):&#34;, np.max(data))
-print(&#34;Argmax (最大值的索引):&#34;, np.argmax(data))
-</code></pre><h4 id="隨機資料的統計分析延伸應用">隨機資料的統計分析（延伸應用）</h4>
-<p>可以用 Numpy 生成一些隨機資料，，並進行簡單的統計分析。</p>
-<p>這邊是一個簡單的畫圖程式。</p>
-<pre tabindex="0"><code>import numpy as np
-import matplotlib.pyplot as plt
-
-# 繪圖函式
-def show_visual(data, title):
-    plt.hist(data, bins=30, edgecolor=&#39;black&#39;)
-    plt.title(title)
-    plt.xlabel(&#34;Value&#34;)
-    plt.ylabel(&#34;Frequency&#34;)
-    plt.show()
-</code></pre><p>可以先看看常見的兩種分布，分別是常態分佈、均勻分布。</p>
-<pre tabindex="0"><code># 生成1000個服從常態分布的數據，均值為0，標準差為1
-normal_data = np.random.normal(loc=0, scale=1, size=1000)
-# 查看生成的數據的簡單統計
-print(&#34;常態分布數據的平均值:&#34;, np.mean(normal_data))
-print(&#34;常態分布數據的標準差:&#34;, np.std(normal_data))
-show_visual(normal_data, &#34;Normal Distribution&#34;)
-
-# 生成1000個服從均勻分布的數據，範圍是[0, 10]
-uniform_data = np.random.uniform(low=0, high=10, size=1000)
-# 查看生成的數據的簡單統計
-print(&#34;\n均勻分布數據的平均值:&#34;, np.mean(uniform_data))
-print(&#34;均勻分布數據的標準差:&#34;, np.std(uniform_data))
-show_visual(uniform_data, &#34;Uniform Distribution&#34;)
-</code></pre><h3 id="骰子模擬觀察隨機分布">骰子模擬：觀察隨機分布</h3>
-<p>這個練習的目標是模擬擲骰子的情境，並透過簡單的統計與視覺化，觀察點數的分布狀況。</p>
-<p>練習目標</p>
-<ul>
-<li>使用 np.random.randint(1, 7, size=5000) 模擬 5000 次擲骰子。</li>
-<li>計算每個點數出現的次數。</li>
-<li>使用 plt.bar() 或 plt.hist() 將結果視覺化。</li>
-</ul>
-<pre tabindex="0"><code>import numpy as np
-import matplotlib.pyplot as plt
-
-# 定義骰子
-def dice_roll(dice_num, size):
-    dice = np.random.randint(1, 7, size=size)
-    values, counts = np.unique(dice, return_counts=True)
-    print(f&#34;{dice_num}&#34;)
-    for val, count in zip(values, counts):
-        print(f&#34;點數 {val} 出現了 {count} 次&#34;)
-    return dice
-
-# 分別擲骰子
-dice_1 = dice_roll(&#34;dice_1&#34;, 5000)
-dice_2 = dice_roll(&#34;dice_2&#34;, 5000)
-
-# 總和相加並統計次數
-print(&#34;---&#34;*30)
-print(&#34;骰子點數相加&#34;)
-values, counts = np.unique(dice_1+dice_2, return_counts=True)
-for val, count in zip(values, counts):
-    print(f&#34;相加點數 {val} 出現了 {count} 次&#34;)
-
-# 原始圖表
-# plt.bar(values, counts)
-# plt.xticks(np.arange(values.min(), values.max()+1))  # 顯示 2~12 的點
-# plt.xlabel(&#34;點數&#34;)
-# plt.ylabel(&#34;次數&#34;)
-# plt.title(&#34;骰子點數分布&#34;)
-# plt.show()
-
-# 美化圖表(English version)
-plt.bar(values, counts, color=&#39;skyblue&#39;, edgecolor=&#39;black&#39;)
-plt.xlabel(&#34;Sum of Dice&#34;)
-plt.ylabel(&#34;Frequency&#34;)
-plt.title(&#34;Distribution of the Sum of Two Dice&#34;)
-plt.grid(axis=&#39;y&#39;, linestyle=&#39;--&#39;, alpha=0.7)
-plt.tight_layout()
-plt.show()
-</code></pre><p>如果擲骰子的次數較少，點數的分布會有比較分散、不穩定的明顯偏差；隨著投擲次數的增加，分布會逐漸趨近理論上的平均，也就是類似鐘形曲線的樣子。</p>
-</section>
-
-  </article></main><footer
-  class="mx-auto flex h-[4.5rem] max-w-(--w) items-center px-8 text-xs tracking-wider uppercase opacity-60"
->
-  <div class="mr-auto">&copy;2025
-    <a class="link" href="https://henry43171.github.io/">Henry 的筆記本</a></div>
-  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
-    >powered by hugo️️</a
-  >️
-  <a
-    class="link"
-    href="https://github.com/nanxiaobei/hugo-paper"
-    rel="noopener"
-    target="_blank"
-    >hugo-paper</a
-  >
-</footer>
-</body>
-</html>

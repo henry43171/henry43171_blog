@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Automation on Henry Automates</title>
+    <link>https://henry43171.github.io/categories/automation/</link>
+    <description>Recent content in Automation on Henry Automates</description>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Wed, 27 Aug 2025 03:00:00 +0800</lastBuildDate>
+    <atom:link href="https://henry43171.github.io/categories/automation/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>截圖工具 HotkeyTray</title>
+      <link>https://henry43171.github.io/posts/%E6%88%AA%E5%9C%96%E5%B7%A5%E5%85%B7-hotkeytray/</link>
+      <pubDate>Wed, 27 Aug 2025 03:00:00 +0800</pubDate>
+      <guid>https://henry43171.github.io/posts/%E6%88%AA%E5%9C%96%E5%B7%A5%E5%85%B7-hotkeytray/</guid>
+      <description>&lt;h2 id=&#34;為什麼會有這個工具&#34;&gt;為什麼會有這個工具&lt;/h2&gt;&#xA;&lt;p&gt;在多螢幕環境下工作時，截圖常常是一件麻煩事。&lt;br&gt;&#xA;Windows 內建的截圖工具要不就是需要手動框選範圍，要不就是整個螢幕，&lt;br&gt;&#xA;如果我只想要「左螢幕一鍵截圖」或「右螢幕一鍵截圖」，就顯得很笨重。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

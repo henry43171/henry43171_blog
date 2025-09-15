@@ -1,0 +1,6 @@
+baseURL = 'https://henry43171.github.io/'
+languageCode = 'zh-tw'
+title = 'Henry Automates'
+theme = "paper"
+category = "categories"
+tag = "tags"

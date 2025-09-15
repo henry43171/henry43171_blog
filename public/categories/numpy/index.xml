@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Numpy on Henry Automates</title>
+    <link>https://henry43171.github.io/categories/numpy/</link>
+    <description>Recent content in Numpy on Henry Automates</description>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Wed, 23 Apr 2025 14:46:27 +0800</lastBuildDate>
+    <atom:link href="https://henry43171.github.io/categories/numpy/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Numpy 練習紀錄</title>
+      <link>https://henry43171.github.io/posts/numpy-%E7%B7%B4%E7%BF%92%E7%B4%80%E9%8C%84/</link>
+      <pubDate>Wed, 23 Apr 2025 14:46:27 +0800</pubDate>
+      <guid>https://henry43171.github.io/posts/numpy-%E7%B7%B4%E7%BF%92%E7%B4%80%E9%8C%84/</guid>
+      <description>&lt;h2 id=&#34;numpy-練習紀錄&#34;&gt;Numpy 練習紀錄&lt;/h2&gt;&#xA;&lt;h3 id=&#34;基本運算&#34;&gt;基本運算&lt;/h3&gt;&#xA;&lt;p&gt;可以用 numpy 來進行一些基本運算，NumPy 的陣列運算是「元素對元素」的操作（element-wise），包含加減乘除、根號、次方等等。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
