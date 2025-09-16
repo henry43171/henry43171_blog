@@ -1,0 +1,492 @@
+<!doctype html>
+
+
+
+
+
+
+
+<html
+  class="not-ready lg:text-base"
+  style="--bg:#faf8f1"
+  lang="zh-tw"
+  dir="ltr"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=2434&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <title>Numpy 練習紀錄 - Henry Automates</title>
+
+  
+  <meta name="theme-color" />
+
+  <meta name="description" content="Numpy 練習紀錄
+基本運算
+可以用 numpy 來進行一些基本運算，NumPy 的陣列運算是「元素對元素」的操作（element-wise），包含加減乘除、根號、次方等等。
+import numpy as np
+
+# 基本運算
+import numpy as np
+
+a = np.array([1, 4, 9])
+b = np.array([4, 5, 6])
+
+print(&#34;\n numpy array a=&#34;, a)
+print(&#34;\n numpy array b=&#34;, b)
+
+print(&#34;\n加法\na&#43;b=&#34;, a&#43;b)
+print(&#34;\n減法\na-b=&#34;, a-b)
+print(&#34;\n乘法\na*b=&#34;, a*b)
+print(&#34;\n除法\na/b=&#34;, a/b)
+print(&#34;\n根號\na=&#34;, np.sqrt(a))
+print(&#34;\n倍數\nb*2=&#34;, b*2)
+print(&#34;\n次方\nb**2=&#34;, b**2)
+numpy array 和 list 的差別，numpy如果乘2，會把各個元素逐一乘2；list如果乘2，會將整個list複製一份。
+import numpy as np
+
+# 和 list 比較
+print(&#34;\n&#34;&#43;&#34;---&#34;*30)
+lista = [1, 2, 3]
+print(&#34;lista = &#34;, lista) # lista =  [1, 2, 3]
+print(&#34;lista*2 = &#34;, lista*2) # lista*2 =  [1, 2, 3, 1, 2, 3]
+廣播(Broadcasting)
+在 NumPy 中，大多數的運算都是「逐元素運算」（element-wise operation）。" />
+  <meta name="author" content="Henry Automates" /><link rel="preload stylesheet" as="style" href="http://localhost:2434/main.min.css" />
+
+  
+  <link rel="preload" as="image" href="http://localhost:2434/theme.png" />
+
+  
+
+  
+
+  <script
+    defer
+    src="http://localhost:2434/highlight.min.js"
+    onload="hljs.initHighlightingOnLoad();"
+  ></script>
+
+  
+  <link
+    rel="icon"
+    href="http://localhost:2434/favicon.ico"
+  />
+  <link
+    rel="apple-touch-icon"
+    href="http://localhost:2434/apple-touch-icon.png"
+  />
+
+  <meta name="generator" content="Hugo 0.146.5">
+</head>
+<body
+    class="bg-(--bg) text-black antialiased duration-200 ease-out [-webkit-tap-highlight-color:transparent] dark:text-white"
+  ><header
+  class="mx-auto flex h-[4.5rem] max-w-(--w) px-8 whitespace-nowrap lg:justify-center"
+>
+  <div class="relative z-50 flex items-center ltr:mr-auto rtl:ml-auto">
+    <a
+      class="-translate-y-[1px] text-2xl font-medium"
+      href="http://localhost:2434/"
+      >Henry Automates</a
+    >
+    <div
+      class="btn-dark text-[0px] ltr:ml-4 rtl:mr-4 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.png)_left_center/_auto_theme('spacing.6')_no-repeat] [transition:_background-position_0.4s_steps(5)] dark:[background-position:right]"
+      role="button"
+      aria-label="Dark"
+    ></div>
+  </div>
+
+  <div
+    class="btn-menu relative z-50 flex h-[4.5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden ltr:-mr-8 rtl:-ml-8"
+    role="button"
+    aria-label="Menu"
+  ></div>
+
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = '#faf8f1'.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full flex-col justify-center bg-(--bg) pb-16 duration-200 select-none lg:static lg:h-auto lg:flex-row lg:bg-transparent! lg:pb-0 lg:transition-none"
+  >
+  </div>
+</header>
+<main
+      class="prose prose-neutral dark:prose-invert relative mx-auto min-h-[calc(100vh-9rem)] max-w-(--w) px-8 pt-14 pb-16"
+    ><article>
+  <header class="mb-14">
+    <h1 class="my-0! pb-2.5">Numpy 練習紀錄</h1><div class="text-xs antialiased opacity-60"><time>Apr 23, 2025</time></div></header>
+
+  <section><h2 id="numpy-練習紀錄">Numpy 練習紀錄</h2>
+<h3 id="基本運算">基本運算</h3>
+<p>可以用 numpy 來進行一些基本運算，NumPy 的陣列運算是「元素對元素」的操作（element-wise），包含加減乘除、根號、次方等等。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 基本運算</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>a <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array([<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">9</span>])
+</span></span><span style="display:flex;"><span>b <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array([<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74"> numpy array a=&#34;</span>, a)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74"> numpy array b=&#34;</span>, b)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">加法</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">a+b=&#34;</span>, a<span style="color:#f92672">+</span>b)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">減法</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">a-b=&#34;</span>, a<span style="color:#f92672">-</span>b)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">乘法</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">a*b=&#34;</span>, a<span style="color:#f92672">*</span>b)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">除法</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">a/b=&#34;</span>, a<span style="color:#f92672">/</span>b)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">根號</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">a=&#34;</span>, np<span style="color:#f92672">.</span>sqrt(a))
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">倍數</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">b*2=&#34;</span>, b<span style="color:#f92672">*</span><span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">次方</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">b**2=&#34;</span>, b<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>)
+</span></span></code></pre></div><p>numpy array 和 list 的差別，numpy如果乘2，會把各個元素逐一乘2；list如果乘2，會將整個list複製一份。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 和 list 比較</span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">+</span><span style="color:#e6db74">&#34;---&#34;</span><span style="color:#f92672">*</span><span style="color:#ae81ff">30</span>)
+</span></span><span style="display:flex;"><span>lista <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>]
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;lista = &#34;</span>, lista) <span style="color:#75715e"># lista =  [1, 2, 3]</span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;lista*2 = &#34;</span>, lista<span style="color:#f92672">*</span><span style="color:#ae81ff">2</span>) <span style="color:#75715e"># lista*2 =  [1, 2, 3, 1, 2, 3]</span>
+</span></span></code></pre></div><h3 id="廣播broadcasting">廣播(Broadcasting)</h3>
+<p>在 NumPy 中，大多數的運算都是「逐元素運算」（element-wise operation）。</p>
+<p>如果想將一個較小的陣列與較大的陣列一起運算，就可以用到 Broadcasting（廣播機制）。<br>
+像是 <code>+10</code> 這樣的加法，會直接將每個元素都加上 10；而如果是乘上一個陣列的話，就要注意兩個陣列的形狀是否相容，才能正確進行廣播運算。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>broadcast_arr <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>arange(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">7</span>)<span style="color:#f92672">.</span>reshape(<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span>print(broadcast_arr)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">加一個數字 10&#34;</span>)
+</span></span><span style="display:flex;"><span>print(broadcast_arr<span style="color:#f92672">+</span><span style="color:#ae81ff">10</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">乘一個陣列(new_arr) [1, 2, 3]&#34;</span>)
+</span></span><span style="display:flex;"><span>new_arr <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array([<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>])
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;# broadcast_arr.shape = &#34;</span>, broadcast_arr<span style="color:#f92672">.</span>shape)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;# new_arr.shape = &#34;</span>, new_arr<span style="color:#f92672">.</span>shape)
+</span></span><span style="display:flex;"><span>print(broadcast_arr<span style="color:#f92672">*</span>new_arr)
+</span></span></code></pre></div><h3 id="dot-與-matmul-基礎">dot 與 matmul 基礎</h3>
+<p>在 NumPy 中，如果要進行矩陣乘法（也就是線性代數裡的「內積」），有幾種方式可以使用：<code>np.dot()</code>、<code>np.matmul()</code>，還有比較 Python 的 <code>@</code> 運算子。</p>
+<p>這三種方式在處理 2 維陣列時基本上是等效的：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>a <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array([[<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>]
+</span></span><span style="display:flex;"><span>            ,[<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>]])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>b <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array([[<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">3</span>]
+</span></span><span style="display:flex;"><span>            ,[<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>]])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74"> np.dot(a, b): </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, np<span style="color:#f92672">.</span>dot(a, b))
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74"> np.matmul(a, b): </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, np<span style="color:#f92672">.</span>matmul(a, b))
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74"> @ 運算子 </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, a<span style="color:#a6e22e">@b</span>)
+</span></span></code></pre></div><p>在這裡：</p>
+<ul>
+<li>np.dot() 是早期常見的用法，不只可以用在矩陣乘法，也可以做向量內積。</li>
+<li>np.matmul() 是為了明確表示「矩陣乘法」而設計的方法。</li>
+<li>@ 是 Python 3.5 之後新增的運算子，寫起來最簡潔，也最符合數學上的寫法。</li>
+</ul>
+<p>備註：這裡只針對 2D 陣列的情境做說明，更高維度的運算結果可能會有所不同。</p>
+<h3 id="總和平均標準差">總和、平均、標準差</h3>
+<h4 id="基礎操作">基礎操作</h4>
+<p>在 NumPy 中，可以很方便地對陣列進行統計運算，例如總和（sum）、平均（mean）和標準差（std）。這些方法都可以搭配 <code>axis</code> 參數來指定要在「哪個維度」進行運算。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 建立一個 2D 陣列</span>
+</span></span><span style="display:flex;"><span>arr <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array([[<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>],
+</span></span><span style="display:flex;"><span>                [<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>],
+</span></span><span style="display:flex;"><span>                [<span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">9</span>]])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;原始資料：&#34;</span>)
+</span></span><span style="display:flex;"><span>print(arr)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 計算總和</span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">總和 (sum)：&#34;</span>)
+</span></span><span style="display:flex;"><span>print(np<span style="color:#f92672">.</span>sum(arr))  <span style="color:#75715e"># 所有元素的總和</span>
+</span></span><span style="display:flex;"><span>print(np<span style="color:#f92672">.</span>sum(arr, axis<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>))  <span style="color:#75715e"># 每列的總和</span>
+</span></span><span style="display:flex;"><span>print(np<span style="color:#f92672">.</span>sum(arr, axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>))  <span style="color:#75715e"># 每欄的總和</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 計算平均數</span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">平均數 (mean)：&#34;</span>)
+</span></span><span style="display:flex;"><span>print(np<span style="color:#f92672">.</span>mean(arr))  <span style="color:#75715e"># 所有元素的平均</span>
+</span></span><span style="display:flex;"><span>print(np<span style="color:#f92672">.</span>mean(arr, axis<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>))  <span style="color:#75715e"># 每列的平均</span>
+</span></span><span style="display:flex;"><span>print(np<span style="color:#f92672">.</span>mean(arr, axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>))  <span style="color:#75715e"># 每欄的平均</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 計算標準差</span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">標準差 (std)：&#34;</span>)
+</span></span><span style="display:flex;"><span>print(np<span style="color:#f92672">.</span>std(arr))  <span style="color:#75715e"># 所有元素的標準差</span>
+</span></span><span style="display:flex;"><span>print(np<span style="color:#f92672">.</span>std(arr, axis<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>))  <span style="color:#75715e"># 每列的標準差</span>
+</span></span><span style="display:flex;"><span>print(np<span style="color:#f92672">.</span>std(arr, axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>))  <span style="color:#75715e"># 每欄的標準差</span>
+</span></span></code></pre></div><h4 id="實戰統計分析練習">實戰統計分析練習</h4>
+<p>模擬一筆資料並進行統計分析(mean, std, var, max, argmax)。</p>
+<p>其中 <code>argmax</code> 是一個很實用的函式，它會回傳最大值「第一次出現」的索引位置。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 模擬一筆資料（可以是某種測量數據、分數等等）</span>
+</span></span><span style="display:flex;"><span>data <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array([<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">15</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">8</span>])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 基本統計指標</span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;Data:&#34;</span>, data)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;Mean (平均):&#34;</span>, np<span style="color:#f92672">.</span>mean(data))
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;Standard Deviation (標準差):&#34;</span>, np<span style="color:#f92672">.</span>std(data))
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;Variance (變異數):&#34;</span>, np<span style="color:#f92672">.</span>var(data))
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;Max (最大值):&#34;</span>, np<span style="color:#f92672">.</span>max(data))
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;Argmax (最大值的索引):&#34;</span>, np<span style="color:#f92672">.</span>argmax(data))
+</span></span></code></pre></div><h4 id="隨機資料的統計分析延伸應用">隨機資料的統計分析（延伸應用）</h4>
+<p>可以用 Numpy 生成一些隨機資料，，並進行簡單的統計分析。</p>
+<p>這邊是一個簡單的畫圖程式。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#66d9ef">as</span> plt
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 繪圖函式</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">show_visual</span>(data, title):
+</span></span><span style="display:flex;"><span>    plt<span style="color:#f92672">.</span>hist(data, bins<span style="color:#f92672">=</span><span style="color:#ae81ff">30</span>, edgecolor<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;black&#39;</span>)
+</span></span><span style="display:flex;"><span>    plt<span style="color:#f92672">.</span>title(title)
+</span></span><span style="display:flex;"><span>    plt<span style="color:#f92672">.</span>xlabel(<span style="color:#e6db74">&#34;Value&#34;</span>)
+</span></span><span style="display:flex;"><span>    plt<span style="color:#f92672">.</span>ylabel(<span style="color:#e6db74">&#34;Frequency&#34;</span>)
+</span></span><span style="display:flex;"><span>    plt<span style="color:#f92672">.</span>show()
+</span></span></code></pre></div><p>可以先看看常見的兩種分布，分別是常態分佈、均勻分布。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 生成1000個服從常態分布的數據，均值為0，標準差為1</span>
+</span></span><span style="display:flex;"><span>normal_data <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>normal(loc<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>, scale<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, size<span style="color:#f92672">=</span><span style="color:#ae81ff">1000</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 查看生成的數據的簡單統計</span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;常態分布數據的平均值:&#34;</span>, np<span style="color:#f92672">.</span>mean(normal_data))
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;常態分布數據的標準差:&#34;</span>, np<span style="color:#f92672">.</span>std(normal_data))
+</span></span><span style="display:flex;"><span>show_visual(normal_data, <span style="color:#e6db74">&#34;Normal Distribution&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 生成1000個服從均勻分布的數據，範圍是[0, 10]</span>
+</span></span><span style="display:flex;"><span>uniform_data <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>uniform(low<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>, high<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>, size<span style="color:#f92672">=</span><span style="color:#ae81ff">1000</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 查看生成的數據的簡單統計</span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">均勻分布數據的平均值:&#34;</span>, np<span style="color:#f92672">.</span>mean(uniform_data))
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;均勻分布數據的標準差:&#34;</span>, np<span style="color:#f92672">.</span>std(uniform_data))
+</span></span><span style="display:flex;"><span>show_visual(uniform_data, <span style="color:#e6db74">&#34;Uniform Distribution&#34;</span>)
+</span></span></code></pre></div><h3 id="骰子模擬觀察隨機分布">骰子模擬：觀察隨機分布</h3>
+<p>這個練習的目標是模擬擲骰子的情境，並透過簡單的統計與視覺化，觀察點數的分布狀況。</p>
+<p>練習目標</p>
+<ul>
+<li>使用 np.random.randint(1, 7, size=5000) 模擬 5000 次擲骰子。</li>
+<li>計算每個點數出現的次數。</li>
+<li>使用 plt.bar() 或 plt.hist() 將結果視覺化。</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#66d9ef">as</span> plt
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 定義骰子</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">dice_roll</span>(dice_num, size):
+</span></span><span style="display:flex;"><span>    dice <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>randint(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">7</span>, size<span style="color:#f92672">=</span>size)
+</span></span><span style="display:flex;"><span>    values, counts <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>unique(dice, return_counts<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>dice_num<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> val, count <span style="color:#f92672">in</span> zip(values, counts):
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;點數 </span><span style="color:#e6db74">{</span>val<span style="color:#e6db74">}</span><span style="color:#e6db74"> 出現了 </span><span style="color:#e6db74">{</span>count<span style="color:#e6db74">}</span><span style="color:#e6db74"> 次&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> dice
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 分別擲骰子</span>
+</span></span><span style="display:flex;"><span>dice_1 <span style="color:#f92672">=</span> dice_roll(<span style="color:#e6db74">&#34;dice_1&#34;</span>, <span style="color:#ae81ff">5000</span>)
+</span></span><span style="display:flex;"><span>dice_2 <span style="color:#f92672">=</span> dice_roll(<span style="color:#e6db74">&#34;dice_2&#34;</span>, <span style="color:#ae81ff">5000</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 總和相加並統計次數</span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;---&#34;</span><span style="color:#f92672">*</span><span style="color:#ae81ff">30</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;骰子點數相加&#34;</span>)
+</span></span><span style="display:flex;"><span>values, counts <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>unique(dice_1<span style="color:#f92672">+</span>dice_2, return_counts<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> val, count <span style="color:#f92672">in</span> zip(values, counts):
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;相加點數 </span><span style="color:#e6db74">{</span>val<span style="color:#e6db74">}</span><span style="color:#e6db74"> 出現了 </span><span style="color:#e6db74">{</span>count<span style="color:#e6db74">}</span><span style="color:#e6db74"> 次&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 原始圖表</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># plt.bar(values, counts)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># plt.xticks(np.arange(values.min(), values.max()+1))  # 顯示 2~12 的點</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># plt.xlabel(&#34;點數&#34;)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># plt.ylabel(&#34;次數&#34;)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># plt.title(&#34;骰子點數分布&#34;)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># plt.show()</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 美化圖表(English version)</span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>bar(values, counts, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;skyblue&#39;</span>, edgecolor<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;black&#39;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>xlabel(<span style="color:#e6db74">&#34;Sum of Dice&#34;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>ylabel(<span style="color:#e6db74">&#34;Frequency&#34;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">&#34;Distribution of the Sum of Two Dice&#34;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>grid(axis<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;y&#39;</span>, linestyle<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;--&#39;</span>, alpha<span style="color:#f92672">=</span><span style="color:#ae81ff">0.7</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>tight_layout()
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>show()
+</span></span></code></pre></div><p><img src="dice.png" alt="圖表：兩顆骰子點數和的分布"></p>
+<p>如果擲骰子的次數較少，點數的分布會有比較分散、不穩定的明顯偏差；隨著投擲次數的增加，分布會逐漸趨近理論上的平均，也就是類似鐘形曲線的樣子。</p>
+<h3 id="成績分布模擬">成績分布模擬</h3>
+<p>這個練習的目標是模擬學生成績分布，並觀察成績的分布情況。</p>
+<p>練習目標</p>
+<ul>
+<li>使用宣告的方式輸入20個隨機生成的學生成績。</li>
+<li>使用 matplotlib 繪製學生成績的直方圖。</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#66d9ef">as</span> plt
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> matplotlib.ticker <span style="color:#66d9ef">as</span> ticker
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 宣告學生姓名與成績</span>
+</span></span><span style="display:flex;"><span>students_scores <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Alice&#34;</span>: <span style="color:#ae81ff">88</span>, <span style="color:#e6db74">&#34;Ben&#34;</span>: <span style="color:#ae81ff">92</span>, <span style="color:#e6db74">&#34;Cathy&#34;</span>: <span style="color:#ae81ff">79</span>, <span style="color:#e6db74">&#34;David&#34;</span>: <span style="color:#ae81ff">85</span>, <span style="color:#e6db74">&#34;Ella&#34;</span>: <span style="color:#ae81ff">95</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Frank&#34;</span>: <span style="color:#ae81ff">68</span>, <span style="color:#e6db74">&#34;Grace&#34;</span>: <span style="color:#ae81ff">74</span>, <span style="color:#e6db74">&#34;Henry&#34;</span>: <span style="color:#ae81ff">91</span>, <span style="color:#e6db74">&#34;Ivy&#34;</span>: <span style="color:#ae81ff">84</span>, <span style="color:#e6db74">&#34;Jack&#34;</span>: <span style="color:#ae81ff">77</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Kathy&#34;</span>: <span style="color:#ae81ff">81</span>, <span style="color:#e6db74">&#34;Leo&#34;</span>: <span style="color:#ae81ff">90</span>, <span style="color:#e6db74">&#34;Mia&#34;</span>: <span style="color:#ae81ff">31</span>, <span style="color:#e6db74">&#34;Nina&#34;</span>: <span style="color:#ae81ff">85</span>, <span style="color:#e6db74">&#34;Oscar&#34;</span>: <span style="color:#ae81ff">89</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Paul&#34;</span>: <span style="color:#ae81ff">78</span>, <span style="color:#e6db74">&#34;Queen&#34;</span>: <span style="color:#ae81ff">88</span>, <span style="color:#e6db74">&#34;Ryan&#34;</span>: <span style="color:#ae81ff">95</span>, <span style="color:#e6db74">&#34;Sara&#34;</span>: <span style="color:#ae81ff">32</span>, <span style="color:#e6db74">&#34;Tom&#34;</span>: <span style="color:#ae81ff">28</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 抽取成績列表做統計</span>
+</span></span><span style="display:flex;"><span>scores <span style="color:#f92672">=</span> list(students_scores<span style="color:#f92672">.</span>values())
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;All scores:&#34;</span>, scores)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 計算統計數據</span>
+</span></span><span style="display:flex;"><span>mean_score <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>mean(scores)
+</span></span><span style="display:flex;"><span>std_score <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>std(scores)
+</span></span><span style="display:flex;"><span>min_score <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>min(scores)
+</span></span><span style="display:flex;"><span>max_score <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>max(scores)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 輸出統計信息</span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;mean_score: </span><span style="color:#e6db74">{</span>mean_score<span style="color:#e6db74">:</span><span style="color:#e6db74">.2f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;std_score: </span><span style="color:#e6db74">{</span>std_score<span style="color:#e6db74">:</span><span style="color:#e6db74">.2f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;min_score: </span><span style="color:#e6db74">{</span>min_score<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;max_score: </span><span style="color:#e6db74">{</span>max_score<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 繪製成績分布圖(直方圖)</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">bar_visualize</span>(bins, color, edgecolor, title):
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    繪製學生成績的直方圖，並將圖表儲存為 PNG 圖片。
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    參數:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    - bins (int 或 array-like): 直方圖的區間數或邊界。
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    - color (str): 直方圖柱子的顏色。
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    - edgecolor (str): 柱子邊框的顏色。
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    - title (str): 圖表標題，也會用來命名輸出的圖片檔案。
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    plt<span style="color:#f92672">.</span>hist(scores, bins<span style="color:#f92672">=</span>bins, color<span style="color:#f92672">=</span>color, edgecolor<span style="color:#f92672">=</span>edgecolor)
+</span></span><span style="display:flex;"><span>    plt<span style="color:#f92672">.</span>xlabel(<span style="color:#e6db74">&#34;Score&#34;</span>)
+</span></span><span style="display:flex;"><span>    plt<span style="color:#f92672">.</span>ylabel(<span style="color:#e6db74">&#34;Number of Students&#34;</span>)
+</span></span><span style="display:flex;"><span>    plt<span style="color:#f92672">.</span>title(title)
+</span></span><span style="display:flex;"><span>    plt<span style="color:#f92672">.</span>grid(axis<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;y&#39;</span>, linestyle<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;--&#39;</span>, alpha<span style="color:#f92672">=</span><span style="color:#ae81ff">0.7</span>)
+</span></span><span style="display:flex;"><span>    plt<span style="color:#f92672">.</span>gca()<span style="color:#f92672">.</span>yaxis<span style="color:#f92672">.</span>set_major_locator(ticker<span style="color:#f92672">.</span>MaxNLocator(integer<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>))
+</span></span><span style="display:flex;"><span>    plt<span style="color:#f92672">.</span>tight_layout()
+</span></span><span style="display:flex;"><span>    plt<span style="color:#f92672">.</span>savefig(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>title<span style="color:#e6db74">}</span><span style="color:#e6db74">.png&#34;</span>)
+</span></span><span style="display:flex;"><span>    plt<span style="color:#f92672">.</span>show()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>bar_visualize(bins <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>, 
+</span></span><span style="display:flex;"><span>              color <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;pink&#39;</span>,
+</span></span><span style="display:flex;"><span>              edgecolor <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;black&#39;</span>,
+</span></span><span style="display:flex;"><span>              title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Distribution of Student Scores v1&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>bar_visualize(bins <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>arange(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">101</span>, <span style="color:#ae81ff">5</span>), 
+</span></span><span style="display:flex;"><span>              color <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;skyblue&#39;</span>,
+</span></span><span style="display:flex;"><span>              edgecolor <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;black&#39;</span>,
+</span></span><span style="display:flex;"><span>              title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Distribution of Student Scores v2&#34;</span>)
+</span></span></code></pre></div><p>如果 Y 軸沒有特別設定的話，在 Y 軸上面有可能會出現顯示成浮點數的情況，但這邊的 Y 軸是學生人數，有浮點數很奇怪。</p>
+<p><img src="Distribution_v0_float.png" alt="圖表：成績分布圖v0_float"></p>
+<p>不想要顯示浮點數的話，可以加上 <code>ticker</code>，讓他強制使用整數。</p>
+<pre tabindex="0"><code>import matplotlib.ticker as ticker
+
+def bar_visualize(bins, color, edgecolor, title):
+    &#34;&#34;&#34;
+    pass
+    &#34;&#34;&#34;
+    plt.gca().yaxis.set_major_locator(ticker.MaxNLocator(integer=True))
+</code></pre><p>以下是完整的繪圖程式。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 完整的繪圖程式碼</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#66d9ef">as</span> plt
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> matplotlib.ticker <span style="color:#66d9ef">as</span> ticker <span style="color:#75715e"># 新增的部分</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">bar_visualize</span>(bins, color, edgecolor, title):
+</span></span><span style="display:flex;"><span>    plt<span style="color:#f92672">.</span>hist(scores, bins<span style="color:#f92672">=</span>bins, color<span style="color:#f92672">=</span>color, edgecolor<span style="color:#f92672">=</span>edgecolor)
+</span></span><span style="display:flex;"><span>    plt<span style="color:#f92672">.</span>xlabel(<span style="color:#e6db74">&#34;Score&#34;</span>)
+</span></span><span style="display:flex;"><span>    plt<span style="color:#f92672">.</span>ylabel(<span style="color:#e6db74">&#34;Number of Students&#34;</span>)
+</span></span><span style="display:flex;"><span>    plt<span style="color:#f92672">.</span>title(title)
+</span></span><span style="display:flex;"><span>    plt<span style="color:#f92672">.</span>grid(axis<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;y&#39;</span>, linestyle<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;--&#39;</span>, alpha<span style="color:#f92672">=</span><span style="color:#ae81ff">0.7</span>)
+</span></span><span style="display:flex;"><span>    plt<span style="color:#f92672">.</span>gca()<span style="color:#f92672">.</span>yaxis<span style="color:#f92672">.</span>set_major_locator(ticker<span style="color:#f92672">.</span>MaxNLocator(integer<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)) <span style="color:#75715e"># 新增的部分</span>
+</span></span><span style="display:flex;"><span>    plt<span style="color:#f92672">.</span>tight_layout()
+</span></span><span style="display:flex;"><span>    plt<span style="color:#f92672">.</span>savefig(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>title<span style="color:#e6db74">}</span><span style="color:#e6db74">.png&#34;</span>)
+</span></span><span style="display:flex;"><span>    plt<span style="color:#f92672">.</span>show()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>bar_visualize(bins <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>, 
+</span></span><span style="display:flex;"><span>              color <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;grey&#39;</span>,
+</span></span><span style="display:flex;"><span>              edgecolor <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;black&#39;</span>,
+</span></span><span style="display:flex;"><span>              title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Distribution of Student Scores v0&#34;</span>)
+</span></span></code></pre></div><p>更新後的圖片， Y 軸就不會有浮點數了。</p>
+<p><img src="Distribution_v0_int.png" alt="圖表：成績分布圖v0_int"></p>
+<p>另外需要特別注意圖表的部分，如果 <code>bin</code> 沒有特別指定，他會依據數值的區間來自動化分，所以對齊的時候看起來會不太整齊。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>bar_visualize(bins <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>, 
+</span></span><span style="display:flex;"><span>              color <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;pink&#39;</span>,
+</span></span><span style="display:flex;"><span>              edgecolor <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;black&#39;</span>,
+</span></span><span style="display:flex;"><span>              title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Distribution of Student Scores v1&#34;</span>)
+</span></span></code></pre></div><p><img src="distribution_v1.png" alt="圖表：成績分布圖v1"></p>
+<p>為了解決這個狀況，可以手動指定 <code>bin</code> 的區間，讓他強制對齊，例如指定從 0 ~ 101，以5為間隔進行對齊。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>bar_visualize(bins <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>arange(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">101</span>, <span style="color:#ae81ff">5</span>), 
+</span></span><span style="display:flex;"><span>              color <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;skyblue&#39;</span>,
+</span></span><span style="display:flex;"><span>              edgecolor <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;black&#39;</span>,
+</span></span><span style="display:flex;"><span>              title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Distribution of Student Scores v2&#34;</span>)
+</span></span></code></pre></div><p><img src="distribution_v2.png" alt="圖表：成績分布圖v2"></p>
+</section>
+
+  <footer class="mt-12 flex flex-wrap"><a
+      class="mb-1.5 rounded-lg bg-black/[3%] px-5 py-1 no-underline hover:bg-black/[6%] ltr:mr-1.5 rtl:ml-1.5 dark:bg-white/[8%] dark:hover:bg-white/[12%]"
+      href="http://localhost:2434/tags/%E8%B3%87%E6%96%99%E6%95%B4%E7%90%86"
+      >資料整理</a
+    ><a
+      class="mb-1.5 rounded-lg bg-black/[3%] px-5 py-1 no-underline hover:bg-black/[6%] ltr:mr-1.5 rtl:ml-1.5 dark:bg-white/[8%] dark:hover:bg-white/[12%]"
+      href="http://localhost:2434/tags/%E5%9F%BA%E6%9C%AC%E8%AA%9E%E6%B3%95"
+      >基本語法</a
+    ></footer><nav
+    class="mt-24 flex overflow-hidden rounded-xl bg-black/[3%] text-lg leading-[1.2]! *:flex *:w-1/2 *:items-center *:p-5 *:font-medium *:no-underline dark:bg-white/[8%] [&>*:hover]:bg-black/[2%] dark:[&>*:hover]:bg-white/[3%]"
+  ><a class="ltr:pr-3 rtl:pl-3" href="http://localhost:2434/posts/pandas_practice/"
+      ><span class="ltr:mr-1.5 rtl:ml-1.5">←</span><span>Pandas 練習紀錄</span></a
+    ></nav></article></main><footer
+  class="mx-auto flex h-[4.5rem] max-w-(--w) items-center px-8 text-xs tracking-wider uppercase opacity-60"
+>
+  <div class="mr-auto">&copy;2025
+    <a class="link" href="http://localhost:2434/">Henry Automates</a></div>
+  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+    >powered by hugo️️</a
+  >️
+  <a
+    class="link"
+    href="https://github.com/nanxiaobei/hugo-paper"
+    rel="noopener"
+    target="_blank"
+    >hugo-paper</a
+  >
+</footer>
+</body>
+</html>

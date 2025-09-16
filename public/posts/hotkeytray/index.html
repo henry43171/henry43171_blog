@@ -1,0 +1,315 @@
+<!doctype html>
+
+
+
+
+
+
+
+<html
+  class="not-ready lg:text-base"
+  style="--bg:#faf8f1"
+  lang="zh-tw"
+  dir="ltr"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=2434&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <title>截圖工具 HotkeyTray - Henry Automates</title>
+
+  
+  <meta name="theme-color" />
+
+  <meta name="description" content="為什麼會有這個工具
+在多螢幕環境下工作時，截圖常常是一件麻煩事。
+Windows 內建的截圖工具要不就是需要手動框選範圍，要不就是整個螢幕，
+如果我只想要「左螢幕一鍵截圖」或「右螢幕一鍵截圖」，就顯得很笨重。
+於是我動手寫了一個小工具 —— HotkeyTray。
+它是一個常駐在系統托盤的 Python 程式，只要設定好快捷鍵，就能隨時一鍵截圖並自動儲存。
+
+
+工具簡介
+
+名稱：HotkeyTray
+功能特色：
+
+系統托盤常駐，不佔畫面
+設定快捷鍵截取左螢幕、右螢幕
+設定檔可自訂快捷鍵、儲存路徑
+
+
+適用情境：
+
+遠端開會快速截圖
+文件製作
+一般多螢幕日常使用
+
+
+
+
+
+技術堆疊
+
+Python
+pystray：系統托盤功能
+keyboard：快捷鍵偵測
+Pillow：影像處理
+dotenv &#43; JSON：設定管理
+
+
+安裝與使用
+安裝
+
+可以直接下載 EXE 檔執行
+或者用 Python 自行執行：
+
+git clone https://github.com/henry43171/HotkeyTray.git
+cd HotkeyTray
+python src
+使用步驟
+
+啟動程式後，系統托盤會出現 HotkeyTray 圖示
+預設快捷鍵：
+
+Alt&#43;1 = 左螢幕截圖
+Alt&#43;2 = 右螢幕截圖
+
+
+截圖會自動存到 screenshots/ 資料夾
+
+
+開發過程的小插曲
+這原本只是個簡單的小工具，但過程中還是踩了不少坑：
+
+一開始有兩份 load_config，搞到自己亂掉
+一度遇到「修改設定後不會馬上套用」的問題
+才發現，就算小專案也會遇到維護性挑戰
+
+這些問題讓我開始理解「程式碼乾淨」與「可維護性」的重要性。
+
+未來計畫
+
+更直覺的設定 UI
+支援更多快捷鍵動作（例如複製到剪貼簿、不存檔）
+
+
+結語
+如果你也覺得多螢幕截圖麻煩，或許這個小工具能幫到你。
+程式碼已經放在 GitHub，歡迎下載試試。" />
+  <meta name="author" content="Henry Automates" /><link rel="preload stylesheet" as="style" href="http://localhost:2434/main.min.css" />
+
+  
+  <link rel="preload" as="image" href="http://localhost:2434/theme.png" />
+
+  
+
+  
+
+  <script
+    defer
+    src="http://localhost:2434/highlight.min.js"
+    onload="hljs.initHighlightingOnLoad();"
+  ></script>
+
+  
+  <link
+    rel="icon"
+    href="http://localhost:2434/favicon.ico"
+  />
+  <link
+    rel="apple-touch-icon"
+    href="http://localhost:2434/apple-touch-icon.png"
+  />
+
+  <meta name="generator" content="Hugo 0.146.5">
+</head>
+<body
+    class="bg-(--bg) text-black antialiased duration-200 ease-out [-webkit-tap-highlight-color:transparent] dark:text-white"
+  ><header
+  class="mx-auto flex h-[4.5rem] max-w-(--w) px-8 whitespace-nowrap lg:justify-center"
+>
+  <div class="relative z-50 flex items-center ltr:mr-auto rtl:ml-auto">
+    <a
+      class="-translate-y-[1px] text-2xl font-medium"
+      href="http://localhost:2434/"
+      >Henry Automates</a
+    >
+    <div
+      class="btn-dark text-[0px] ltr:ml-4 rtl:mr-4 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.png)_left_center/_auto_theme('spacing.6')_no-repeat] [transition:_background-position_0.4s_steps(5)] dark:[background-position:right]"
+      role="button"
+      aria-label="Dark"
+    ></div>
+  </div>
+
+  <div
+    class="btn-menu relative z-50 flex h-[4.5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden ltr:-mr-8 rtl:-ml-8"
+    role="button"
+    aria-label="Menu"
+  ></div>
+
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = '#faf8f1'.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full flex-col justify-center bg-(--bg) pb-16 duration-200 select-none lg:static lg:h-auto lg:flex-row lg:bg-transparent! lg:pb-0 lg:transition-none"
+  >
+  </div>
+</header>
+<main
+      class="prose prose-neutral dark:prose-invert relative mx-auto min-h-[calc(100vh-9rem)] max-w-(--w) px-8 pt-14 pb-16"
+    ><article>
+  <header class="mb-14">
+    <h1 class="my-0! pb-2.5">截圖工具 HotkeyTray</h1><div class="text-xs antialiased opacity-60"><time>Aug 27, 2025</time></div></header>
+
+  <section><h2 id="為什麼會有這個工具">為什麼會有這個工具</h2>
+<p>在多螢幕環境下工作時，截圖常常是一件麻煩事。<br>
+Windows 內建的截圖工具要不就是需要手動框選範圍，要不就是整個螢幕，<br>
+如果我只想要「左螢幕一鍵截圖」或「右螢幕一鍵截圖」，就顯得很笨重。</p>
+<p>於是我動手寫了一個小工具 —— <strong>HotkeyTray</strong>。<br>
+它是一個常駐在系統托盤的 Python 程式，只要設定好快捷鍵，就能隨時一鍵截圖並自動儲存。</p>
+<p><img src="hotkeytray_tray.png" alt="HotkeyTray 在系統托盤中"></p>
+<hr>
+<h2 id="工具簡介">工具簡介</h2>
+<ul>
+<li>名稱：HotkeyTray</li>
+<li>功能特色：
+<ul>
+<li>系統托盤常駐，不佔畫面</li>
+<li>設定快捷鍵截取左螢幕、右螢幕</li>
+<li>設定檔可自訂快捷鍵、儲存路徑</li>
+</ul>
+</li>
+<li>適用情境：
+<ul>
+<li>遠端開會快速截圖</li>
+<li>文件製作</li>
+<li>一般多螢幕日常使用</li>
+</ul>
+</li>
+</ul>
+<p><img src="hotkeytray_settings.png" alt="設定視窗畫面"></p>
+<hr>
+<h2 id="技術堆疊">技術堆疊</h2>
+<ul>
+<li><strong>Python</strong></li>
+<li><strong>pystray</strong>：系統托盤功能</li>
+<li><strong>keyboard</strong>：快捷鍵偵測</li>
+<li><strong>Pillow</strong>：影像處理</li>
+<li><strong>dotenv + JSON</strong>：設定管理</li>
+</ul>
+<hr>
+<h2 id="安裝與使用">安裝與使用</h2>
+<h3 id="安裝">安裝</h3>
+<ul>
+<li>可以直接下載 EXE 檔執行</li>
+<li>或者用 Python 自行執行：</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git clone https://github.com/henry43171/HotkeyTray.git
+</span></span><span style="display:flex;"><span>cd HotkeyTray
+</span></span><span style="display:flex;"><span>python src
+</span></span></code></pre></div><h3 id="使用步驟">使用步驟</h3>
+<ol>
+<li>啟動程式後，系統托盤會出現 <strong>HotkeyTray</strong> 圖示</li>
+<li>預設快捷鍵：
+<ul>
+<li><code>Alt+1</code> = 左螢幕截圖</li>
+<li><code>Alt+2</code> = 右螢幕截圖</li>
+</ul>
+</li>
+<li>截圖會自動存到 <code>screenshots/</code> 資料夾</li>
+</ol>
+<hr>
+<h2 id="開發過程的小插曲">開發過程的小插曲</h2>
+<p>這原本只是個簡單的小工具，但過程中還是踩了不少坑：</p>
+<ul>
+<li>一開始有兩份 <code>load_config</code>，搞到自己亂掉</li>
+<li>一度遇到「修改設定後不會馬上套用」的問題</li>
+<li>才發現，就算小專案也會遇到維護性挑戰</li>
+</ul>
+<p>這些問題讓我開始理解「程式碼乾淨」與「可維護性」的重要性。</p>
+<hr>
+<h2 id="未來計畫">未來計畫</h2>
+<ul>
+<li>更直覺的設定 UI</li>
+<li>支援更多快捷鍵動作（例如複製到剪貼簿、不存檔）</li>
+</ul>
+<hr>
+<h2 id="結語">結語</h2>
+<p>如果你也覺得多螢幕截圖麻煩，或許這個小工具能幫到你。<br>
+程式碼已經放在 GitHub，歡迎下載試試。</p>
+<p>GitHub 連結：<a href="https://github.com/henry43171/HotkeyTray">https://github.com/henry43171/HotkeyTray</a></p>
+</section>
+
+  <footer class="mt-12 flex flex-wrap"><a
+      class="mb-1.5 rounded-lg bg-black/[3%] px-5 py-1 no-underline hover:bg-black/[6%] ltr:mr-1.5 rtl:ml-1.5 dark:bg-white/[8%] dark:hover:bg-white/[12%]"
+      href="http://localhost:2434/tags/%E5%B7%A5%E5%85%B7"
+      >工具</a
+    ></footer><nav
+    class="mt-24 flex overflow-hidden rounded-xl bg-black/[3%] text-lg leading-[1.2]! *:flex *:w-1/2 *:items-center *:p-5 *:font-medium *:no-underline dark:bg-white/[8%] [&>*:hover]:bg-black/[2%] dark:[&>*:hover]:bg-white/[3%]"
+  ><a
+      class="justify-end pl-3 ltr:ml-auto rtl:mr-auto"
+      href="http://localhost:2434/posts/project_ma/"
+      ><span>資料分析實作練習 - malicious urls</span><span class="ltr:ml-1.5 rtl:mr-1.5">→</span></a
+    ></nav></article></main><footer
+  class="mx-auto flex h-[4.5rem] max-w-(--w) items-center px-8 text-xs tracking-wider uppercase opacity-60"
+>
+  <div class="mr-auto">&copy;2025
+    <a class="link" href="http://localhost:2434/">Henry Automates</a></div>
+  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+    >powered by hugo️️</a
+  >️
+  <a
+    class="link"
+    href="https://github.com/nanxiaobei/hugo-paper"
+    rel="noopener"
+    target="_blank"
+    >hugo-paper</a
+  >
+</footer>
+</body>
+</html>

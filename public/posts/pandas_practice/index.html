@@ -1,0 +1,776 @@
+<!doctype html>
+
+
+
+
+
+
+
+<html
+  class="not-ready lg:text-base"
+  style="--bg:#faf8f1"
+  lang="zh-tw"
+  dir="ltr"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=2434&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <title>Pandas 練習紀錄 - Henry Automates</title>
+
+  
+  <meta name="theme-color" />
+
+  <meta name="description" content="Pandas 練習
+基本語法
+基本pandas語法練習，先宣告最基本的資料型態dataframe，這邊有刻意留一個None，方便後面檢查資料用。
+import pandas as pd
+
+data = {
+    &#34;Name&#34;: [&#34;Alice&#34;, &#34;Bob&#34;, &#34;Charlie&#34;],
+    &#34;Class&#34;: [&#34;Class A&#34;, &#34;Class B&#34;, &#34;Class A&#34;],
+    &#34;Math&#34;: [90, 85, 78],
+    &#34;English&#34;: [88, 92, 80],
+    &#34;Science&#34;: [85, 79, None]
+}
+建立 DataFrame 物件並印出全部資料，觀察整體格式與資料型別。
+df = pd.DataFrame(data)
+print(&#34;\nAll data:\n&#34;, df)
+
+&#34;&#34;&#34;
+All data:
+       Name    Class  Math  English  Science
+0    Alice  Class A    90       88     85.0
+1      Bob  Class B    85       92     79.0
+2  Charlie  Class A    78       80      NaN
+&#34;&#34;&#34;
+可以用不同的語法，來取得不同的資料格式，像是 df.shape，可以確認資料表的維度（列數、欄數）。
+print(&#34;\nData shape:\n&#34;, df.shape)
+
+&#34;&#34;&#34;
+Data shape:
+ (3, 5)
+&#34;&#34;&#34;
+用 df.head() 可顯示前幾筆資料，可指定筆數，預設為5。" />
+  <meta name="author" content="Henry Automates" /><link rel="preload stylesheet" as="style" href="http://localhost:2434/main.min.css" />
+
+  
+  <link rel="preload" as="image" href="http://localhost:2434/theme.png" />
+
+  
+
+  
+
+  <script
+    defer
+    src="http://localhost:2434/highlight.min.js"
+    onload="hljs.initHighlightingOnLoad();"
+  ></script>
+
+  
+  <link
+    rel="icon"
+    href="http://localhost:2434/favicon.ico"
+  />
+  <link
+    rel="apple-touch-icon"
+    href="http://localhost:2434/apple-touch-icon.png"
+  />
+
+  <meta name="generator" content="Hugo 0.146.5">
+</head>
+<body
+    class="bg-(--bg) text-black antialiased duration-200 ease-out [-webkit-tap-highlight-color:transparent] dark:text-white"
+  ><header
+  class="mx-auto flex h-[4.5rem] max-w-(--w) px-8 whitespace-nowrap lg:justify-center"
+>
+  <div class="relative z-50 flex items-center ltr:mr-auto rtl:ml-auto">
+    <a
+      class="-translate-y-[1px] text-2xl font-medium"
+      href="http://localhost:2434/"
+      >Henry Automates</a
+    >
+    <div
+      class="btn-dark text-[0px] ltr:ml-4 rtl:mr-4 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.png)_left_center/_auto_theme('spacing.6')_no-repeat] [transition:_background-position_0.4s_steps(5)] dark:[background-position:right]"
+      role="button"
+      aria-label="Dark"
+    ></div>
+  </div>
+
+  <div
+    class="btn-menu relative z-50 flex h-[4.5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden ltr:-mr-8 rtl:-ml-8"
+    role="button"
+    aria-label="Menu"
+  ></div>
+
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = '#faf8f1'.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full flex-col justify-center bg-(--bg) pb-16 duration-200 select-none lg:static lg:h-auto lg:flex-row lg:bg-transparent! lg:pb-0 lg:transition-none"
+  >
+  </div>
+</header>
+<main
+      class="prose prose-neutral dark:prose-invert relative mx-auto min-h-[calc(100vh-9rem)] max-w-(--w) px-8 pt-14 pb-16"
+    ><article>
+  <header class="mb-14">
+    <h1 class="my-0! pb-2.5">Pandas 練習紀錄</h1><div class="text-xs antialiased opacity-60"><time>May 6, 2025</time></div></header>
+
+  <section><h1 id="pandas-練習">Pandas 練習</h1>
+<h2 id="基本語法">基本語法</h2>
+<p>基本pandas語法練習，先宣告最基本的資料型態dataframe，這邊有刻意留一個None，方便後面檢查資料用。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> pandas <span style="color:#66d9ef">as</span> pd
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>data <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Name&#34;</span>: [<span style="color:#e6db74">&#34;Alice&#34;</span>, <span style="color:#e6db74">&#34;Bob&#34;</span>, <span style="color:#e6db74">&#34;Charlie&#34;</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Class&#34;</span>: [<span style="color:#e6db74">&#34;Class A&#34;</span>, <span style="color:#e6db74">&#34;Class B&#34;</span>, <span style="color:#e6db74">&#34;Class A&#34;</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Math&#34;</span>: [<span style="color:#ae81ff">90</span>, <span style="color:#ae81ff">85</span>, <span style="color:#ae81ff">78</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;English&#34;</span>: [<span style="color:#ae81ff">88</span>, <span style="color:#ae81ff">92</span>, <span style="color:#ae81ff">80</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Science&#34;</span>: [<span style="color:#ae81ff">85</span>, <span style="color:#ae81ff">79</span>, <span style="color:#66d9ef">None</span>]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>建立 <code>DataFrame</code> 物件並印出全部資料，觀察整體格式與資料型別。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>DataFrame(data)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">All data:</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, df)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">All data:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">       Name    Class  Math  English  Science
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">0    Alice  Class A    90       88     85.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">1      Bob  Class B    85       92     79.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">2  Charlie  Class A    78       80      NaN
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+</span></span></code></pre></div><p>可以用不同的語法，來取得不同的資料格式，像是 <code>df.shape</code>，可以確認資料表的維度（列數、欄數）。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">Data shape:</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, df<span style="color:#f92672">.</span>shape)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Data shape:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> (3, 5)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+</span></span></code></pre></div><p>用 <code>df.head()</code> 可顯示前幾筆資料，可指定筆數，預設為5。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">First 2 rows:</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, df<span style="color:#f92672">.</span>head(<span style="color:#ae81ff">2</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">First 2 rows:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     Name    Class  Math  English  Science
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">0  Alice  Class A    90       88     85.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">1    Bob  Class B    85       92     79.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+</span></span></code></pre></div><p>用 <code>df.columns</code> 可查看欄位名稱（column labels）。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">Data columns:</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, df<span style="color:#f92672">.</span>columns)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Data columns:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> Index([&#39;Name&#39;, &#39;Class&#39;, &#39;Math&#39;, &#39;English&#39;, &#39;Science&#39;], dtype=&#39;object&#39;)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+</span></span></code></pre></div><p>用 <code>df.describe()</code> 可顯示資料的統計摘要（僅限數值欄位）。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">Data describe:</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, df<span style="color:#f92672">.</span>describe())
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Data describe:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">             Math    English    Science
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">count   3.000000   3.000000   2.000000
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">mean   84.333333  86.666667  82.000000
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">std     6.027714   6.110101   4.242641
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">min    78.000000  80.000000  79.000000
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">25%    81.500000  84.000000  80.500000
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">50%    85.000000  88.000000  82.000000
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">75%    87.500000  90.000000  83.500000
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">max    90.000000  92.000000  85.000000
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+</span></span></code></pre></div><p>用 <code>df.info()</code> 可查看資料總覽（欄位型別、缺值狀況），因為他會直接輸出，就不另外寫print了。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">Data information:&#34;</span>)
+</span></span><span style="display:flex;"><span>df<span style="color:#f92672">.</span>info()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">RangeIndex: 3 entries, 0 to 2
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Data columns (total 5 columns):
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> #   Column   Non-Null Count  Dtype  
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">---  ------   --------------  -----  
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> 0   Name     3 non-null      object 
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> 1   Class    3 non-null      object 
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> 2   Math     3 non-null      int64  
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> 3   English  3 non-null      int64  
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> 4   Science  2 non-null      float64
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">dtypes: float64(1), int64(2), object(2)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">memory usage: 252.0+ bytes
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+</span></span></code></pre></div><h2 id="欄位操作">欄位操作</h2>
+<p>先宣告基本資料。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> pandas <span style="color:#66d9ef">as</span> pd
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>data_expand <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Name&#34;</span>: [<span style="color:#e6db74">&#34;Alice&#34;</span>, <span style="color:#e6db74">&#34;Bob&#34;</span>, <span style="color:#e6db74">&#34;Charlie&#34;</span>, <span style="color:#e6db74">&#34;Diana&#34;</span>, <span style="color:#e6db74">&#34;Ethan&#34;</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Class&#34;</span>: [<span style="color:#e6db74">&#34;Class A&#34;</span>, <span style="color:#e6db74">&#34;Class B&#34;</span>, <span style="color:#e6db74">&#34;Class C&#34;</span>, <span style="color:#e6db74">&#34;Class A&#34;</span>, <span style="color:#e6db74">&#34;Class B&#34;</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Math&#34;</span>: [<span style="color:#ae81ff">90</span>, <span style="color:#ae81ff">85</span>, <span style="color:#ae81ff">78</span>, <span style="color:#ae81ff">92</span>, <span style="color:#ae81ff">88</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;English&#34;</span>: [<span style="color:#ae81ff">88</span>, <span style="color:#ae81ff">92</span>, <span style="color:#ae81ff">80</span>, <span style="color:#ae81ff">85</span>, <span style="color:#ae81ff">90</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Science&#34;</span>: [<span style="color:#ae81ff">85</span>, <span style="color:#ae81ff">79</span>, <span style="color:#66d9ef">None</span>, <span style="color:#ae81ff">90</span>, <span style="color:#ae81ff">84</span>]
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>DataFrame(data_expand)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;--&#34;</span><span style="color:#f92672">*</span><span style="color:#ae81ff">20</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;印出全資料&#34;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;--&#34;</span><span style="color:#f92672">*</span><span style="color:#ae81ff">20</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">All expand data:</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, df)
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">All expand data:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">       Name    Class  Math  English  Science
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">0    Alice  Class A    90       88     85.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">1      Bob  Class B    85       92     79.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">2  Charlie  Class C    78       80      NaN
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">3    Diana  Class A    92       85     90.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">4    Ethan  Class B    88       90     84.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">5    Fiona  Class C    79       77     82.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">6   George  Class A    84       83      NaN
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">7   Hannah  Class B    91       86     80.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">8      Ian  Class C    76       81     78.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">9    Julia  Class A    89       87     89.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+</span></span></code></pre></div><h3 id="選取欄位和重新命名">選取欄位和重新命名</h3>
+<p>可選取多組欄位。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 選取欄位與重新命名</span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">選取欄位&#34;</span>)
+</span></span><span style="display:flex;"><span>print(df[[<span style="color:#e6db74">&#34;Math&#34;</span>, <span style="color:#e6db74">&#34;Science&#34;</span>]])
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">   Math  Science
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">0    90     85.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">1    85     79.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">2    78      NaN
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">3    92     90.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">4    88     84.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+</span></span></code></pre></div><p>可將欄位重新命名。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">重新命名&#34;</span>)
+</span></span><span style="display:flex;"><span>print(df<span style="color:#f92672">.</span>rename(columns<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;Math&#34;</span>: <span style="color:#e6db74">&#34;Mathematics&#34;</span>}))
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      Name    Class  Mathematics  English  Science
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">0    Alice  Class A           90       88     85.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">1      Bob  Class B           85       92     79.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">2  Charlie  Class C           78       80      NaN
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">3    Diana  Class A           92       85     90.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">4    Ethan  Class B           88       90     84.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+</span></span></code></pre></div><h3 id="新增欄位與計算">新增欄位與計算</h3>
+<p>新增欄位，可計算欄位結果。</p>
+<h4 id="基本加總">基本加總</h4>
+<p>有時候我們需要根據多個欄位的數值，算出總和或平均，這時就可以「開一條新欄」來放計算結果。</p>
+<p>這種寫法是最直接的「欄與欄相加」，如果所有欄位都有值，沒問題；但一旦遇到 NaN（缺失值），結果就會整組報 NaN，像 Charlie 就「一分都拿不到」，因為他缺考了一科。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 新增欄位與計算欄位</span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">新增欄位與計算欄位&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 建立加總欄：</span>
+</span></span><span style="display:flex;"><span>df[<span style="color:#e6db74">&#34;Total&#34;</span>] <span style="color:#f92672">=</span> df[<span style="color:#e6db74">&#34;Math&#34;</span>] <span style="color:#f92672">+</span> df[<span style="color:#e6db74">&#34;English&#34;</span>] <span style="color:#f92672">+</span> df[<span style="color:#e6db74">&#34;Science&#34;</span>]
+</span></span><span style="display:flex;"><span>print(df)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">新增欄位與計算欄位
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      Name    Class  Math  English  Science  Total
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">0    Alice  Class A    90       88     85.0  263.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">1      Bob  Class B    85       92     79.0  256.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">2  Charlie  Class C    78       80      NaN    NaN
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">3    Diana  Class A    92       85     90.0  267.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">4    Ethan  Class B    88       90     84.0  262.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+</span></span></code></pre></div><h4 id="寬容加總">寬容加總</h4>
+<p>這種寫法比較人性化，它會自動忽略 NaN 的欄位，只對有數值的欄位做加總。就像 Charlie 缺考一科，還是能加總剩下的兩科。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">新增欄位與計算欄位_2&#34;</span>)
+</span></span><span style="display:flex;"><span>score_columns <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;Math&#34;</span>, <span style="color:#e6db74">&#34;English&#34;</span>, <span style="color:#e6db74">&#34;Science&#34;</span>]
+</span></span><span style="display:flex;"><span>df[<span style="color:#e6db74">&#34;Total_2&#34;</span>] <span style="color:#f92672">=</span> df[score_columns]<span style="color:#f92672">.</span>sum(axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>print(df)
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">新增欄位與計算欄位_2
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      Name    Class  Math  English  Science  Total  Total_2
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">0    Alice  Class A    90       88     85.0  263.0    263.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">1      Bob  Class B    85       92     79.0  256.0    256.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">2  Charlie  Class C    78       80      NaN    NaN    158.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">3    Diana  Class A    92       85     90.0  267.0    267.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">4    Ethan  Class B    88       90     84.0  262.0    262.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+</span></span></code></pre></div><h4 id="嚴格加總">嚴格加總</h4>
+<p>加入 min_count 機制。
+如果要實現「只要缺一科就不算總分」的資料。min_count 可以設定至少幾個值要存在，才會進行加總；不滿足就直接給你 NaN。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">新增欄位與計算欄位_3&#34;</span>)
+</span></span><span style="display:flex;"><span>df[<span style="color:#e6db74">&#34;Total_strict&#34;</span>] <span style="color:#f92672">=</span> df[score_columns]<span style="color:#f92672">.</span>sum(axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, min_count<span style="color:#f92672">=</span>len(score_columns))
+</span></span><span style="display:flex;"><span>print(df)
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">新增欄位與計算欄位_3
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      Name    Class  Math  English  Science  Total  Total_2  Total_strict
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">0    Alice  Class A    90       88     85.0  263.0    263.0         263.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">1      Bob  Class B    85       92     79.0  256.0    256.0         256.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">2  Charlie  Class C    78       80      NaN    NaN    158.0           NaN
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">3    Diana  Class A    92       85     90.0  267.0    267.0         267.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">4    Ethan  Class B    88       90     84.0  262.0    262.0         262.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+</span></span></code></pre></div><h4 id="建立平均">建立平均</h4>
+<p>透過 <code>.mean(axis=1)</code> 可以針對每一列（row）計算多個欄位的平均值。這在需要針對多個特徵做統計時非常常見，不論是處理測試成績、銷售數據，還是感測器資料，都能派上用場。</p>
+<ul>
+<li>第一種直接指定欄位名稱</li>
+<li>第二種使用先前定義的欄位列表 score_columns，讓程式碼更有彈性與可維護性。</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 建立平均欄：</span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">平均欄位&#34;</span>)
+</span></span><span style="display:flex;"><span>df[<span style="color:#e6db74">&#34;Average&#34;</span>] <span style="color:#f92672">=</span> df[[<span style="color:#e6db74">&#34;Math&#34;</span>, <span style="color:#e6db74">&#34;English&#34;</span>, <span style="color:#e6db74">&#34;Science&#34;</span>]]<span style="color:#f92672">.</span>mean(axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>df[<span style="color:#e6db74">&#34;Average_2&#34;</span>] <span style="color:#f92672">=</span> df[score_columns]<span style="color:#f92672">.</span>mean(axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>print(df)
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">平均欄位
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      Name    Class  Math  English  Science  Total  Total_2  Total_strict    Average  Average_2
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">0    Alice  Class A    90       88     85.0  263.0    263.0         263.0  87.666667  87.666667
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">1      Bob  Class B    85       92     79.0  256.0    256.0         256.0  85.333333  85.333333
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">2  Charlie  Class C    78       80      NaN    NaN    158.0           NaN  79.000000  79.000000
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">3    Diana  Class A    92       85     90.0  267.0    267.0         267.0  89.000000  89.000000
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">4    Ethan  Class B    88       90     84.0  262.0    262.0         262.0  87.333333  87.333333
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+</span></span></code></pre></div><h3 id="刪除欄位">刪除欄位</h3>
+<p>資料整理過程中，常會出現一些「中途產物」——像是用來驗證語法的欄位、測試不同參數的欄位等。當這些欄位不再需要時，就可以使用 <code>drop()</code> 來清理。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 刪除欄位</span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">刪除欄位&#34;</span>)
+</span></span><span style="display:flex;"><span>df <span style="color:#f92672">=</span> df<span style="color:#f92672">.</span>drop(columns<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#34;Total_2&#34;</span>, <span style="color:#e6db74">&#34;Total_strict&#34;</span>, <span style="color:#e6db74">&#34;Average_2&#34;</span>])
+</span></span><span style="display:flex;"><span>print(df)
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      Name    Class  Math  English  Science  Total    Average
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">0    Alice  Class A    90       88     85.0  263.0  87.666667
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">1      Bob  Class B    85       92     79.0  256.0  85.333333
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">2  Charlie  Class C    78       80      NaN    NaN  79.000000
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">3    Diana  Class A    92       85     90.0  267.0  89.000000
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">4    Ethan  Class B    88       90     84.0  262.0  87.333333
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+</span></span></code></pre></div><h3 id="條件篩選與邏輯運算">條件篩選與邏輯運算</h3>
+<p>當我們想根據特定條件過濾資料時，可以使用布林運算符（例如 &amp;, |, ~）來進行條件組合。
+例如下面這段程式碼就是篩選出「Math &gt; 80 且 English &gt; 85」的資料列：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 條件篩選與邏輯運算</span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">條件篩選與邏輯運算&#34;</span>)
+</span></span><span style="display:flex;"><span>print(df[(df[<span style="color:#e6db74">&#34;Math&#34;</span>] <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">80</span>) <span style="color:#f92672">&amp;</span> (df[<span style="color:#e6db74">&#34;English&#34;</span>] <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">85</span>)])
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    Name    Class  Math  English  Science  Total    Average
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">0  Alice  Class A    90       88     85.0  263.0  87.666667
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">1    Bob  Class B    85       92     79.0  256.0  85.333333
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">4  Ethan  Class B    88       90     84.0  262.0  87.333333
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+</span></span></code></pre></div><h3 id="排序與重排">排序與重排</h3>
+<p><code>sort_values()</code> 可以讓你依照指定欄位進行排序，<code>ascending=False</code> 則是設定為降冪排列。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 排序與重排</span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">排序與重排 &#39;df.sort_values(by=&#39;Math&#39;, ascending=False)&#39;&#34;</span>)
+</span></span><span style="display:flex;"><span>df <span style="color:#f92672">=</span> df<span style="color:#f92672">.</span>sort_values(by<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Math&#34;</span>, ascending<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
+</span></span><span style="display:flex;"><span>print(df)
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      Name    Class  Math  English  Science  Total    Average
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">3    Diana  Class A    92       85     90.0  267.0  89.000000
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">0    Alice  Class A    90       88     85.0  263.0  87.666667
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">4    Ethan  Class B    88       90     84.0  262.0  87.333333
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">1      Bob  Class B    85       92     79.0  256.0  85.333333
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">2  Charlie  Class C    78       80      NaN    NaN  79.000000
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+</span></span></code></pre></div><p>排序後，原本的索引（index）會跟著資料順序跑掉，如果不重新編排的話，可能會造成後續處理混亂。這時就可以使用 <code>df.reset_index(drop=True)</code> 重新設定索引，這樣會重新設定索引，並移除原本的索引欄位，讓表格更乾淨整齊。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">排序與重排 &#39;df.reset_index(drop=True)&#39;&#34;</span>)
+</span></span><span style="display:flex;"><span>df <span style="color:#f92672">=</span> df<span style="color:#f92672">.</span>reset_index(drop<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>print(df)
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      Name    Class  Math  English  Science  Total    Average
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">0    Diana  Class A    92       85     90.0  267.0  89.000000
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">1    Alice  Class A    90       88     85.0  263.0  87.666667
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">2    Ethan  Class B    88       90     84.0  262.0  87.333333
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">3      Bob  Class B    85       92     79.0  256.0  85.333333
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">4  Charlie  Class C    78       80      NaN    NaN  79.000000
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+</span></span></code></pre></div><h2 id="資料篩選">資料篩選</h2>
+<p>Pandas 支援類似 Excel 的邏輯條件過濾功能，可以透過布林索引（Boolean Indexing）快速找到符合條件的資料。</p>
+<p>為了更好的展示資料篩選的效果，我先把資料調整一下。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>data_expand <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Name&#34;</span>: [<span style="color:#e6db74">&#34;Alice&#34;</span>, <span style="color:#e6db74">&#34;Bob&#34;</span>, <span style="color:#e6db74">&#34;Charlie&#34;</span>, <span style="color:#e6db74">&#34;Diana&#34;</span>, <span style="color:#e6db74">&#34;Ethan&#34;</span>,
+</span></span><span style="display:flex;"><span>             <span style="color:#e6db74">&#34;Fiona&#34;</span>, <span style="color:#e6db74">&#34;George&#34;</span>, <span style="color:#e6db74">&#34;Hannah&#34;</span>, <span style="color:#e6db74">&#34;Ian&#34;</span>, <span style="color:#e6db74">&#34;Julia&#34;</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Class&#34;</span>: [<span style="color:#e6db74">&#34;Class A&#34;</span>, <span style="color:#e6db74">&#34;Class B&#34;</span>, <span style="color:#e6db74">&#34;Class C&#34;</span>, <span style="color:#e6db74">&#34;Class A&#34;</span>, <span style="color:#e6db74">&#34;Class B&#34;</span>,
+</span></span><span style="display:flex;"><span>              <span style="color:#e6db74">&#34;Class C&#34;</span>, <span style="color:#e6db74">&#34;Class A&#34;</span>, <span style="color:#e6db74">&#34;Class B&#34;</span>, <span style="color:#e6db74">&#34;Class C&#34;</span>, <span style="color:#e6db74">&#34;Class A&#34;</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Math&#34;</span>: [<span style="color:#ae81ff">90</span>, <span style="color:#ae81ff">85</span>, <span style="color:#ae81ff">78</span>, <span style="color:#ae81ff">92</span>, <span style="color:#ae81ff">88</span>, <span style="color:#ae81ff">79</span>, <span style="color:#ae81ff">84</span>, <span style="color:#ae81ff">91</span>, <span style="color:#ae81ff">76</span>, <span style="color:#ae81ff">89</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;English&#34;</span>: [<span style="color:#ae81ff">88</span>, <span style="color:#ae81ff">92</span>, <span style="color:#ae81ff">80</span>, <span style="color:#ae81ff">85</span>, <span style="color:#ae81ff">90</span>, <span style="color:#ae81ff">77</span>, <span style="color:#ae81ff">83</span>, <span style="color:#ae81ff">86</span>, <span style="color:#ae81ff">81</span>, <span style="color:#ae81ff">87</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Science&#34;</span>: [<span style="color:#ae81ff">85</span>, <span style="color:#ae81ff">79</span>, <span style="color:#66d9ef">None</span>, <span style="color:#ae81ff">90</span>, <span style="color:#ae81ff">84</span>, <span style="color:#ae81ff">82</span>, <span style="color:#66d9ef">None</span>, <span style="color:#ae81ff">80</span>, <span style="color:#ae81ff">78</span>, <span style="color:#ae81ff">89</span>]
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>df_e <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>DataFrame(data_expand)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">All expand data:</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, df_e)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">All expand data:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">       Name    Class  Math  English  Science
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">0    Alice  Class A    90       88     85.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">1      Bob  Class B    85       92     79.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">2  Charlie  Class C    78       80      NaN
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">3    Diana  Class A    92       85     90.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">4    Ethan  Class B    88       90     84.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">5    Fiona  Class C    79       77     82.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">6   George  Class A    84       83      NaN
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">7   Hannah  Class B    91       86     80.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">8      Ian  Class C    76       81     78.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">9    Julia  Class A    89       87     89.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+</span></span></code></pre></div><p>先來看看一個簡單的條件式，會回傳一個布林值的 Series，這個結果代表只有第三筆資料（索引值為 2）符合條件，英文成績小於等於 85。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>print(df[<span style="color:#e6db74">&#34;English&#34;</span>] <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">85</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">0    False
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">1    False
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">2     True
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">3     True
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">4    False
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">5     True
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">6     True
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">7    False
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">8     True
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">9    False
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Name: English, dtype: bool
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+</span></span></code></pre></div><h3 id="篩選英文成績小於等於-85-的學生">篩選英文成績小於等於 85 的學生</h3>
+<p>可以將這個布林條件直接套用在 DataFrame 上，過濾出符合的列：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 篩選英文成績小於等於 85 的學生</span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">English &lt;= 85:</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, df[df[<span style="color:#e6db74">&#34;English&#34;</span>] <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">85</span>])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">English &lt;= 85:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">       Name    Class  Math  English  Science
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">2  Charlie  Class C    78       80      NaN
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">3    Diana  Class A    92       85     90.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">5    Fiona  Class C    79       77     82.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">6   George  Class A    84       83      NaN
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">8      Ian  Class C    76       81     78.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+</span></span></code></pre></div><h3 id="篩選班級為-class-a-的學生">篩選班級為 Class A 的學生</h3>
+<p>同理，也可以用文字欄位做條件篩選，像是找出「Class A」的學生：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 篩選班級為 Class A 的學生</span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">Class A only:</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, df[df[<span style="color:#e6db74">&#34;Class&#34;</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Class A&#34;</span>])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Class A only:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      Name    Class  Math  English  Science
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">0   Alice  Class A    90       88     85.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">3   Diana  Class A    92       85     90.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">6  George  Class A    84       83      NaN
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">9   Julia  Class A    89       87     89.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+</span></span></code></pre></div><h3 id="多條件篩選">多條件篩選</h3>
+<p>若要同時滿足多個條件，必須用 <code>&amp;</code> 搭配括號來包住每個條件，否則容易出錯。以下例子會篩選出「Class A」中自然成績大於 80 的學生：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 同時滿足多個條件（使用 &amp; 和括號）</span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">Class A and Science &gt; 80:</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, df[(df[<span style="color:#e6db74">&#34;Class&#34;</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Class A&#34;</span>) <span style="color:#f92672">&amp;</span> (df[<span style="color:#e6db74">&#34;Science&#34;</span>] <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">80</span>)])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Class A and Science &gt; 80:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     Name    Class  Math  English  Science
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">0  Alice  Class A    90       88     85.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">3  Diana  Class A    92       85     90.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">9  Julia  Class A    89       87     89.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+</span></span></code></pre></div><h3 id="篩選多個值使用-isin">篩選多個值(使用 isin())</h3>
+<p>如果需要篩選出欄位值為多個可能的情況（像是 Class A 和 Class B），就可以使用 <code>isin()</code> 函數，它會回傳布林 Series，判斷哪些列的值存在於指定的列表中。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 篩選多個值(使用 isin())</span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">Class A and B:</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, df_e[df_e[<span style="color:#e6db74">&#34;Class&#34;</span>]<span style="color:#f92672">.</span>isin([<span style="color:#e6db74">&#34;Class A&#34;</span>, <span style="color:#e6db74">&#34;Class B&#34;</span>])])
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Class A and B:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      Name    Class  Math  English  Science
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">0   Alice  Class A    90       88     85.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">1     Bob  Class B    85       92     79.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">3   Diana  Class A    92       85     90.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">4   Ethan  Class B    88       90     84.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">6  George  Class A    84       83      NaN
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">7  Hannah  Class B    91       86     80.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">9   Julia  Class A    89       87     89.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+</span></span></code></pre></div><h3 id="名字有包含li模糊搜尋">名字有包含li，模糊搜尋</h3>
+<p>若想針對文字欄位進行部分比對（像是名字中含有「li」），可以搭配 <code>str.contains()</code> 使用，它會針對每個字串進行關鍵字搜尋。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 名字有包含li，模糊搜尋</span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">Name contains &#39;li&#39;:</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, df_e[df_e[<span style="color:#e6db74">&#34;Name&#34;</span>]<span style="color:#f92672">.</span>str<span style="color:#f92672">.</span>contains(<span style="color:#e6db74">&#34;li&#34;</span>)])
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Name contains &#39;li&#39;:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">       Name    Class  Math  English  Science
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">0    Alice  Class A    90       88     85.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">2  Charlie  Class C    78       80      NaN
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">9    Julia  Class A    89       87     89.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+</span></span></code></pre></div><h2 id="缺失值">缺失值</h2>
+<p>在進行資料分析時，經常會遇到資料缺失的情況，例如感應器故障、問卷未填寫、資料紀錄中斷等。這些缺失值如果沒有妥善處理，可能會影響整體統計結果與模型表現。因此，理解如何檢查、篩選、刪除與填補缺失值，是資料處理中的重要步驟。</p>
+<h3 id="檢查缺失值">檢查缺失值</h3>
+<p>第一步是檢查資料中哪些欄位或列包含缺失值。在 Pandas 中，可以使用 <code>isnull()</code> 搭配 <code>sum()</code> 快速掌握缺失狀況。</p>
+<p>先列出原始資料。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>data_expand <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Name&#34;</span>: [<span style="color:#e6db74">&#34;Alice&#34;</span>, <span style="color:#e6db74">&#34;Bob&#34;</span>, <span style="color:#e6db74">&#34;Charlie&#34;</span>, <span style="color:#e6db74">&#34;Diana&#34;</span>, <span style="color:#e6db74">&#34;Ethan&#34;</span>,
+</span></span><span style="display:flex;"><span>             <span style="color:#e6db74">&#34;Fiona&#34;</span>, <span style="color:#e6db74">&#34;George&#34;</span>, <span style="color:#e6db74">&#34;Hannah&#34;</span>, <span style="color:#e6db74">&#34;Ian&#34;</span>, <span style="color:#e6db74">&#34;Julia&#34;</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Class&#34;</span>: [<span style="color:#e6db74">&#34;Class A&#34;</span>, <span style="color:#e6db74">&#34;Class B&#34;</span>, <span style="color:#e6db74">&#34;Class C&#34;</span>, <span style="color:#e6db74">&#34;Class A&#34;</span>, <span style="color:#e6db74">&#34;Class B&#34;</span>,
+</span></span><span style="display:flex;"><span>              <span style="color:#e6db74">&#34;Class C&#34;</span>, <span style="color:#e6db74">&#34;Class A&#34;</span>, <span style="color:#e6db74">&#34;Class B&#34;</span>, <span style="color:#e6db74">&#34;Class C&#34;</span>, <span style="color:#e6db74">&#34;Class A&#34;</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Math&#34;</span>: [<span style="color:#ae81ff">90</span>, <span style="color:#ae81ff">85</span>, <span style="color:#ae81ff">78</span>, <span style="color:#ae81ff">92</span>, <span style="color:#ae81ff">88</span>, <span style="color:#ae81ff">79</span>, <span style="color:#ae81ff">84</span>, <span style="color:#ae81ff">91</span>, <span style="color:#ae81ff">76</span>, <span style="color:#ae81ff">89</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;English&#34;</span>: [<span style="color:#ae81ff">88</span>, <span style="color:#ae81ff">92</span>, <span style="color:#ae81ff">80</span>, <span style="color:#ae81ff">85</span>, <span style="color:#ae81ff">90</span>, <span style="color:#ae81ff">77</span>, <span style="color:#ae81ff">83</span>, <span style="color:#ae81ff">86</span>, <span style="color:#ae81ff">81</span>, <span style="color:#ae81ff">87</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Science&#34;</span>: [<span style="color:#ae81ff">85</span>, <span style="color:#ae81ff">79</span>, <span style="color:#66d9ef">None</span>, <span style="color:#ae81ff">90</span>, <span style="color:#ae81ff">84</span>, <span style="color:#ae81ff">82</span>, <span style="color:#66d9ef">None</span>, <span style="color:#ae81ff">80</span>, <span style="color:#ae81ff">78</span>, <span style="color:#ae81ff">89</span>]
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>DataFrame(data_expand)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">All expand data:</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, df)
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">All expand data:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">       Name    Class  Math  English  Science
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">0    Alice  Class A    90       88     85.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">1      Bob  Class B    85       92     79.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">2  Charlie  Class C    78       80      NaN
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">3    Diana  Class A    92       85     90.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">4    Ethan  Class B    88       90     84.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">5    Fiona  Class C    79       77     82.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">6   George  Class A    84       83      NaN
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">7   Hannah  Class B    91       86     80.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">8      Ian  Class C    76       81     78.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">9    Julia  Class A    89       87     89.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+</span></span></code></pre></div><p>使用 <code>isnull()</code> ，會返回布林值。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">Check if each value is null:</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, df<span style="color:#f92672">.</span>isnull())            <span style="color:#75715e"># 顯示每個欄位是否為缺失值（True/False）</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Check if each value is null:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     Name  Class   Math  English  Science
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">0  False  False  False    False    False
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">1  False  False  False    False    False
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">2  False  False  False    False     True
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">3  False  False  False    False    False
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">4  False  False  False    False    False
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">5  False  False  False    False    False
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">6  False  False  False    False     True
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">7  False  False  False    False    False
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">8  False  False  False    False    False
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">9  False  False  False    False    False
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+</span></span></code></pre></div><p>使用 <code>isnull()</code> 和 <code>sum()</code> ，確認資料缺失狀況。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">Count of null values in each column:</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,df<span style="color:#f92672">.</span>isnull()<span style="color:#f92672">.</span>sum())      <span style="color:#75715e"># 計算每個欄位中缺失值的數量</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Count of null values in each column:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> Name       0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Class      0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Math       0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">English    0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Science    2
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">dtype: int64
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+</span></span></code></pre></div><h3 id="篩選缺失值">篩選缺失值</h3>
+<p>當需要進一步了解缺失值的分布或針對有缺失的資料進行觀察時，我們可以使用布林條件來篩選。例如，可以找出某欄位為空的列，或是任何欄位有缺失值的列。這個步驟常用來觀察資料是否有集中缺失、或僅是零星缺漏。</p>
+<p>使用條件篩選，找出特定欄位中為缺失值的資料。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">Rows where Science is null</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, df[df[<span style="color:#e6db74">&#34;Science&#34;</span>]<span style="color:#f92672">.</span>isnull()])        <span style="color:#75715e"># 找出 Science 欄位為缺失值的列</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Rows where Science is null
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">       Name    Class  Math  English  Science
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">2  Charlie  Class C    78       80      NaN
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">6   George  Class A    84       83      NaN
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+</span></span></code></pre></div><p>篩選出任何一個欄位有缺失值的資料列。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">Rows with any null value:</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, df[df<span style="color:#f92672">.</span>isnull()<span style="color:#f92672">.</span>any(axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)])       <span style="color:#75715e"># 找出任何欄位為缺失值的列</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Rows with any null value:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">       Name    Class  Math  English  Science
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">2  Charlie  Class C    78       80      NaN
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">6   George  Class A    84       83      NaN
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+</span></span></code></pre></div><h3 id="刪除缺失值">刪除缺失值</h3>
+<p>若缺失資料過於零散，或該欄位對分析影響不大，可以選擇直接刪除含有缺失值的列。這是最簡單的處理方式，但也會導致資料量減少，需評估是否會影響分析結果的代表性。</p>
+<p>當資料的缺失值無法合理補足時，可以考慮直接刪除，常見於少數缺失且樣本量足夠的情況。這行程式碼會刪除所有包含缺失值的列，但不會改變原始資料（除非加上 <code>inplace=True</code>）。刪除後的資料會較乾淨，適合進行統計分析，但也可能會損失部分資訊。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">Drop rows with any missing values:</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, df<span style="color:#f92672">.</span>dropna()) <span style="color:#75715e"># 刪除任何缺失值的列</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># df.dropna(inplace=True)      # 直接修改原本的 df</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Drop rows with any missing values:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      Name    Class  Math  English  Science
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">0   Alice  Class A    90       88     85.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">1     Bob  Class B    85       92     79.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">3   Diana  Class A    92       85     90.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">4   Ethan  Class B    88       90     84.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">5   Fiona  Class C    79       77     82.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">7  Hannah  Class B    91       86     80.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">8     Ian  Class C    76       81     78.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">9   Julia  Class A    89       87     89.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+</span></span></code></pre></div><h3 id="填補缺失值">填補缺失值</h3>
+<p>若刪除資料會導致樣本不足，則可考慮以「補值」方式處理。補值策略應根據資料的特性與分析目的選擇，常見方式包括：</p>
+<ul>
+<li>補 0</li>
+<li>補平均值</li>
+<li>向前填補（<code>ffill</code>）或向後填補（<code>bfill</code>）</li>
+</ul>
+<h4 id="補-0">補 0</h4>
+<p>適用於像是成績、銷售等情境，缺席可視為「沒有表現」。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">Fill missing values with 0:</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, df<span style="color:#f92672">.</span>fillna(<span style="color:#ae81ff">0</span>))
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Fill missing values with 0:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">       Name    Class  Math  English  Science
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">0    Alice  Class A    90       88     85.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">1      Bob  Class B    85       92     79.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">2  Charlie  Class C    78       80      0.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">3    Diana  Class A    92       85     90.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">4    Ethan  Class B    88       90     84.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">5    Fiona  Class C    79       77     82.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">6   George  Class A    84       83      0.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">7   Hannah  Class B    91       86     80.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">8      Ian  Class C    76       81     78.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">9    Julia  Class A    89       87     89.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+</span></span></code></pre></div><h4 id="補平均值">補平均值</h4>
+<p>適合資料波動不大的情況，如氣溫、濕度等連續型資料。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">Fill missing values in &#39;Science&#39; with the mean:</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, df<span style="color:#f92672">.</span>fillna({<span style="color:#e6db74">&#34;Science&#34;</span>: df[<span style="color:#e6db74">&#34;Science&#34;</span>]<span style="color:#f92672">.</span>mean()}))
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Fill missing values in &#39;Science&#39; with the mean:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">       Name    Class  Math  English  Science
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">0    Alice  Class A    90       88   85.000
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">1      Bob  Class B    85       92   79.000
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">2  Charlie  Class C    78       80   83.375
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">3    Diana  Class A    92       85   90.000
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">4    Ethan  Class B    88       90   84.000
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">5    Fiona  Class C    79       77   82.000
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">6   George  Class A    84       83   83.375
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">7   Hannah  Class B    91       86   80.000
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">8      Ian  Class C    76       81   78.000
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">9    Julia  Class A    89       87   89.000
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+</span></span></code></pre></div><h4 id="向前填補ffill或向後填補bfill">向前填補（<code>ffill</code>）或向後填補（<code>bfill</code>）</h4>
+<p>特別適合時間序列資料，像是感測器每分鐘紀錄一次的數據中，短時間內缺失可以用前後的資料推估補上。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">Fill missing values using forward fill (ffill):</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, df<span style="color:#f92672">.</span>ffill())
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Fill missing values in &#39;Science&#39; with the mean:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">       Name    Class  Math  English  Science
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">0    Alice  Class A    90       88   85.000
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">1      Bob  Class B    85       92   79.000
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">2  Charlie  Class C    78       80   83.375
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">3    Diana  Class A    92       85   90.000
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">4    Ethan  Class B    88       90   84.000
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">5    Fiona  Class C    79       77   82.000
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">6   George  Class A    84       83   83.375
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">7   Hannah  Class B    91       86   80.000
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">8      Ian  Class C    76       81   78.000
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">9    Julia  Class A    89       87   89.000
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">Fill missing values using backward fill (bfill):</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, df<span style="color:#f92672">.</span>bfill())
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Fill missing values using forward fill (ffill):
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">       Name    Class  Math  English  Science
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">0    Alice  Class A    90       88     85.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">1      Bob  Class B    85       92     79.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">2  Charlie  Class C    78       80     79.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">3    Diana  Class A    92       85     90.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">4    Ethan  Class B    88       90     84.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">5    Fiona  Class C    79       77     82.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">6   George  Class A    84       83     82.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">7   Hannah  Class B    91       86     80.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">8      Ian  Class C    76       81     78.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">9    Julia  Class A    89       87     89.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+</span></span></code></pre></div><h2 id="讀取檔案">讀取檔案</h2>
+<p>在實際處理資料時，我們通常會從外部檔案讀取資料，例如 <code>.csv</code> 或 <code>.json</code>。Pandas 提供了多種方便的函式來幫助我們讀取這些常見格式。</p>
+<p>以下介紹兩種常用的讀取方式：</p>
+<ul>
+<li>pd.read_csv()：用來讀取 CSV 檔案，是最常見的資料格式之一。</li>
+<li>pd.read_json()：用來讀取 JSON 格式的資料，也非常常見於 API 回傳的資料內容。</li>
+</ul>
+<p>讀取後會得到一個 DataFrame，我們可以用 <code>df.head()</code> 來查看前幾筆資料內容，確認格式是否正確。</p>
+<p>下面是實際讀入 CSV 的範例。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> pandas <span style="color:#66d9ef">as</span> pd
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_csv(<span style="color:#e6db74">&#34;./pandas_practice/data.csv&#34;</span>)  <span style="color:#75715e"># 檔名可以是相對路徑或絕對路徑</span>
+</span></span><span style="display:flex;"><span>print(df)
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      Name    Class  Math  English  Science
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">0    Alice  Class A    90       88     85.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">1      Bob  Class B    85       92     79.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">2  Charlie  Class C    78       80      NaN
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">3    Diana  Class A    92       85     90.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">4    Ethan  Class B    88       90     84.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">5    Fiona  Class C    95       89     91.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">6   George  Class A    70       75     72.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">7   Hannah  Class B    83       87     85.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">8      Ian  Class C    60       65     62.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">9    Julia  Class A    88       90     89.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+</span></span></code></pre></div><p><code>df.head()</code> 預設是載入5筆資料，也可以依據需求來顯示不同數量的資料。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>print(df<span style="color:#f92672">.</span>head())  <span style="color:#75715e"># 顯示前 5 筆資料</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># print(df.head(3))  # 顯示前 3 筆資料</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      Name    Class  Math  English  Science
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">0    Alice  Class A    90       88     85.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">1      Bob  Class B    85       92     79.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">2  Charlie  Class C    78       80      NaN
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">3    Diana  Class A    92       85     90.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">4    Ethan  Class B    88       90     84.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+</span></span></code></pre></div><p>下面是實際讀入 JSON 的範例。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_json(<span style="color:#e6db74">&#34;./pandas_practice/data.json&#34;</span>)
+</span></span><span style="display:flex;"><span>print(df)
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      Name    Class  Math  English  Science
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">0    Alice  Class A    90       88     85.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">1      Bob  Class B    85       92     79.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">2  Charlie  Class C    78       80      NaN
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">3    Diana  Class A    92       85     90.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">4    Ethan  Class B    88       90     84.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">5    Fiona  Class C    91       89     88.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">6   George  Class A    76       81     70.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">7   Hannah  Class C    83       87     82.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">8      Ian  Class B    89       86     85.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">9    Julia  Class A    80       79     76.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+</span></span></code></pre></div></section>
+
+  <nav
+    class="mt-24 flex overflow-hidden rounded-xl bg-black/[3%] text-lg leading-[1.2]! *:flex *:w-1/2 *:items-center *:p-5 *:font-medium *:no-underline dark:bg-white/[8%] [&>*:hover]:bg-black/[2%] dark:[&>*:hover]:bg-white/[3%]"
+  ><a class="ltr:pr-3 rtl:pl-3" href="http://localhost:2434/posts/project_ma/"
+      ><span class="ltr:mr-1.5 rtl:ml-1.5">←</span><span>資料分析實作練習 - malicious urls</span></a
+    ><a
+      class="justify-end pl-3 ltr:ml-auto rtl:mr-auto"
+      href="http://localhost:2434/posts/numpy_practice/"
+      ><span>Numpy 練習紀錄</span><span class="ltr:ml-1.5 rtl:mr-1.5">→</span></a
+    ></nav></article></main><footer
+  class="mx-auto flex h-[4.5rem] max-w-(--w) items-center px-8 text-xs tracking-wider uppercase opacity-60"
+>
+  <div class="mr-auto">&copy;2025
+    <a class="link" href="http://localhost:2434/">Henry Automates</a></div>
+  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+    >powered by hugo️️</a
+  >️
+  <a
+    class="link"
+    href="https://github.com/nanxiaobei/hugo-paper"
+    rel="noopener"
+    target="_blank"
+    >hugo-paper</a
+  >
+</footer>
+</body>
+</html>
