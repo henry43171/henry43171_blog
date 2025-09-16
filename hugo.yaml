@@ -5,6 +5,9 @@ defaultContentLanguageInSubdir: false
 title: Henry Automates
 theme: "hugo-narrow"
 
+# URL setting
+relativeURLs: true
+canonifyURLs: true
 
 hasCJKLanguage: true
 enableEmoji: true
