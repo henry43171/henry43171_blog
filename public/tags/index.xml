@@ -2,31 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Henry Automates</title>
-    <link>http://localhost:2434/tags/</link>
+    <link>https://henry43171.github.io/tags/</link>
     <description>Recent content in Tags on Henry Automates</description>
     <generator>Hugo</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Wed, 27 Aug 2025 03:00:00 +0800</lastBuildDate>
-    <atom:link href="http://localhost:2434/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 02 Sep 2025 12:00:00 +0800</lastBuildDate>
+    <atom:link href="https://henry43171.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>工具</title>
-      <link>http://localhost:2434/tags/%E5%B7%A5%E5%85%B7/</link>
-      <pubDate>Wed, 27 Aug 2025 03:00:00 +0800</pubDate>
-      <guid>http://localhost:2434/tags/%E5%B7%A5%E5%85%B7/</guid>
+      <link>https://henry43171.github.io/tags/%E5%B7%A5%E5%85%B7/</link>
+      <pubDate>Tue, 02 Sep 2025 12:00:00 +0800</pubDate>
+      <guid>https://henry43171.github.io/tags/%E5%B7%A5%E5%85%B7/</guid>
       <description></description>
     </item>
     <item>
-      <title>基本語法</title>
-      <link>http://localhost:2434/tags/%E5%9F%BA%E6%9C%AC%E8%AA%9E%E6%B3%95/</link>
-      <pubDate>Fri, 11 Jul 2025 03:00:00 +0800</pubDate>
-      <guid>http://localhost:2434/tags/%E5%9F%BA%E6%9C%AC%E8%AA%9E%E6%B3%95/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>資料整理</title>
-      <link>http://localhost:2434/tags/%E8%B3%87%E6%96%99%E6%95%B4%E7%90%86/</link>
-      <pubDate>Fri, 11 Jul 2025 03:00:00 +0800</pubDate>
-      <guid>http://localhost:2434/tags/%E8%B3%87%E6%96%99%E6%95%B4%E7%90%86/</guid>
+      <title>自動化</title>
+      <link>https://henry43171.github.io/tags/%E8%87%AA%E5%8B%95%E5%8C%96/</link>
+      <pubDate>Tue, 02 Sep 2025 12:00:00 +0800</pubDate>
+      <guid>https://henry43171.github.io/tags/%E8%87%AA%E5%8B%95%E5%8C%96/</guid>
       <description></description>
     </item>
   </channel>

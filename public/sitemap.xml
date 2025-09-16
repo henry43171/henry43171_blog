@@ -2,46 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:2434/categories/automation/</loc>
+    <loc>https://henry43171.github.io/posts/project_auto_test_demo/</loc>
+    <lastmod>2025-09-02T12:00:00+08:00</lastmod>
+  </url><url>
+    <loc>https://henry43171.github.io/</loc>
+    <lastmod>2025-09-02T12:00:00+08:00</lastmod>
+  </url><url>
+    <loc>https://henry43171.github.io/posts/</loc>
+    <lastmod>2025-09-02T12:00:00+08:00</lastmod>
+  </url><url>
+    <loc>https://henry43171.github.io/tags/</loc>
+    <lastmod>2025-09-02T12:00:00+08:00</lastmod>
+  </url><url>
+    <loc>https://henry43171.github.io/tags/%E5%B7%A5%E5%85%B7/</loc>
+    <lastmod>2025-09-02T12:00:00+08:00</lastmod>
+  </url><url>
+    <loc>https://henry43171.github.io/tags/%E8%87%AA%E5%8B%95%E5%8C%96/</loc>
+    <lastmod>2025-09-02T12:00:00+08:00</lastmod>
+  </url><url>
+    <loc>https://henry43171.github.io/categories/automation/</loc>
     <lastmod>2025-08-27T03:00:00+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:2434/categories/</loc>
+    <loc>https://henry43171.github.io/categories/</loc>
     <lastmod>2025-08-27T03:00:00+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:2434/</loc>
+    <loc>https://henry43171.github.io/posts/hotkeytray/</loc>
     <lastmod>2025-08-27T03:00:00+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:2434/posts/</loc>
-    <lastmod>2025-08-27T03:00:00+08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:2434/tags/</loc>
-    <lastmod>2025-08-27T03:00:00+08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:2434/tags/%E5%B7%A5%E5%85%B7/</loc>
-    <lastmod>2025-08-27T03:00:00+08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:2434/posts/hotkeytray/</loc>
-    <lastmod>2025-08-27T03:00:00+08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:2434/categories/data-analyze/</loc>
-    <lastmod>2025-07-11T03:00:00+08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:2434/tags/%E5%9F%BA%E6%9C%AC%E8%AA%9E%E6%B3%95/</loc>
-    <lastmod>2025-07-11T03:00:00+08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:2434/posts/project_ma/</loc>
-    <lastmod>2025-07-11T03:00:00+08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:2434/tags/%E8%B3%87%E6%96%99%E6%95%B4%E7%90%86/</loc>
-    <lastmod>2025-07-11T03:00:00+08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:2434/posts/pandas_practice/</loc>
-    <lastmod>2025-05-06T15:07:00+08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:2434/categories/numpy/</loc>
-    <lastmod>2025-04-23T14:46:27+08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:2434/posts/numpy_practice/</loc>
-    <lastmod>2025-04-23T14:46:27+08:00</lastmod>
+    <loc>https://henry43171.github.io/posts/project_daily_discord_bot/</loc>
+    <lastmod>2025-08-01T12:00:00+08:00</lastmod>
   </url>
 </urlset>
