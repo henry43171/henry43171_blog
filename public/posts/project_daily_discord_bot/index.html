@@ -11,7 +11,7 @@
   style="--bg:#faf8f1"
   lang="zh-tw"
   dir="ltr"
-><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=2434&amp;path=livereload" data-no-instant defer></script>
+><head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta
@@ -59,10 +59,10 @@ UI 即時預覽總量與日期範圍。
 
 批量命名工具中文 UI
 " />
-  <meta name="author" content="Henry Automates" /><link rel="preload stylesheet" as="style" href="http://localhost:2434/main.min.css" />
+  <meta name="author" content="Henry Automates" /><link rel="preload stylesheet" as="style" href="https://henry43171.github.io/main.min.css" />
 
   
-  <link rel="preload" as="image" href="http://localhost:2434/theme.png" />
+  <link rel="preload" as="image" href="https://henry43171.github.io/theme.png" />
 
   
 
@@ -70,21 +70,61 @@ UI 即時預覽總量與日期範圍。
 
   <script
     defer
-    src="http://localhost:2434/highlight.min.js"
+    src="https://henry43171.github.io/highlight.min.js"
     onload="hljs.initHighlightingOnLoad();"
   ></script>
 
   
   <link
     rel="icon"
-    href="http://localhost:2434/favicon.ico"
+    href="https://henry43171.github.io/favicon.ico"
   />
   <link
     rel="apple-touch-icon"
-    href="http://localhost:2434/apple-touch-icon.png"
+    href="https://henry43171.github.io/apple-touch-icon.png"
   />
 
   <meta name="generator" content="Hugo 0.146.5">
+  <meta itemprop="name" content="DailyMediaTool - 每日自動發圖工具">
+  <meta itemprop="description" content="DailyMediaTool - 每日自動發圖工具 背景與動機 在使用 Discord 的過程中，我加入一個人數龐大的群組，我發現管理員經常需要每天發送圖片，使得每日發圖成為繁瑣的工作。由於我並不熟悉群組內管理流程，我假設唯一的發圖者需要從自己電腦上傳圖片，因此決定開發 DailyMediaTool。
+這個工具可以直接讀取使用者電腦本地的圖片，透過 Windows 任務排程器，完成每日定時發圖，省去手動操作，並降低對雲端服務的依賴。
+C:\your_name\daily_media_tool\daily_bot&gt;python main.py 2025-09-16 14:11:11 INFO discord.client logging in using static token 2025-09-16 14:11:13 INFO discord.gateway Shard ID None has connected to Gateway (Session ID: xxxxxx). ✅ 機器人已上線 工具組成與特色 1. 每日自動發圖模組 這個模組是一個簡單的 Discord 機器人，會依照資料夾中圖片的日期自動發送當天對應圖片到指定頻道，並附加自訂訊息。發送完成後，Bot 將自動關閉。
+主要功能：
+發送完成自動關閉，搭配排程可實現每日自動發送。 啟動後等待指定秒數再發送，避免立即發送。 支援 jpg、jpeg、png、webp 格式圖片。 發送訊息可包含第 N 天計數與自訂文字 {date} 佔位符。 若找不到當日圖片，會自動發送提示訊息。 2. 圖片批量命名工具（GUI） 為了讓每日圖片與日期對應更加精準，我製作了 圖片批量命名工具，提供圖形化介面操作。
+主要功能：
+選擇資料夾及自訂起始日期，依序將圖片重新命名為日期格式（YYYYMMDD）。 支援單月或跨月圖片數量，自動連號編寫日期。 UI 即時預覽總量與日期範圍。 先暫時改名避免直接覆蓋，再依日期命名。 進度條顯示改名進度。 支援中文/英文切換（語系文字來源 lang.json，預設語言在 config.json 設定）。 錯誤處理：無效日期、空資料夾等情況會有提示。 批量命名工具中文 UI">
+  <meta itemprop="datePublished" content="2025-08-01T12:00:00+08:00">
+  <meta itemprop="dateModified" content="2025-08-01T12:00:00+08:00">
+  <meta itemprop="wordCount" content="108">
+  <meta itemprop="keywords" content="自動化,工具"><meta property="og:url" content="https://henry43171.github.io/posts/project_daily_discord_bot/">
+  <meta property="og:site_name" content="Henry Automates">
+  <meta property="og:title" content="DailyMediaTool - 每日自動發圖工具">
+  <meta property="og:description" content="DailyMediaTool - 每日自動發圖工具 背景與動機 在使用 Discord 的過程中，我加入一個人數龐大的群組，我發現管理員經常需要每天發送圖片，使得每日發圖成為繁瑣的工作。由於我並不熟悉群組內管理流程，我假設唯一的發圖者需要從自己電腦上傳圖片，因此決定開發 DailyMediaTool。
+這個工具可以直接讀取使用者電腦本地的圖片，透過 Windows 任務排程器，完成每日定時發圖，省去手動操作，並降低對雲端服務的依賴。
+C:\your_name\daily_media_tool\daily_bot&gt;python main.py 2025-09-16 14:11:11 INFO discord.client logging in using static token 2025-09-16 14:11:13 INFO discord.gateway Shard ID None has connected to Gateway (Session ID: xxxxxx). ✅ 機器人已上線 工具組成與特色 1. 每日自動發圖模組 這個模組是一個簡單的 Discord 機器人，會依照資料夾中圖片的日期自動發送當天對應圖片到指定頻道，並附加自訂訊息。發送完成後，Bot 將自動關閉。
+主要功能：
+發送完成自動關閉，搭配排程可實現每日自動發送。 啟動後等待指定秒數再發送，避免立即發送。 支援 jpg、jpeg、png、webp 格式圖片。 發送訊息可包含第 N 天計數與自訂文字 {date} 佔位符。 若找不到當日圖片，會自動發送提示訊息。 2. 圖片批量命名工具（GUI） 為了讓每日圖片與日期對應更加精準，我製作了 圖片批量命名工具，提供圖形化介面操作。
+主要功能：
+選擇資料夾及自訂起始日期，依序將圖片重新命名為日期格式（YYYYMMDD）。 支援單月或跨月圖片數量，自動連號編寫日期。 UI 即時預覽總量與日期範圍。 先暫時改名避免直接覆蓋，再依日期命名。 進度條顯示改名進度。 支援中文/英文切換（語系文字來源 lang.json，預設語言在 config.json 設定）。 錯誤處理：無效日期、空資料夾等情況會有提示。 批量命名工具中文 UI">
+  <meta property="og:locale" content="zh_tw">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-08-01T12:00:00+08:00">
+    <meta property="article:modified_time" content="2025-08-01T12:00:00+08:00">
+    <meta property="article:tag" content="自動化">
+    <meta property="article:tag" content="工具">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="DailyMediaTool - 每日自動發圖工具">
+  <meta name="twitter:description" content="DailyMediaTool - 每日自動發圖工具 背景與動機 在使用 Discord 的過程中，我加入一個人數龐大的群組，我發現管理員經常需要每天發送圖片，使得每日發圖成為繁瑣的工作。由於我並不熟悉群組內管理流程，我假設唯一的發圖者需要從自己電腦上傳圖片，因此決定開發 DailyMediaTool。
+這個工具可以直接讀取使用者電腦本地的圖片，透過 Windows 任務排程器，完成每日定時發圖，省去手動操作，並降低對雲端服務的依賴。
+C:\your_name\daily_media_tool\daily_bot&gt;python main.py 2025-09-16 14:11:11 INFO discord.client logging in using static token 2025-09-16 14:11:13 INFO discord.gateway Shard ID None has connected to Gateway (Session ID: xxxxxx). ✅ 機器人已上線 工具組成與特色 1. 每日自動發圖模組 這個模組是一個簡單的 Discord 機器人，會依照資料夾中圖片的日期自動發送當天對應圖片到指定頻道，並附加自訂訊息。發送完成後，Bot 將自動關閉。
+主要功能：
+發送完成自動關閉，搭配排程可實現每日自動發送。 啟動後等待指定秒數再發送，避免立即發送。 支援 jpg、jpeg、png、webp 格式圖片。 發送訊息可包含第 N 天計數與自訂文字 {date} 佔位符。 若找不到當日圖片，會自動發送提示訊息。 2. 圖片批量命名工具（GUI） 為了讓每日圖片與日期對應更加精準，我製作了 圖片批量命名工具，提供圖形化介面操作。
+主要功能：
+選擇資料夾及自訂起始日期，依序將圖片重新命名為日期格式（YYYYMMDD）。 支援單月或跨月圖片數量，自動連號編寫日期。 UI 即時預覽總量與日期範圍。 先暫時改名避免直接覆蓋，再依日期命名。 進度條顯示改名進度。 支援中文/英文切換（語系文字來源 lang.json，預設語言在 config.json 設定）。 錯誤處理：無效日期、空資料夾等情況會有提示。 批量命名工具中文 UI">
+
+  <link rel="canonical" href="https://henry43171.github.io/posts/project_daily_discord_bot/" />
 </head>
 <body
     class="bg-(--bg) text-black antialiased duration-200 ease-out [-webkit-tap-highlight-color:transparent] dark:text-white"
@@ -94,7 +134,7 @@ UI 即時預覽總量與日期範圍。
   <div class="relative z-50 flex items-center ltr:mr-auto rtl:ml-auto">
     <a
       class="-translate-y-[1px] text-2xl font-medium"
-      href="http://localhost:2434/"
+      href="https://henry43171.github.io/"
       >Henry Automates</a
     >
     <div
@@ -220,21 +260,21 @@ UI 即時預覽總量與日期範圍。
 
   <footer class="mt-12 flex flex-wrap"><a
       class="mb-1.5 rounded-lg bg-black/[3%] px-5 py-1 no-underline hover:bg-black/[6%] ltr:mr-1.5 rtl:ml-1.5 dark:bg-white/[8%] dark:hover:bg-white/[12%]"
-      href="http://localhost:2434/tags/%E8%87%AA%E5%8B%95%E5%8C%96"
+      href="https://henry43171.github.io/tags/%E8%87%AA%E5%8B%95%E5%8C%96"
       >自動化</a
     ><a
       class="mb-1.5 rounded-lg bg-black/[3%] px-5 py-1 no-underline hover:bg-black/[6%] ltr:mr-1.5 rtl:ml-1.5 dark:bg-white/[8%] dark:hover:bg-white/[12%]"
-      href="http://localhost:2434/tags/%E5%B7%A5%E5%85%B7"
+      href="https://henry43171.github.io/tags/%E5%B7%A5%E5%85%B7"
       >工具</a
     ></footer><nav
     class="mt-24 flex overflow-hidden rounded-xl bg-black/[3%] text-lg leading-[1.2]! *:flex *:w-1/2 *:items-center *:p-5 *:font-medium *:no-underline dark:bg-white/[8%] [&>*:hover]:bg-black/[2%] dark:[&>*:hover]:bg-white/[3%]"
-  ><a class="ltr:pr-3 rtl:pl-3" href="http://localhost:2434/posts/hotkeytray/"
+  ><a class="ltr:pr-3 rtl:pl-3" href="https://henry43171.github.io/posts/hotkeytray/"
       ><span class="ltr:mr-1.5 rtl:ml-1.5">←</span><span>HotkeyTray - 托盤監聽截圖工具</span></a
     ></nav></article></main><footer
   class="mx-auto flex h-[4.5rem] max-w-(--w) items-center px-8 text-xs tracking-wider uppercase opacity-60"
 >
   <div class="mr-auto">&copy;2025
-    <a class="link" href="http://localhost:2434/">Henry Automates</a></div>
+    <a class="link" href="https://henry43171.github.io/">Henry Automates</a></div>
   <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
     >powered by hugo️️</a
   >️

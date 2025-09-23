@@ -2,37 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:2434/posts/project_auto_test_demo/</loc>
+    <loc>https://henry43171.github.io/posts/project_auto_test_demo/</loc>
     <lastmod>2025-09-02T12:00:00+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:2434/</loc>
+    <loc>https://henry43171.github.io/</loc>
     <lastmod>2025-09-02T12:00:00+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:2434/posts/</loc>
+    <loc>https://henry43171.github.io/posts/</loc>
     <lastmod>2025-09-02T12:00:00+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:2434/tags/qa/</loc>
+    <loc>https://henry43171.github.io/tags/qa/</loc>
     <lastmod>2025-09-02T12:00:00+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:2434/tags/</loc>
+    <loc>https://henry43171.github.io/tags/</loc>
     <lastmod>2025-09-02T12:00:00+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:2434/tags/%E5%B7%A5%E5%85%B7/</loc>
+    <loc>https://henry43171.github.io/tags/%E5%B7%A5%E5%85%B7/</loc>
     <lastmod>2025-09-02T12:00:00+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:2434/tags/%E8%87%AA%E5%8B%95%E5%8C%96/</loc>
+    <loc>https://henry43171.github.io/tags/%E8%87%AA%E5%8B%95%E5%8C%96/</loc>
     <lastmod>2025-09-02T12:00:00+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:2434/categories/automation/</loc>
+    <loc>https://henry43171.github.io/categories/automation/</loc>
     <lastmod>2025-08-27T03:00:00+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:2434/categories/</loc>
+    <loc>https://henry43171.github.io/categories/</loc>
     <lastmod>2025-08-27T03:00:00+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:2434/posts/hotkeytray/</loc>
+    <loc>https://henry43171.github.io/posts/hotkeytray/</loc>
     <lastmod>2025-08-27T03:00:00+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:2434/posts/project_daily_discord_bot/</loc>
+    <loc>https://henry43171.github.io/posts/project_daily_discord_bot/</loc>
     <lastmod>2025-08-01T12:00:00+08:00</lastmod>
   </url>
 </urlset>

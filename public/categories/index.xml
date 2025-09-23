@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Henry Automates</title>
-    <link>http://localhost:2434/categories/</link>
+    <link>https://henry43171.github.io/categories/</link>
     <description>Recent content in Categories on Henry Automates</description>
     <generator>Hugo</generator>
     <language>zh-tw</language>
     <lastBuildDate>Wed, 27 Aug 2025 03:00:00 +0800</lastBuildDate>
-    <atom:link href="http://localhost:2434/categories/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://henry43171.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Automation</title>
-      <link>http://localhost:2434/categories/automation/</link>
+      <link>https://henry43171.github.io/categories/automation/</link>
       <pubDate>Wed, 27 Aug 2025 03:00:00 +0800</pubDate>
-      <guid>http://localhost:2434/categories/automation/</guid>
+      <guid>https://henry43171.github.io/categories/automation/</guid>
       <description></description>
     </item>
   </channel>

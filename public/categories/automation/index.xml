@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Automation on Henry Automates</title>
-    <link>http://localhost:2434/categories/automation/</link>
+    <link>https://henry43171.github.io/categories/automation/</link>
     <description>Recent content in Automation on Henry Automates</description>
     <generator>Hugo</generator>
     <language>zh-tw</language>
     <lastBuildDate>Wed, 27 Aug 2025 03:00:00 +0800</lastBuildDate>
-    <atom:link href="http://localhost:2434/categories/automation/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://henry43171.github.io/categories/automation/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>HotkeyTray - 托盤監聽截圖工具</title>
-      <link>http://localhost:2434/posts/hotkeytray/</link>
+      <link>https://henry43171.github.io/posts/hotkeytray/</link>
       <pubDate>Wed, 27 Aug 2025 03:00:00 +0800</pubDate>
-      <guid>http://localhost:2434/posts/hotkeytray/</guid>
+      <guid>https://henry43171.github.io/posts/hotkeytray/</guid>
       <description>&lt;h2 id=&#34;hotkeytray---托盤監聽截圖工具試工具&#34;&gt;HotkeyTray - 托盤監聽截圖工具試工具&lt;/h2&gt;&#xA;&lt;h3 id=&#34;為什麼會有這個工具&#34;&gt;為什麼會有這個工具&lt;/h3&gt;&#xA;&lt;p&gt;在多螢幕環境下工作時，截圖常常是一件麻煩事。&lt;br&gt;&#xA;Windows 內建的截圖工具要不就是需要手動框選範圍，要不就是整個螢幕，&lt;br&gt;&#xA;如果我只想要「左螢幕一鍵截圖」或「右螢幕一鍵截圖」，就顯得很笨重。&lt;/p&gt;&#xA;&lt;p&gt;於是我動手寫了一個小工具 —— &lt;strong&gt;HotkeyTray&lt;/strong&gt;。&lt;br&gt;&#xA;它是一個常駐在系統托盤的 Python 程式，只要設定好快捷鍵，就能隨時一鍵截圖並自動儲存。&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;hotkeytray_tray.png&#34; alt=&#34;HotkeyTray 在系統托盤中&#34;&gt;&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h3 id=&#34;工具簡介&#34;&gt;工具簡介&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;名稱：HotkeyTray&lt;/li&gt;&#xA;&lt;li&gt;功能特色：&#xA;&lt;ul&gt;&#xA;&lt;li&gt;系統托盤常駐，不佔畫面&lt;/li&gt;&#xA;&lt;li&gt;設定快捷鍵截取左螢幕、右螢幕&lt;/li&gt;&#xA;&lt;li&gt;設定檔可自訂快捷鍵、儲存路徑&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;適用情境：&#xA;&lt;ul&gt;&#xA;&lt;li&gt;遠端開會快速截圖&lt;/li&gt;&#xA;&lt;li&gt;文件製作&lt;/li&gt;&#xA;&lt;li&gt;一般多螢幕日常使用&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;&lt;img src=&#34;hotkeytray_settings.png&#34; alt=&#34;設定視窗畫面&#34;&gt;&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h3 id=&#34;技術堆疊&#34;&gt;技術堆疊&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Python&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;pystray&lt;/strong&gt;：系統托盤功能&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;keyboard&lt;/strong&gt;：快捷鍵偵測&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Pillow&lt;/strong&gt;：影像處理&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;dotenv + JSON&lt;/strong&gt;：設定管理&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;hr&gt;&#xA;&lt;h3 id=&#34;安裝與使用&#34;&gt;安裝與使用&lt;/h3&gt;&#xA;&lt;h4 id=&#34;安裝&#34;&gt;安裝&lt;/h4&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;可以直接下載 EXE 檔執行&lt;/li&gt;&#xA;&lt;li&gt;或者用 Python 自行執行：&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git clone https://github.com/henry43171/HotkeyTray.git&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;cd HotkeyTray&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;python src&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;使用步驟&#34;&gt;使用步驟&lt;/h4&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;啟動程式後，系統托盤會出現 &lt;strong&gt;HotkeyTray&lt;/strong&gt; 圖示&lt;/li&gt;&#xA;&lt;li&gt;預設快捷鍵：&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;code&gt;Alt+1&lt;/code&gt; = 左螢幕截圖&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;Alt+2&lt;/code&gt; = 右螢幕截圖&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;截圖會自動存到 &lt;code&gt;screenshots/&lt;/code&gt; 資料夾&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;hr&gt;&#xA;&lt;h3 id=&#34;開發過程的小插曲&#34;&gt;開發過程的小插曲&lt;/h3&gt;&#xA;&lt;p&gt;這原本只是個簡單的小工具，但過程中還是踩了不少坑：&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;一開始有兩份 &lt;code&gt;load_config&lt;/code&gt;，搞到自己亂掉&lt;/li&gt;&#xA;&lt;li&gt;一度遇到「修改設定後不會馬上套用」的問題&lt;/li&gt;&#xA;&lt;li&gt;才發現，就算小專案也會遇到維護性挑戰&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;這些問題讓我開始理解「程式碼乾淨」與「可維護性」的重要性。&lt;/p&gt;</description>
     </item>
   </channel>
