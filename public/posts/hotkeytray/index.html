@@ -11,7 +11,7 @@
   style="--bg:#faf8f1"
   lang="zh-tw"
   dir="ltr"
-><head>
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=2434&amp;path=livereload" data-no-instant defer></script>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta
@@ -92,10 +92,10 @@ Alt&#43;2 = 右螢幕截圖
 才發現，就算小專案也會遇到維護性挑戰
 
 這些問題讓我開始理解「程式碼乾淨」與「可維護性」的重要性。" />
-  <meta name="author" content="Henry Automates" /><link rel="preload stylesheet" as="style" href="https://henry43171.github.io/main.min.css" />
+  <meta name="author" content="Henry Automates" /><link rel="preload stylesheet" as="style" href="http://localhost:2434/main.min.css" />
 
   
-  <link rel="preload" as="image" href="https://henry43171.github.io/theme.png" />
+  <link rel="preload" as="image" href="http://localhost:2434/theme.png" />
 
   
 
@@ -103,60 +103,21 @@ Alt&#43;2 = 右螢幕截圖
 
   <script
     defer
-    src="https://henry43171.github.io/highlight.min.js"
+    src="http://localhost:2434/highlight.min.js"
     onload="hljs.initHighlightingOnLoad();"
   ></script>
 
   
   <link
     rel="icon"
-    href="https://henry43171.github.io/favicon.ico"
+    href="http://localhost:2434/favicon.ico"
   />
   <link
     rel="apple-touch-icon"
-    href="https://henry43171.github.io/apple-touch-icon.png"
+    href="http://localhost:2434/apple-touch-icon.png"
   />
 
   <meta name="generator" content="Hugo 0.146.5">
-  <meta itemprop="name" content="HotkeyTray - 托盤監聽截圖工具">
-  <meta itemprop="description" content="HotkeyTray - 托盤監聽截圖工具試工具 為什麼會有這個工具 在多螢幕環境下工作時，截圖常常是一件麻煩事。
-Windows 內建的截圖工具要不就是需要手動框選範圍，要不就是整個螢幕，
-如果我只想要「左螢幕一鍵截圖」或「右螢幕一鍵截圖」，就顯得很笨重。
-於是我動手寫了一個小工具 —— HotkeyTray。
-它是一個常駐在系統托盤的 Python 程式，只要設定好快捷鍵，就能隨時一鍵截圖並自動儲存。
-工具簡介 名稱：HotkeyTray 功能特色： 系統托盤常駐，不佔畫面 設定快捷鍵截取左螢幕、右螢幕 設定檔可自訂快捷鍵、儲存路徑 適用情境： 遠端開會快速截圖 文件製作 一般多螢幕日常使用 技術堆疊 Python pystray：系統托盤功能 keyboard：快捷鍵偵測 Pillow：影像處理 dotenv &#43; JSON：設定管理 安裝與使用 安裝 可以直接下載 EXE 檔執行 或者用 Python 自行執行： git clone https://github.com/henry43171/HotkeyTray.git cd HotkeyTray python src 使用步驟 啟動程式後，系統托盤會出現 HotkeyTray 圖示 預設快捷鍵： Alt&#43;1 = 左螢幕截圖 Alt&#43;2 = 右螢幕截圖 截圖會自動存到 screenshots/ 資料夾 開發過程的小插曲 這原本只是個簡單的小工具，但過程中還是踩了不少坑：
-一開始有兩份 load_config，搞到自己亂掉 一度遇到「修改設定後不會馬上套用」的問題 才發現，就算小專案也會遇到維護性挑戰 這些問題讓我開始理解「程式碼乾淨」與「可維護性」的重要性。">
-  <meta itemprop="datePublished" content="2025-08-27T03:00:00+08:00">
-  <meta itemprop="dateModified" content="2025-08-27T03:00:00+08:00">
-  <meta itemprop="wordCount" content="78">
-  <meta itemprop="keywords" content="工具"><meta property="og:url" content="https://henry43171.github.io/posts/hotkeytray/">
-  <meta property="og:site_name" content="Henry Automates">
-  <meta property="og:title" content="HotkeyTray - 托盤監聽截圖工具">
-  <meta property="og:description" content="HotkeyTray - 托盤監聽截圖工具試工具 為什麼會有這個工具 在多螢幕環境下工作時，截圖常常是一件麻煩事。
-Windows 內建的截圖工具要不就是需要手動框選範圍，要不就是整個螢幕，
-如果我只想要「左螢幕一鍵截圖」或「右螢幕一鍵截圖」，就顯得很笨重。
-於是我動手寫了一個小工具 —— HotkeyTray。
-它是一個常駐在系統托盤的 Python 程式，只要設定好快捷鍵，就能隨時一鍵截圖並自動儲存。
-工具簡介 名稱：HotkeyTray 功能特色： 系統托盤常駐，不佔畫面 設定快捷鍵截取左螢幕、右螢幕 設定檔可自訂快捷鍵、儲存路徑 適用情境： 遠端開會快速截圖 文件製作 一般多螢幕日常使用 技術堆疊 Python pystray：系統托盤功能 keyboard：快捷鍵偵測 Pillow：影像處理 dotenv &#43; JSON：設定管理 安裝與使用 安裝 可以直接下載 EXE 檔執行 或者用 Python 自行執行： git clone https://github.com/henry43171/HotkeyTray.git cd HotkeyTray python src 使用步驟 啟動程式後，系統托盤會出現 HotkeyTray 圖示 預設快捷鍵： Alt&#43;1 = 左螢幕截圖 Alt&#43;2 = 右螢幕截圖 截圖會自動存到 screenshots/ 資料夾 開發過程的小插曲 這原本只是個簡單的小工具，但過程中還是踩了不少坑：
-一開始有兩份 load_config，搞到自己亂掉 一度遇到「修改設定後不會馬上套用」的問題 才發現，就算小專案也會遇到維護性挑戰 這些問題讓我開始理解「程式碼乾淨」與「可維護性」的重要性。">
-  <meta property="og:locale" content="zh_tw">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2025-08-27T03:00:00+08:00">
-    <meta property="article:modified_time" content="2025-08-27T03:00:00+08:00">
-    <meta property="article:tag" content="工具">
-
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="HotkeyTray - 托盤監聽截圖工具">
-  <meta name="twitter:description" content="HotkeyTray - 托盤監聽截圖工具試工具 為什麼會有這個工具 在多螢幕環境下工作時，截圖常常是一件麻煩事。
-Windows 內建的截圖工具要不就是需要手動框選範圍，要不就是整個螢幕，
-如果我只想要「左螢幕一鍵截圖」或「右螢幕一鍵截圖」，就顯得很笨重。
-於是我動手寫了一個小工具 —— HotkeyTray。
-它是一個常駐在系統托盤的 Python 程式，只要設定好快捷鍵，就能隨時一鍵截圖並自動儲存。
-工具簡介 名稱：HotkeyTray 功能特色： 系統托盤常駐，不佔畫面 設定快捷鍵截取左螢幕、右螢幕 設定檔可自訂快捷鍵、儲存路徑 適用情境： 遠端開會快速截圖 文件製作 一般多螢幕日常使用 技術堆疊 Python pystray：系統托盤功能 keyboard：快捷鍵偵測 Pillow：影像處理 dotenv &#43; JSON：設定管理 安裝與使用 安裝 可以直接下載 EXE 檔執行 或者用 Python 自行執行： git clone https://github.com/henry43171/HotkeyTray.git cd HotkeyTray python src 使用步驟 啟動程式後，系統托盤會出現 HotkeyTray 圖示 預設快捷鍵： Alt&#43;1 = 左螢幕截圖 Alt&#43;2 = 右螢幕截圖 截圖會自動存到 screenshots/ 資料夾 開發過程的小插曲 這原本只是個簡單的小工具，但過程中還是踩了不少坑：
-一開始有兩份 load_config，搞到自己亂掉 一度遇到「修改設定後不會馬上套用」的問題 才發現，就算小專案也會遇到維護性挑戰 這些問題讓我開始理解「程式碼乾淨」與「可維護性」的重要性。">
-
-  <link rel="canonical" href="https://henry43171.github.io/posts/hotkeytray/" />
 </head>
 <body
     class="bg-(--bg) text-black antialiased duration-200 ease-out [-webkit-tap-highlight-color:transparent] dark:text-white"
@@ -166,7 +127,7 @@ Windows 內建的截圖工具要不就是需要手動框選範圍，要不就是
   <div class="relative z-50 flex items-center ltr:mr-auto rtl:ml-auto">
     <a
       class="-translate-y-[1px] text-2xl font-medium"
-      href="https://henry43171.github.io/"
+      href="http://localhost:2434/"
       >Henry Automates</a
     >
     <div
@@ -318,21 +279,21 @@ Windows 內建的截圖工具要不就是需要手動框選範圍，要不就是
 
   <footer class="mt-12 flex flex-wrap"><a
       class="mb-1.5 rounded-lg bg-black/[3%] px-5 py-1 no-underline hover:bg-black/[6%] ltr:mr-1.5 rtl:ml-1.5 dark:bg-white/[8%] dark:hover:bg-white/[12%]"
-      href="https://henry43171.github.io/tags/%E5%B7%A5%E5%85%B7"
+      href="http://localhost:2434/tags/%E5%B7%A5%E5%85%B7"
       >工具</a
     ></footer><nav
     class="mt-24 flex overflow-hidden rounded-xl bg-black/[3%] text-lg leading-[1.2]! *:flex *:w-1/2 *:items-center *:p-5 *:font-medium *:no-underline dark:bg-white/[8%] [&>*:hover]:bg-black/[2%] dark:[&>*:hover]:bg-white/[3%]"
-  ><a class="ltr:pr-3 rtl:pl-3" href="https://henry43171.github.io/posts/project_auto_test_demo/"
+  ><a class="ltr:pr-3 rtl:pl-3" href="http://localhost:2434/posts/project_auto_test_demo/"
       ><span class="ltr:mr-1.5 rtl:ml-1.5">←</span><span>Auto Test Demo - 自動化測試工具</span></a
     ><a
       class="justify-end pl-3 ltr:ml-auto rtl:mr-auto"
-      href="https://henry43171.github.io/posts/project_daily_discord_bot/"
+      href="http://localhost:2434/posts/project_daily_discord_bot/"
       ><span>DailyMediaTool - 每日自動發圖工具</span><span class="ltr:ml-1.5 rtl:mr-1.5">→</span></a
     ></nav></article></main><footer
   class="mx-auto flex h-[4.5rem] max-w-(--w) items-center px-8 text-xs tracking-wider uppercase opacity-60"
 >
   <div class="mr-auto">&copy;2025
-    <a class="link" href="https://henry43171.github.io/">Henry Automates</a></div>
+    <a class="link" href="http://localhost:2434/">Henry Automates</a></div>
   <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
     >powered by hugo️️</a
   >️

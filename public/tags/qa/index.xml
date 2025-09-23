@@ -1,26 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>自動化 on Henry Automates</title>
-    <link>http://localhost:2434/tags/%E8%87%AA%E5%8B%95%E5%8C%96/</link>
-    <description>Recent content in 自動化 on Henry Automates</description>
+    <title>QA on Henry Automates</title>
+    <link>http://localhost:2434/tags/qa/</link>
+    <description>Recent content in QA on Henry Automates</description>
     <generator>Hugo</generator>
     <language>zh-tw</language>
     <lastBuildDate>Tue, 02 Sep 2025 12:00:00 +0800</lastBuildDate>
-    <atom:link href="http://localhost:2434/tags/%E8%87%AA%E5%8B%95%E5%8C%96/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:2434/tags/qa/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Auto Test Demo - 自動化測試工具</title>
       <link>http://localhost:2434/posts/project_auto_test_demo/</link>
       <pubDate>Tue, 02 Sep 2025 12:00:00 +0800</pubDate>
       <guid>http://localhost:2434/posts/project_auto_test_demo/</guid>
       <description>&lt;h2 id=&#34;auto-test-demo---自動化測試工具&#34;&gt;Auto Test Demo - 自動化測試工具&lt;/h2&gt;&#xA;&lt;h3 id=&#34;背景與動機&#34;&gt;背景與動機&lt;/h3&gt;&#xA;&lt;p&gt;在過去的專案中，我經常需要手動測試後台系統功能，這不僅耗時，也容易因人為操作而出現錯誤。為了提高測試效率並建立可重複使用的流程，我設計了 &lt;strong&gt;Auto Test Demo&lt;/strong&gt;，一個結合 &lt;strong&gt;DEMO 網頁&lt;/strong&gt; 與 &lt;strong&gt;自動化測試工具&lt;/strong&gt; 的完整方案。&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;DEMO 網頁&lt;/strong&gt;模擬後台系統與報表展示，資料皆為假資料，僅用於展示自動化工具使用；&lt;strong&gt;自動化測試工具&lt;/strong&gt;提供 GUI 介面來執行 Selenium 測試案例，並生成 HTML 測試報告。透過這個整合方案，我可以快速驗證系統功能、展示報表互動，並降低手動測試成本。&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;tool_demo.png&#34; alt=&#34;DEMO網頁畫面&#34;&gt;&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h3 id=&#34;工具組成與特色&#34;&gt;工具組成與特色&lt;/h3&gt;&#xA;&lt;h4 id=&#34;1-demo-網頁&#34;&gt;1. DEMO 網頁&lt;/h4&gt;&#xA;&lt;p&gt;提供完整的後台管理介面，涵蓋首頁、用戶管理、報表與設定頁面，模擬真實後台操作情境。&#xA;&lt;img src=&#34;web_demo.png&#34; alt=&#34;DEMO網頁畫面&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;主要特色&lt;/strong&gt;：&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;模擬多筆假資料，呈現真實使用情境，便於展示自動化測試效果。&#xA;&lt;img src=&#34;demo_all_web.gif&#34; alt=&#34;網站整體&#34;&gt;&lt;/li&gt;&#xA;&lt;li&gt;報表頁面支援互動式圖表（折線圖 + 柱狀圖），清楚呈現每日銷售額與轉換率，使資料呈現更貼近實際使用情境。&#xA;&lt;img src=&#34;demo_web_report.gif&#34; alt=&#34;網站報表&#34;&gt;&lt;/li&gt;&#xA;&lt;li&gt;簡單直觀的頁面操作，操作過程可直接展示和驗證功能。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h4 id=&#34;2-自動化測試工具&#34;&gt;2. 自動化測試工具&lt;/h4&gt;&#xA;&lt;p&gt;基於 Python 與 Selenium 的 GUI 工具，提供模組化測試方案，能自動執行測試並生成 HTML 報告。&#xA;&lt;img src=&#34;demo_gui.gif&#34; alt=&#34;GUI畫面&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;主要特色&lt;/strong&gt;：&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;GUI 可選擇測試模組與執行環境，操作簡單直覺。&lt;/li&gt;&#xA;&lt;li&gt;自動執行後生成可讀性高的 HTML 報告，顯示頁面資料是否正常呈現。&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;模組化設計&lt;/strong&gt;：新增測試模組不會影響原有功能，方便維護與擴充。&lt;/li&gt;&#xA;&lt;li&gt;可與 DEMO 網頁互動，驗證報表與圖表功能是否正確呈現。&lt;/li&gt;&#xA;&lt;li&gt;適應職場快速迭代環境（兩週一次），手動 GUI 執行比完全自動化 CI/CD 更靈活。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;hr&gt;&#xA;&lt;h3 id=&#34;使用方式使用者面向&#34;&gt;使用方式（使用者面向）&lt;/h3&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;開啟 GUI 工具，選擇欲執行的測試模組。&#xA;&lt;img src=&#34;gui.png&#34; alt=&#34;GUI畫面&#34;&gt;&lt;/li&gt;&#xA;&lt;li&gt;點擊執行，程式將自動進行後台操作模擬與報表檢查。&lt;/li&gt;&#xA;&lt;li&gt;測試完成後，生成 HTML 報告供檢視測試結果。&#xA;&lt;img src=&#34;report_demo.png&#34; alt=&#34;報表畫面&#34;&gt;&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;strong&gt;亮點&lt;/strong&gt;：操作直覺，非技術使用者亦可輕鬆執行測試；可依據需求決定測試項目；支援切換不同測試環境（開發/測試/UAT）。&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>DailyMediaTool - 每日自動發圖工具</title>
-      <link>http://localhost:2434/posts/project_daily_discord_bot/</link>
-      <pubDate>Fri, 01 Aug 2025 12:00:00 +0800</pubDate>
-      <guid>http://localhost:2434/posts/project_daily_discord_bot/</guid>
-      <description>&lt;h2 id=&#34;dailymediatool---每日自動發圖工具&#34;&gt;DailyMediaTool - 每日自動發圖工具&lt;/h2&gt;&#xA;&lt;h3 id=&#34;背景與動機&#34;&gt;背景與動機&lt;/h3&gt;&#xA;&lt;p&gt;在使用 Discord 的過程中，我加入一個人數龐大的群組，我發現管理員經常需要每天發送圖片，使得每日發圖成為繁瑣的工作。由於我並不熟悉群組內管理流程，我假設唯一的發圖者需要從自己電腦上傳圖片，因此決定開發 &lt;strong&gt;DailyMediaTool&lt;/strong&gt;。&lt;/p&gt;&#xA;&lt;p&gt;這個工具可以直接讀取使用者電腦本地的圖片，透過 Windows 任務排程器，完成每日定時發圖，省去手動操作，並降低對雲端服務的依賴。&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-terminal&#34; data-lang=&#34;terminal&#34;&gt;C:\your_name\daily_media_tool\daily_bot&amp;gt;python main.py&#xA;2025-09-16 14:11:11 INFO     discord.client logging in using static token&#xA;2025-09-16 14:11:13 INFO     discord.gateway Shard ID None has connected to Gateway (Session ID: xxxxxx).&#xA;✅ 機器人已上線&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;工具組成與特色&#34;&gt;工具組成與特色&lt;/h3&gt;&#xA;&lt;h4 id=&#34;1-每日自動發圖模組&#34;&gt;1. 每日自動發圖模組&lt;/h4&gt;&#xA;&lt;p&gt;這個模組是一個簡單的 Discord 機器人，會依照資料夾中圖片的日期自動發送當天對應圖片到指定頻道，並附加自訂訊息。發送完成後，Bot 將自動關閉。&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;主要功能&lt;/strong&gt;：&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;發送完成自動關閉，搭配排程可實現每日自動發送。&lt;/li&gt;&#xA;&lt;li&gt;啟動後等待指定秒數再發送，避免立即發送。&lt;/li&gt;&#xA;&lt;li&gt;支援 jpg、jpeg、png、webp 格式圖片。&lt;/li&gt;&#xA;&lt;li&gt;發送訊息可包含第 N 天計數與自訂文字 &lt;code&gt;{date}&lt;/code&gt; 佔位符。&lt;/li&gt;&#xA;&lt;li&gt;若找不到當日圖片，會自動發送提示訊息。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;&lt;img src=&#34;daily_media_tool_discord.png&#34; alt=&#34;每日發圖示意圖&#34;&gt;&lt;/p&gt;&#xA;&lt;h4 id=&#34;2-圖片批量命名工具gui&#34;&gt;2. 圖片批量命名工具（GUI）&lt;/h4&gt;&#xA;&lt;p&gt;為了讓每日圖片與日期對應更加精準，我製作了 &lt;strong&gt;圖片批量命名工具&lt;/strong&gt;，提供圖形化介面操作。&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;主要功能&lt;/strong&gt;：&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;選擇資料夾及自訂起始日期，依序將圖片重新命名為日期格式（YYYYMMDD）。&lt;/li&gt;&#xA;&lt;li&gt;支援單月或跨月圖片數量，自動連號編寫日期。&lt;/li&gt;&#xA;&lt;li&gt;UI 即時預覽總量與日期範圍。&lt;/li&gt;&#xA;&lt;li&gt;先暫時改名避免直接覆蓋，再依日期命名。&lt;/li&gt;&#xA;&lt;li&gt;進度條顯示改名進度。&lt;/li&gt;&#xA;&lt;li&gt;支援中文/英文切換（語系文字來源 &lt;code&gt;lang.json&lt;/code&gt;，預設語言在 &lt;code&gt;config.json&lt;/code&gt; 設定）。&lt;/li&gt;&#xA;&lt;li&gt;錯誤處理：無效日期、空資料夾等情況會有提示。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;批量命名工具中文 UI&#xA;&lt;img src=&#34;imgrenamer_gui_zh.png&#34; alt=&#34;批量命名工具中文 UI&#34;&gt;&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
