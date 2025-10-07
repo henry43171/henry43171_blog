@@ -1,0 +1,391 @@
+<!doctype html>
+
+
+
+
+
+
+
+<html
+  class="not-ready lg:text-base"
+  style="--bg:#faf8f1"
+  lang="zh-tw"
+  dir="ltr"
+><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <title>API Stress Test Demo - API壓力測試測試工具 - Henry Automates</title>
+
+  
+  <meta name="theme-color" />
+
+  <meta name="description" content="API Stress Test Demo - API壓力測試測試工具
+背景與動機
+在開發與維運 API 時，我們經常需要測試其在高併發或長時間運行下的穩定性。本專案提供一個簡單易用的工具，降低人工測試成本，快速回饋系統性能。
+
+
+工具組成與特色
+核心測試模組
+
+支援高併發模擬與長時間測試。
+參數化設計，可調整使用者數量、測試時間、單位時間等。
+模組化程式架構，方便擴展不同 API 測試腳本。
+
+
+
+
+API 設計
+
+採用模組化結構，每個 API 測試腳本以獨立函式存在，可由主控制模組動態呼叫。
+測試函式支援以 lambda 傳入參數，靈活組合不同場景，例如：
+(&lsquo;submit_form&rsquo;, lambda: submit_form({**data, &lsquo;current_users&rsquo;: total_users}))
+以統一接口格式傳遞請求與結果，避免各 API 間的結構不一致。
+流程設計包含：
+
+進入網頁（GET）
+取得表單資料（GET）
+提交表單（POST）
+
+
+支援基本的負載模擬，可依參數設定人數上限，模擬真實環境的請求行為。
+
+
+
+【補】Log 管理
+
+以 logging 模組集中管理所有測試日誌。
+採用雙層 Log 機制：
+
+Console log：即時顯示測試進度與警示。
+File log：完整記錄測試細節與結果。
+
+
+Log 格式包含時間戳記、API 名稱、狀態與延遲時間，方便日後比對。
+自動生成每日 log 檔案，命名格式如：
+logs/2025-10-07_api_stress.log
+並區分不同測試模式（高併發 / 長時間），各自擁有獨立資料夾與流水號，方便版本追蹤。
+若測試異常中斷，仍可根據 log 恢復測試結果統計。
+
+
+
+高併發與長時間設計
+
+
+使用 ThreadPoolExecutor 實現高併發控制，確保效能與穩定性。" />
+  <meta name="author" content="Henry Automates" /><link rel="preload stylesheet" as="style" href="https://henry43171.github.io/main.min.css" />
+
+  
+  <link rel="preload" as="image" href="https://henry43171.github.io/theme.png" />
+
+  
+
+  
+
+  <script
+    defer
+    src="https://henry43171.github.io/highlight.min.js"
+    onload="hljs.initHighlightingOnLoad();"
+  ></script>
+
+  
+  <link
+    rel="icon"
+    href="https://henry43171.github.io/favicon.ico"
+  />
+  <link
+    rel="apple-touch-icon"
+    href="https://henry43171.github.io/apple-touch-icon.png"
+  />
+
+  <meta name="generator" content="Hugo 0.146.5">
+  <meta itemprop="name" content="API Stress Test Demo - API壓力測試測試工具">
+  <meta itemprop="description" content="API Stress Test Demo - API壓力測試測試工具 背景與動機 在開發與維運 API 時，我們經常需要測試其在高併發或長時間運行下的穩定性。本專案提供一個簡單易用的工具，降低人工測試成本，快速回饋系統性能。
+工具組成與特色 核心測試模組 支援高併發模擬與長時間測試。 參數化設計，可調整使用者數量、測試時間、單位時間等。 模組化程式架構，方便擴展不同 API 測試腳本。 API 設計 採用模組化結構，每個 API 測試腳本以獨立函式存在，可由主控制模組動態呼叫。 測試函式支援以 lambda 傳入參數，靈活組合不同場景，例如：
+(‘submit_form’, lambda: submit_form({**data, ‘current_users’: total_users})) 以統一接口格式傳遞請求與結果，避免各 API 間的結構不一致。 流程設計包含： 進入網頁（GET） 取得表單資料（GET） 提交表單（POST） 支援基本的負載模擬，可依參數設定人數上限，模擬真實環境的請求行為。 【補】Log 管理 以 logging 模組集中管理所有測試日誌。 採用雙層 Log 機制： Console log：即時顯示測試進度與警示。 File log：完整記錄測試細節與結果。 Log 格式包含時間戳記、API 名稱、狀態與延遲時間，方便日後比對。 自動生成每日 log 檔案，命名格式如：
+logs/2025-10-07_api_stress.log 並區分不同測試模式（高併發 / 長時間），各自擁有獨立資料夾與流水號，方便版本追蹤。 若測試異常中斷，仍可根據 log 恢復測試結果統計。 高併發與長時間設計 使用 ThreadPoolExecutor 實現高併發控制，確保效能與穩定性。">
+  <meta itemprop="datePublished" content="2025-10-07T15:30:00+08:00">
+  <meta itemprop="dateModified" content="2025-10-07T15:30:00+08:00">
+  <meta itemprop="wordCount" content="137">
+  <meta itemprop="keywords" content="自動化,工具,QA"><meta property="og:url" content="https://henry43171.github.io/posts/project_api_stress_test_demo/">
+  <meta property="og:site_name" content="Henry Automates">
+  <meta property="og:title" content="API Stress Test Demo - API壓力測試測試工具">
+  <meta property="og:description" content="API Stress Test Demo - API壓力測試測試工具 背景與動機 在開發與維運 API 時，我們經常需要測試其在高併發或長時間運行下的穩定性。本專案提供一個簡單易用的工具，降低人工測試成本，快速回饋系統性能。
+工具組成與特色 核心測試模組 支援高併發模擬與長時間測試。 參數化設計，可調整使用者數量、測試時間、單位時間等。 模組化程式架構，方便擴展不同 API 測試腳本。 API 設計 採用模組化結構，每個 API 測試腳本以獨立函式存在，可由主控制模組動態呼叫。 測試函式支援以 lambda 傳入參數，靈活組合不同場景，例如：
+(‘submit_form’, lambda: submit_form({**data, ‘current_users’: total_users})) 以統一接口格式傳遞請求與結果，避免各 API 間的結構不一致。 流程設計包含： 進入網頁（GET） 取得表單資料（GET） 提交表單（POST） 支援基本的負載模擬，可依參數設定人數上限，模擬真實環境的請求行為。 【補】Log 管理 以 logging 模組集中管理所有測試日誌。 採用雙層 Log 機制： Console log：即時顯示測試進度與警示。 File log：完整記錄測試細節與結果。 Log 格式包含時間戳記、API 名稱、狀態與延遲時間，方便日後比對。 自動生成每日 log 檔案，命名格式如：
+logs/2025-10-07_api_stress.log 並區分不同測試模式（高併發 / 長時間），各自擁有獨立資料夾與流水號，方便版本追蹤。 若測試異常中斷，仍可根據 log 恢復測試結果統計。 高併發與長時間設計 使用 ThreadPoolExecutor 實現高併發控制，確保效能與穩定性。">
+  <meta property="og:locale" content="zh_tw">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-10-07T15:30:00+08:00">
+    <meta property="article:modified_time" content="2025-10-07T15:30:00+08:00">
+    <meta property="article:tag" content="自動化">
+    <meta property="article:tag" content="工具">
+    <meta property="article:tag" content="QA">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="API Stress Test Demo - API壓力測試測試工具">
+  <meta name="twitter:description" content="API Stress Test Demo - API壓力測試測試工具 背景與動機 在開發與維運 API 時，我們經常需要測試其在高併發或長時間運行下的穩定性。本專案提供一個簡單易用的工具，降低人工測試成本，快速回饋系統性能。
+工具組成與特色 核心測試模組 支援高併發模擬與長時間測試。 參數化設計，可調整使用者數量、測試時間、單位時間等。 模組化程式架構，方便擴展不同 API 測試腳本。 API 設計 採用模組化結構，每個 API 測試腳本以獨立函式存在，可由主控制模組動態呼叫。 測試函式支援以 lambda 傳入參數，靈活組合不同場景，例如：
+(‘submit_form’, lambda: submit_form({**data, ‘current_users’: total_users})) 以統一接口格式傳遞請求與結果，避免各 API 間的結構不一致。 流程設計包含： 進入網頁（GET） 取得表單資料（GET） 提交表單（POST） 支援基本的負載模擬，可依參數設定人數上限，模擬真實環境的請求行為。 【補】Log 管理 以 logging 模組集中管理所有測試日誌。 採用雙層 Log 機制： Console log：即時顯示測試進度與警示。 File log：完整記錄測試細節與結果。 Log 格式包含時間戳記、API 名稱、狀態與延遲時間，方便日後比對。 自動生成每日 log 檔案，命名格式如：
+logs/2025-10-07_api_stress.log 並區分不同測試模式（高併發 / 長時間），各自擁有獨立資料夾與流水號，方便版本追蹤。 若測試異常中斷，仍可根據 log 恢復測試結果統計。 高併發與長時間設計 使用 ThreadPoolExecutor 實現高併發控制，確保效能與穩定性。">
+
+  <link rel="canonical" href="https://henry43171.github.io/posts/project_api_stress_test_demo/" />
+</head>
+<body
+    class="bg-(--bg) text-black antialiased duration-200 ease-out [-webkit-tap-highlight-color:transparent] dark:text-white"
+  ><header
+  class="mx-auto flex h-[4.5rem] max-w-(--w) px-8 whitespace-nowrap lg:justify-center"
+>
+  <div class="relative z-50 flex items-center ltr:mr-auto rtl:ml-auto">
+    <a
+      class="-translate-y-[1px] text-2xl font-medium"
+      href="https://henry43171.github.io/"
+      >Henry Automates</a
+    >
+    <div
+      class="btn-dark text-[0px] ltr:ml-4 rtl:mr-4 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.png)_left_center/_auto_theme('spacing.6')_no-repeat] [transition:_background-position_0.4s_steps(5)] dark:[background-position:right]"
+      role="button"
+      aria-label="Dark"
+    ></div>
+  </div>
+
+  <div
+    class="btn-menu relative z-50 flex h-[4.5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden ltr:-mr-8 rtl:-ml-8"
+    role="button"
+    aria-label="Menu"
+  ></div>
+
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = '#faf8f1'.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full flex-col justify-center bg-(--bg) pb-16 duration-200 select-none lg:static lg:h-auto lg:flex-row lg:bg-transparent! lg:pb-0 lg:transition-none"
+  >
+  </div>
+</header>
+<main
+      class="prose prose-neutral dark:prose-invert relative mx-auto min-h-[calc(100vh-9rem)] max-w-(--w) px-8 pt-14 pb-16"
+    ><article>
+  <header class="mb-14">
+    <h1 class="my-0! pb-2.5">API Stress Test Demo - API壓力測試測試工具</h1><div class="text-xs antialiased opacity-60"><time>Oct 7, 2025</time></div></header>
+
+  <section><h2 id="api-stress-test-demo---api壓力測試測試工具">API Stress Test Demo - API壓力測試測試工具</h2>
+<h2 id="背景與動機">背景與動機</h2>
+<p>在開發與維運 API 時，我們經常需要測試其在高併發或長時間運行下的穩定性。本專案提供一個簡單易用的工具，降低人工測試成本，快速回饋系統性能。</p>
+<p><img src="API_flow.png" alt="API流程圖"></p>
+<hr>
+<h2 id="工具組成與特色">工具組成與特色</h2>
+<h3 id="核心測試模組">核心測試模組</h3>
+<ul>
+<li>支援高併發模擬與長時間測試。</li>
+<li>參數化設計，可調整使用者數量、測試時間、單位時間等。</li>
+<li>模組化程式架構，方便擴展不同 API 測試腳本。</li>
+</ul>
+<p><img src="hc_flow.png" alt="高併發模擬測試流程"><br>
+<img src="ld_flow.png" alt="長時間模擬測試流程"></p>
+<hr>
+<h3 id="api-設計">API 設計</h3>
+<ul>
+<li>採用模組化結構，每個 API 測試腳本以獨立函式存在，可由主控制模組動態呼叫。</li>
+<li>測試函式支援以 lambda 傳入參數，靈活組合不同場景，例如：<br>
+(&lsquo;submit_form&rsquo;, lambda: submit_form({**data, &lsquo;current_users&rsquo;: total_users}))</li>
+<li>以統一接口格式傳遞請求與結果，避免各 API 間的結構不一致。</li>
+<li>流程設計包含：
+<ol>
+<li>進入網頁（GET）</li>
+<li>取得表單資料（GET）</li>
+<li>提交表單（POST）</li>
+</ol>
+</li>
+<li>支援基本的負載模擬，可依參數設定人數上限，模擬真實環境的請求行為。</li>
+</ul>
+<p><img src="API_flow.png" alt="API流程示意圖"></p>
+<hr>
+<h3 id="補log-管理">【補】Log 管理</h3>
+<ul>
+<li>以 logging 模組集中管理所有測試日誌。</li>
+<li>採用雙層 Log 機制：
+<ol>
+<li>Console log：即時顯示測試進度與警示。</li>
+<li>File log：完整記錄測試細節與結果。</li>
+</ol>
+</li>
+<li>Log 格式包含時間戳記、API 名稱、狀態與延遲時間，方便日後比對。</li>
+<li>自動生成每日 log 檔案，命名格式如：<br>
+logs/2025-10-07_api_stress.log</li>
+<li>並區分不同測試模式（高併發 / 長時間），各自擁有獨立資料夾與流水號，方便版本追蹤。</li>
+<li>若測試異常中斷，仍可根據 log 恢復測試結果統計。</li>
+</ul>
+<p><img src="log_sample.png" alt="【補】Log紀錄範例圖"></p>
+<hr>
+<h3 id="高併發與長時間設計">高併發與長時間設計</h3>
+<ul>
+<li>
+<p>使用 ThreadPoolExecutor 實現高併發控制，確保效能與穩定性。</p>
+</li>
+<li>
+<p>採用參數化時間模擬長期壓力，例如：<br>
+test_total_time: 1200<br>
+test_unit_time: 48<br>
+unit_users: 100</p>
+</li>
+<li>
+<p>每個時間單位會根據使用者數量調整請求速率，模擬真實流量變動。</p>
+</li>
+<li>
+<p>成功率會依照「人數」與「衰減率」動態計算：<br>
+prob = max(low, high - decay * users)</p>
+</li>
+<li>
+<p>支援長時間測試（數小時以上），可觀察 API 的穩定性趨勢與性能衰減。</p>
+</li>
+<li>
+<p>可視化報表顯示：</p>
+<ul>
+<li>單位時間的成功率</li>
+<li>成功率變化趨勢</li>
+<li>高併發 vs 長時間的差異比較</li>
+</ul>
+</li>
+<li>
+<p>高併發測試圖表
+<img src="hc_test_report_demo.png" alt="高併發測試報告"></p>
+</li>
+<li>
+<p>高併發測試圖表
+<img src="ld_test_report_demo.png" alt="長時間測試報告"></p>
+</li>
+</ul>
+<h3 id="假資料生成">假資料生成</h3>
+<ul>
+<li>提供測試所需的假資料，模擬真實使用情境。</li>
+<li>可快速生成多筆資料，支援所需要的測試場景。
+<img src="fake_data_demo.png" alt="假資料生成示意圖"></li>
+</ul>
+<h3 id="結果與報告">結果與報告</h3>
+<ul>
+<li>自動生成測試報告與日誌，便於結果分析</li>
+<li>提供圖表與文字摘要，顯示人數和 API 成功率</li>
+<li>結果可視化，方便觀察長時間或高併發下的性能波動</li>
+</ul>
+<hr>
+<h2 id="使用方式使用者面向">使用方式（使用者面向）</h2>
+<ol>
+<li>配置測試參數，例如使用者數量、總測試時間。</li>
+<li>選擇測試腳本並執行。</li>
+<li>查看自動生成的報告，分析 API 表現。</li>
+</ol>
+<hr>
+<h2 id="開發者面向補">開發者面向【補】</h2>
+<ul>
+<li>模組化設計：新增測試模組不影響現有功能。</li>
+<li>易於維護與擴展。</li>
+<li>集中測試重點在 API 成功率與延遲，避免測試環境數據混亂影響判斷。
+<img src="module_architecture.png" alt="【補】程式架構圖或模組示意圖"></li>
+</ul>
+<hr>
+<h2 id="設計決策與判斷理由">設計決策與判斷理由</h2>
+<ul>
+<li>使用 Python 與 ThreadPoolExecutor 支援高併發，便於維護。</li>
+<li>長時間測試以模擬實際流量波動。</li>
+<li>模組化與參數化設計確保靈活度與擴展性。</li>
+</ul>
+<hr>
+<h2 id="實務價值">實務價值</h2>
+<ul>
+<li>提升測試效率，降低人工操作與分析成本。</li>
+<li>快速回饋開發團隊，降低迭代風險。</li>
+<li>展示 QA 與測試工具設計能力。</li>
+<li>高可擴展性，未來可整合更多自動化流程。</li>
+</ul>
+<hr>
+<h2 id="後續方向">後續方向</h2>
+<ul>
+<li>擴展更多測試腳本與報告功能，例如分配不同API行為的權重，模擬不同使用者的行為。</li>
+<li>優化結果視覺化與使用者操作流程，例如新增GUI介面。</li>
+<li>支援更多 API 類型與不同測試場景。</li>
+</ul>
+</section>
+
+  <footer class="mt-12 flex flex-wrap"><a
+      class="mb-1.5 rounded-lg bg-black/[3%] px-5 py-1 no-underline hover:bg-black/[6%] ltr:mr-1.5 rtl:ml-1.5 dark:bg-white/[8%] dark:hover:bg-white/[12%]"
+      href="https://henry43171.github.io/tags/%E8%87%AA%E5%8B%95%E5%8C%96"
+      >自動化</a
+    ><a
+      class="mb-1.5 rounded-lg bg-black/[3%] px-5 py-1 no-underline hover:bg-black/[6%] ltr:mr-1.5 rtl:ml-1.5 dark:bg-white/[8%] dark:hover:bg-white/[12%]"
+      href="https://henry43171.github.io/tags/%E5%B7%A5%E5%85%B7"
+      >工具</a
+    ><a
+      class="mb-1.5 rounded-lg bg-black/[3%] px-5 py-1 no-underline hover:bg-black/[6%] ltr:mr-1.5 rtl:ml-1.5 dark:bg-white/[8%] dark:hover:bg-white/[12%]"
+      href="https://henry43171.github.io/tags/qa"
+      >QA</a
+    ></footer><nav
+    class="mt-24 flex overflow-hidden rounded-xl bg-black/[3%] text-lg leading-[1.2]! *:flex *:w-1/2 *:items-center *:p-5 *:font-medium *:no-underline dark:bg-white/[8%] [&>*:hover]:bg-black/[2%] dark:[&>*:hover]:bg-white/[3%]"
+  ><a
+      class="justify-end pl-3 ltr:ml-auto rtl:mr-auto"
+      href="https://henry43171.github.io/posts/project_auto_test_demo/"
+      ><span>Auto Test Demo - 自動化測試工具</span><span class="ltr:ml-1.5 rtl:mr-1.5">→</span></a
+    ></nav></article></main><footer
+  class="mx-auto flex h-[4.5rem] max-w-(--w) items-center px-8 text-xs tracking-wider uppercase opacity-60"
+>
+  <div class="mr-auto">&copy;2025
+    <a class="link" href="https://henry43171.github.io/">Henry Automates</a></div>
+  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+    >powered by hugo️️</a
+  >️
+  <a
+    class="link"
+    href="https://github.com/nanxiaobei/hugo-paper"
+    rel="noopener"
+    target="_blank"
+    >hugo-paper</a
+  >
+</footer>
+</body>
+</html>

@@ -6,8 +6,15 @@
     <description>Recent content on Henry Automates</description>
     <generator>Hugo</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Tue, 02 Sep 2025 12:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 07 Oct 2025 15:30:00 +0800</lastBuildDate>
     <atom:link href="https://henry43171.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>API Stress Test Demo - API壓力測試測試工具</title>
+      <link>https://henry43171.github.io/posts/project_api_stress_test_demo/</link>
+      <pubDate>Tue, 07 Oct 2025 15:30:00 +0800</pubDate>
+      <guid>https://henry43171.github.io/posts/project_api_stress_test_demo/</guid>
+      <description>&lt;h2 id=&#34;api-stress-test-demo---api壓力測試測試工具&#34;&gt;API Stress Test Demo - API壓力測試測試工具&lt;/h2&gt;&#xA;&lt;h2 id=&#34;背景與動機&#34;&gt;背景與動機&lt;/h2&gt;&#xA;&lt;p&gt;在開發與維運 API 時，我們經常需要測試其在高併發或長時間運行下的穩定性。本專案提供一個簡單易用的工具，降低人工測試成本，快速回饋系統性能。&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;API_flow.png&#34; alt=&#34;API流程圖&#34;&gt;&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;工具組成與特色&#34;&gt;工具組成與特色&lt;/h2&gt;&#xA;&lt;h3 id=&#34;核心測試模組&#34;&gt;核心測試模組&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;支援高併發模擬與長時間測試。&lt;/li&gt;&#xA;&lt;li&gt;參數化設計，可調整使用者數量、測試時間、單位時間等。&lt;/li&gt;&#xA;&lt;li&gt;模組化程式架構，方便擴展不同 API 測試腳本。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;&lt;img src=&#34;hc_flow.png&#34; alt=&#34;高併發模擬測試流程&#34;&gt;&lt;br&gt;&#xA;&lt;img src=&#34;ld_flow.png&#34; alt=&#34;長時間模擬測試流程&#34;&gt;&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h3 id=&#34;api-設計&#34;&gt;API 設計&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;採用模組化結構，每個 API 測試腳本以獨立函式存在，可由主控制模組動態呼叫。&lt;/li&gt;&#xA;&lt;li&gt;測試函式支援以 lambda 傳入參數，靈活組合不同場景，例如：&lt;br&gt;&#xA;(&amp;lsquo;submit_form&amp;rsquo;, lambda: submit_form({**data, &amp;lsquo;current_users&amp;rsquo;: total_users}))&lt;/li&gt;&#xA;&lt;li&gt;以統一接口格式傳遞請求與結果，避免各 API 間的結構不一致。&lt;/li&gt;&#xA;&lt;li&gt;流程設計包含：&#xA;&lt;ol&gt;&#xA;&lt;li&gt;進入網頁（GET）&lt;/li&gt;&#xA;&lt;li&gt;取得表單資料（GET）&lt;/li&gt;&#xA;&lt;li&gt;提交表單（POST）&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;支援基本的負載模擬，可依參數設定人數上限，模擬真實環境的請求行為。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;&lt;img src=&#34;API_flow.png&#34; alt=&#34;API流程示意圖&#34;&gt;&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h3 id=&#34;補log-管理&#34;&gt;【補】Log 管理&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;以 logging 模組集中管理所有測試日誌。&lt;/li&gt;&#xA;&lt;li&gt;採用雙層 Log 機制：&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Console log：即時顯示測試進度與警示。&lt;/li&gt;&#xA;&lt;li&gt;File log：完整記錄測試細節與結果。&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;Log 格式包含時間戳記、API 名稱、狀態與延遲時間，方便日後比對。&lt;/li&gt;&#xA;&lt;li&gt;自動生成每日 log 檔案，命名格式如：&lt;br&gt;&#xA;logs/2025-10-07_api_stress.log&lt;/li&gt;&#xA;&lt;li&gt;並區分不同測試模式（高併發 / 長時間），各自擁有獨立資料夾與流水號，方便版本追蹤。&lt;/li&gt;&#xA;&lt;li&gt;若測試異常中斷，仍可根據 log 恢復測試結果統計。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;&lt;img src=&#34;log_sample.png&#34; alt=&#34;【補】Log紀錄範例圖&#34;&gt;&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h3 id=&#34;高併發與長時間設計&#34;&gt;高併發與長時間設計&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;使用 ThreadPoolExecutor 實現高併發控制，確保效能與穩定性。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Auto Test Demo - 自動化測試工具</title>
       <link>https://henry43171.github.io/posts/project_auto_test_demo/</link>
