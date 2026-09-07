@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Automation on Henry Automates</title>
-    <link>http://localhost:2434/categories/automation/</link>
+    <link>http://localhost:1313/categories/automation/</link>
     <description>Recent content in Automation on Henry Automates</description>
     <generator>Hugo</generator>
     <language>zh-tw</language>
     <lastBuildDate>Wed, 27 Aug 2025 03:00:00 +0800</lastBuildDate>
-    <atom:link href="http://localhost:2434/categories/automation/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/categories/automation/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>HotkeyTray - 托盤監聽截圖工具</title>
-      <link>http://localhost:2434/post/hotkeytray/</link>
+      <link>http://localhost:1313/post/hotkeytray/</link>
       <pubDate>Wed, 27 Aug 2025 03:00:00 +0800</pubDate>
-      <guid>http://localhost:2434/post/hotkeytray/</guid>
+      <guid>http://localhost:1313/post/hotkeytray/</guid>
       <description>&lt;h2 id=&#34;hotkeytray---托盤監聽截圖工具試工具&#34;&gt;HotkeyTray - 托盤監聽截圖工具試工具&lt;/h2&gt;
 &lt;h3 id=&#34;為什麼會有這個工具&#34;&gt;為什麼會有這個工具&lt;/h3&gt;
 &lt;p&gt;在多螢幕環境下工作時，截圖常常是一件麻煩事。&lt;br&gt;
@@ -20,7 +20,7 @@ Windows 內建的截圖工具要不就是需要手動框選範圍，要不就是
 如果我只想要「左螢幕一鍵截圖」或「右螢幕一鍵截圖」，就顯得很笨重。&lt;/p&gt;
 &lt;p&gt;於是我動手寫了一個小工具 —— &lt;strong&gt;HotkeyTray&lt;/strong&gt;。&lt;br&gt;
 它是一個常駐在系統托盤的 Python 程式，只要設定好快捷鍵，就能隨時一鍵截圖並自動儲存。&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;HotkeyTray 在系統托盤中&#34; loading=&#34;lazy&#34; src=&#34;http://localhost:2434/post/hotkeytray/hotkeytray_tray.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;HotkeyTray 在系統托盤中&#34; loading=&#34;lazy&#34; src=&#34;http://localhost:1313/post/hotkeytray/hotkeytray_tray.png&#34;&gt;&lt;/p&gt;
 &lt;hr&gt;
 &lt;h3 id=&#34;工具簡介&#34;&gt;工具簡介&lt;/h3&gt;
 &lt;ul&gt;
@@ -40,7 +40,7 @@ Windows 內建的截圖工具要不就是需要手動框選範圍，要不就是
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img alt=&#34;設定視窗畫面&#34; loading=&#34;lazy&#34; src=&#34;http://localhost:2434/post/hotkeytray/hotkeytray_settings.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;設定視窗畫面&#34; loading=&#34;lazy&#34; src=&#34;http://localhost:1313/post/hotkeytray/hotkeytray_settings.png&#34;&gt;&lt;/p&gt;
 &lt;hr&gt;
 &lt;h3 id=&#34;技術堆疊&#34;&gt;技術堆疊&lt;/h3&gt;
 &lt;ul&gt;
