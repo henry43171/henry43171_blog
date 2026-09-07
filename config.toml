@@ -1,6 +1,37 @@
 baseURL = 'https://henry43171.github.io/'
 languageCode = 'zh-tw'
 title = 'Henry Automates'
-theme = "paper"
-category = "categories"
-tag = "tags"
+theme = 'PaperMod'
+
+# 關閉 Emoji
+enableEmoji = false
+
+[params]
+    # 關閉首頁巨型封面，讓所有卡片大小一致
+    disableSpecial1stPost = true
+
+    # 顯示閱讀時間與文章內容設定
+    showReadingTime = true
+    showWordCount = false
+    showPostNavLinks = true
+    showCodeCopyButtons = true # 程式碼區塊複製按鈕
+
+    # 讓搜尋功能正常運作的必要 JSON 輸出設定
+    [outputs]
+        home = ["HTML", "RSS", "JSON"]
+
+# 頂部導覽列選單 (Search, Tags, Categories)
+[[menu.main]]
+    name = "Search"
+    url = "search/"
+    weight = 10
+
+[[menu.main]]
+    name = "Tags"
+    url = "tags/"
+    weight = 20
+
+[[menu.main]]
+    name = "Categories"
+    url = "categories/"
+    weight = 30

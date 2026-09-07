@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=2434&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>API Stress Test Demo - API壓力測試測試工具 | Henry Automates</title>
+<meta name="keywords" content="自動化, 工具, QA">
+<meta name="description" content="API Stress Test Demo - API壓力測試測試工具
+背景與動機
+在開發與維運階段，API 的穩定性對系統可用性至關重要。本專案建立一套可重複、參數化的測試流程，涵蓋 API 設計、log 管理與結果視覺化，完整支援「測試 → 分析 → 回饋」循環。
+
+模擬真實 API 使用情境：進入頁面、取得表單、提交資料。
+搭配不同測試模式：高併發與長時間測試，對應瞬間負載與長期穩定性。
+結構化 log 與圖表報告：便於即時觀察與性能優化。
+快速反映 API 在不同壓力下的表現，協助 QA 與開發團隊早期發現瓶頸。
+
+
+工具組成與特色
+API 設計
+
+
+採用模組化結構，每個 API 測試腳本以獨立函式存在，可由主控制模組動態呼叫。
+測試函式支援以 lambda 傳入參數，靈活組合不同場景，例如：
+(&#39;submit_form&#39;, lambda: submit_form({**data, &#39;current_users&#39;: total_users}))
+以統一接口格式傳遞請求與結果，避免各 API 間的結構不一致。
+流程設計包含：
+
+進入網頁（GET）
+取得表單資料（GET）
+提交表單（POST）
+
+
+支援基本的負載模擬，可依參數設定人數上限，模擬真實環境的請求行為。
+
+
+Log 管理
+
+以 logging 模組集中管理所有測試日誌。
+採用雙層 Log 機制：
+
+results/logs：完整保留每次呼叫API的紀錄
+results/summary：將logs的統計結果記錄在summary資料夾，方便查看以及視覺化
+
+
+Log 格式包含時間戳記、狀態與延遲時間，方便日後比對。
+自動生成每日 log 檔案，命名格式如：hc_50u_20251007_091733.log。
+並區分不同測試模式（高併發 / 長時間），各自擁有獨立資料夾與流水號，方便追蹤。
+若測試異常中斷，仍可根據已記錄的 log 觀測測試結果。
+
+">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:2434/post/project_api_stress_test_demo/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.1d4346839295915e219dee6c6b7d8512a8a4a8e692c435a57effb2398a6e371e.css" integrity="sha256-HUNGg5KVkV4hne5sa32FEqikqOaSxDWlfv&#43;yOYpuNx4=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:2434/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:2434/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:2434/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:2434/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:2434/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:2434/post/project_api_stress_test_demo/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="http://localhost:2434/" accesskey="h" title="Henry Automates (Alt + H)">Henry Automates</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="http://localhost:2434/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:2434/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:2434/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      API Stress Test Demo - API壓力測試測試工具
+    </h1>
+    <div class="post-meta">
+
+<span title='2025-10-07 15:30:00 +0800 CST'>October 7, 2025</span>&nbsp;·&nbsp;<span>1 min</span>
+
+</div>
+  </header> 
+  <div class="post-content md-content"><h2 id="api-stress-test-demo---api壓力測試測試工具">API Stress Test Demo - API壓力測試測試工具<a hidden class="anchor" aria-hidden="true" href="#api-stress-test-demo---api壓力測試測試工具">#</a></h2>
+<h2 id="背景與動機">背景與動機<a hidden class="anchor" aria-hidden="true" href="#背景與動機">#</a></h2>
+<p>在開發與維運階段，API 的穩定性對系統可用性至關重要。本專案建立一套可重複、參數化的測試流程，涵蓋 API 設計、log 管理與結果視覺化，完整支援「測試 → 分析 → 回饋」循環。</p>
+<ul>
+<li>模擬真實 API 使用情境：進入頁面、取得表單、提交資料。</li>
+<li>搭配不同測試模式：高併發與長時間測試，對應瞬間負載與長期穩定性。</li>
+<li>結構化 log 與圖表報告：便於即時觀察與性能優化。</li>
+<li>快速反映 API 在不同壓力下的表現，協助 QA 與開發團隊早期發現瓶頸。</li>
+</ul>
+<hr>
+<h2 id="工具組成與特色">工具組成與特色<a hidden class="anchor" aria-hidden="true" href="#工具組成與特色">#</a></h2>
+<h3 id="api-設計">API 設計<a hidden class="anchor" aria-hidden="true" href="#api-設計">#</a></h3>
+<p><img alt="API流程圖" loading="lazy" src="/post/project_api_stress_test_demo/API_flow.png"></p>
+<ul>
+<li>採用模組化結構，每個 API 測試腳本以獨立函式存在，可由主控制模組動態呼叫。</li>
+<li>測試函式支援以 lambda 傳入參數，靈活組合不同場景，例如：<br>
+<code>('submit_form', lambda: submit_form({**data, 'current_users': total_users}))</code></li>
+<li>以統一接口格式傳遞請求與結果，避免各 API 間的結構不一致。</li>
+<li>流程設計包含：
+<ol>
+<li>進入網頁（GET）</li>
+<li>取得表單資料（GET）</li>
+<li>提交表單（POST）</li>
+</ol>
+</li>
+<li>支援基本的負載模擬，可依參數設定人數上限，模擬真實環境的請求行為。</li>
+</ul>
+<hr>
+<h3 id="log-管理">Log 管理<a hidden class="anchor" aria-hidden="true" href="#log-管理">#</a></h3>
+<ul>
+<li>以 logging 模組集中管理所有測試日誌。</li>
+<li>採用雙層 Log 機制：
+<ol>
+<li>results/logs：完整保留每次呼叫API的紀錄</li>
+<li>results/summary：將logs的統計結果記錄在summary資料夾，方便查看以及視覺化</li>
+</ol>
+</li>
+<li>Log 格式包含時間戳記、狀態與延遲時間，方便日後比對。</li>
+<li>自動生成每日 log 檔案，命名格式如：<code>hc_50u_20251007_091733.log</code>。</li>
+<li>並區分不同測試模式（高併發 / 長時間），各自擁有獨立資料夾與流水號，方便追蹤。</li>
+<li>若測試異常中斷，仍可根據已記錄的 log 觀測測試結果。</li>
+</ul>
+<p><img alt="Log紀錄範例圖" loading="lazy" src="/post/project_api_stress_test_demo/log_sample.png"></p>
+<hr>
+<h3 id="高併發測試設計">高併發測試設計<a hidden class="anchor" aria-hidden="true" href="#高併發測試設計">#</a></h3>
+<ul>
+<li>目標：模擬大量使用者同時訪問 API，測試系統瞬間負載承受能力，搭配不同人數規模，可看出API瓶頸。</li>
+<li>實作：可設定使用者數量，進行不同規模的併發測試。</li>
+<li>成果呈現：
+<ul>
+<li>可視化報表顯示每次測試的成功率</li>
+<li>測試過程與結果自動記錄於 log 檔</li>
+</ul>
+</li>
+<li>高併發流程圖
+<img alt="高併發模擬測試流程" loading="lazy" src="/post/project_api_stress_test_demo/hc_flow.png"></li>
+<li>高併發測試報表
+<img alt="高併發測試報告" loading="lazy" src="/post/project_api_stress_test_demo/hc_test_report_demo.png"></li>
+</ul>
+<h3 id="長時間測試設計">長時間測試設計<a hidden class="anchor" aria-hidden="true" href="#長時間測試設計">#</a></h3>
+<ul>
+<li>目標：模擬系統長時間運行，觀察性能穩定性與潛在瓶頸，實務上可用於檢驗各時段的API負載。</li>
+<li>實作：依照參數設定時間單位與使用者數量，模擬不同時段流量變化。
+<ul>
+<li>test_total_time: 1200</li>
+<li>test_unit_time: 48</li>
+<li>unit_users: 100</li>
+</ul>
+</li>
+<li>成果呈現：
+<ul>
+<li>單位時間的成功率變化趨勢</li>
+<li>長時間運行下系統性能衰減分析</li>
+<li>測試結果可作為後續優化依據</li>
+</ul>
+</li>
+<li>長時間流程圖
+<img alt="長時間模擬測試流程" loading="lazy" src="/post/project_api_stress_test_demo/ld_flow.png"></li>
+<li>長時間測試報表
+<img alt="長時間測試報告" loading="lazy" src="/post/project_api_stress_test_demo/ld_test_report_demo.png"></li>
+</ul>
+<h3 id="假資料生成">假資料生成<a hidden class="anchor" aria-hidden="true" href="#假資料生成">#</a></h3>
+<ul>
+<li>提供測試所需的假資料，模擬真實使用情境</li>
+<li>可快速生成多筆資料，支援所需要的測試場景
+<img alt="假資料生成示意圖" loading="lazy" src="/post/project_api_stress_test_demo/fake_data_demo.png"></li>
+</ul>
+<h3 id="成果與價值">成果與價值<a hidden class="anchor" aria-hidden="true" href="#成果與價值">#</a></h3>
+<ul>
+<li>自動生成測試報告與日誌，提供圖表與文字摘要，顯示人數與 API 成功率 。</li>
+<li>結果可視化，便於觀察高併發或長時間測試下的性能波動。</li>
+<li>提升測試效率並降低人工操作成本，快速回饋開發團隊。</li>
+<li>展示 QA 與測試工具設計能力，具高可擴展性，可整合更多自動化流程。</li>
+</ul>
+<hr>
+<h2 id="後續方向">後續方向<a hidden class="anchor" aria-hidden="true" href="#後續方向">#</a></h2>
+<ul>
+<li>擴展測試腳本與報告功能，模擬不同使用者行為與 API 負載。</li>
+<li>優化結果視覺化與操作流程（如 GUI 介面）。</li>
+<li>支援更多 API 類型與測試場景。</li>
+</ul>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:2434/tags/%E8%87%AA%E5%8B%95%E5%8C%96/">自動化</a></li>
+      <li><a href="http://localhost:2434/tags/%E5%B7%A5%E5%85%B7/">工具</a></li>
+      <li><a href="http://localhost:2434/tags/qa/">QA</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="next" href="http://localhost:2434/post/project_auto_test_demo/">
+    <span class="title">Next »</span>
+    <span>Auto Test Demo - 自動化測試工具</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="http://localhost:2434/">Henry Automates</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

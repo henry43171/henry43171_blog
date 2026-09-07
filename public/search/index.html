@@ -5,12 +5,13 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="noindex, nofollow">
-<title>Categories | Henry Automates</title>
+<title>Search | Henry Automates</title>
 <meta name="keywords" content="">
-<meta name="description" content="">
+<meta name="description" content="search">
 <meta name="author" content="">
-<link rel="canonical" href="http://localhost:2434/categories/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.1d4346839295915e219dee6c6b7d8512a8a4a8e692c435a57effb2398a6e371e.css" integrity="sha256-HUNGg5KVkV4hne5sa32FEqikqOaSxDWlfv&#43;yOYpuNx4=" rel="preload stylesheet" as="style">
+<link rel="canonical" href="http://localhost:2434/search/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.1d4346839295915e219dee6c6b7d8512a8a4a8e692c435a57effb2398a6e371e.css" integrity="sha256-HUNGg5KVkV4hne5sa32FEqikqOaSxDWlfv&#43;yOYpuNx4=" rel="preload stylesheet" as="style"><link crossorigin="anonymous" rel="preload" as="fetch" href="../index.json">
+<script defer crossorigin="anonymous" src="/assets/js/search.15e27181a562cbbb709f633fd1b1347768fd8f4688f6998fc10333af983a03f2.js" integrity="sha256-FeJxgaViy7twn2M/0bE0d2j9j0aI9pmPwQMzr5g6A/I="></script>
 <link rel="icon" href="http://localhost:2434/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="http://localhost:2434/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="http://localhost:2434/favicon-32x32.png">
@@ -18,8 +19,7 @@
 <link rel="mask-icon" href="http://localhost:2434/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" type="application/rss+xml" href="http://localhost:2434/categories/index.xml" title="rss">
-<link rel="alternate" hreflang="en" href="http://localhost:2434/categories/">
+<link rel="alternate" hreflang="en" href="http://localhost:2434/search/">
 <noscript>
     <style>
         #theme-toggle,
@@ -98,7 +98,7 @@
         <ul id="menu" class="menu">
             <li>
                 <a href="http://localhost:2434/search/" title="Search (Alt &#43; /)" accesskey=/>
-                    <span>Search</span>
+                    <span class="active">Search</span>
                 </a>
             </li>
             <li>
@@ -108,22 +108,29 @@
             </li>
             <li>
                 <a href="http://localhost:2434/categories/" title="Categories">
-                    <span class="active">Categories</span>
+                    <span>Categories</span>
                 </a>
             </li>
         </ul>
     </nav>
 </header>
 <main class="main">
+
 <header class="page-header">
-    <h1>Categories</h1>
+    <h1>Search <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+    </h1>
+    <div class="post-meta"></div>
 </header>
 
-<ul class="terms-tags">
-            <li>
-                <a href="http://localhost:2434/categories/automation/">Automation <sup><strong><sup>1</sup></strong></sup> </a>
-            </li>
-</ul>
+<div id="searchbox" class="searchbox">
+    <input id="searchInput" disabled placeholder="Search ↵"
+        aria-label="search" type="search" autocomplete="off" maxlength="64">
+    <ul id="searchResults" class="searchResults" aria-label="search results"></ul>
+</div>
     </main>
     
 <footer class="footer">
