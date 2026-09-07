@@ -1,10 +1,10 @@
 +++
 date = '2025-08-01T12:00:00+08:00'
 draft = false
-title = "DailyMediaTool - 每日自動發圖工具"
+title = "DailyMediaTool - 自動每日發圖工具"
 tags = ["自動化", "工具"]
 +++
-## DailyMediaTool - 每日自動發圖工具
+## DailyMediaTool - 自動每日發圖工具
 
 ### 背景與動機
 在使用 Discord 的過程中，我加入一個人數龐大的群組，我發現管理員經常需要每天發送圖片，使得每日發圖成為繁瑣的工作。由於我並不熟悉群組內管理流程，我假設唯一的發圖者需要從自己電腦上傳圖片，因此決定開發 **DailyMediaTool**。
